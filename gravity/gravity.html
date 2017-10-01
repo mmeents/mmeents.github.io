@@ -1,0 +1,301 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<style TYPE="text/css"><!-- a:link {text-decoration: none; }--> </style>
+</head>
+<body bgcolor="#000000" >
+
+<center>
+
+<div id="dot0"  style="left:480; top:400; position: absolute; height: 33; width: 33;"><img SRC="http://dl.dropbox.com/u/22533337/gravity/bullet2.gif" height=33 width=33></div>
+<div id="dot1"  style="position: absolute; height: 11; width: 11;"><img SRC="http://dl.dropbox.com/u/22533337/gravity/bullet1.gif" height=22 width=22></div><!-- red  -->
+<div id="dot2"  style="position: absolute; height: 22; width: 21;"><img SRC="http://dl.dropbox.com/u/22533337/gravity/bullet2.gif" height=22 width=22></div><!-- yellow  -->
+<div id="dot3"  style="position: absolute; height: 33; width: 31;"><img SRC="http://dl.dropbox.com/u/22533337/gravity/bullet3.gif" height=22 width=22></div><!-- green  -->
+<div id="dot4"  style="position: absolute; height: 44; width: 41;"><img SRC="http://dl.dropbox.com/u/22533337/gravity/bullet4.gif" height=22 width=22></div><!-- blue  -->
+<div id="dot5"  style="position: absolute; height: 55; width: 51;"><img SRC="http://dl.dropbox.com/u/22533337/gravity/bullet5.gif" height=22 width=22></div><!-- maroon  -->
+<div id="dot6"  style="position: absolute; height: 66; width: 61;"><img SRC="http://dl.dropbox.com/u/22533337/gravity/bullet1.gif" height=11 width=11></div><!-- red  -->
+<div id="dot7"  style="position: absolute; height: 77; width: 71;"><img SRC="http://dl.dropbox.com/u/22533337/gravity/bullet2.gif" height=11 width=11></div><!-- yello  -->
+<div id="dot8"  style="position: absolute; height: 88; width: 8;"><img SRC="http://dl.dropbox.com/u/22533337/gravity/bullet3.gif" height=11 width=11></div><!-- green  -->
+<div id="dot9"  style="position: absolute; height: 91; width: 11;"><img SRC="http://dl.dropbox.com/u/22533337/gravity/bullet4.gif" height=11 width=11></div><!-- blue  -->
+<div id="dot10" style="position: absolute; height: 101; width: 21;"><img SRC="http://dl.dropbox.com/u/22533337/gravity/bullet5.gif" height=11 width=11></div><!-- maroon  -->
+<!--<div id="dot11" style="position: absolute; height: 111; width: 21;"><img SRC="bullet.gif" height=11 width=11></div>
+<div id="dot12" style="position: absolute; height: 211; width: 31;"><img SRC="bullet.gif" height=11 width=11></div>
+<div id="dot13" style="position: absolute; height: 211; width: 31;"><img SRC="bullet.gif" height=11 width=11></div>
+<div id="dot14" style="position: absolute; height: 311; width: 14;"><img SRC="bullet.gif" height=11 width=11></div> -->
+<script LANGUAGE="JavaScript">
+
+<!-- Begin
+var nDots = 11;
+var Xpos = 400;
+var Ypos = 350;
+
+/// fixed time step, no relation to real time
+var DELTAT = .01;
+// size of one spring in pixels
+var SEGLEN = 5;
+
+// spring constant, stiffness of springs
+var SPRINGK = 40;
+var GRAVITY = 0.0;
+var RESISTANCE = 0.015;
+
+// stopping criteria to prevent endless jittering
+// doesn't work when sitting on bottom since floor
+// doesn't push back so acceleration always as big
+// as gravity
+var STOPVEL = 0.1;
+var STOPACC = 0.1;
+var DOTSIZE = 11;
+// BOUNCE is percent of velocity retained when bounced
+var BOUNCE = 0.98;
+
+var isNetscape = navigator.appName=="Netscape";
+
+// always on for now, could be played with to
+// let dots fall to botton, get thrown, etc.
+var followmouse = true;
+
+var dots = new Array();
+init();
+
+function init() {
+  var i = 0;
+  for (i = 0; i < nDots; i++) {
+    dots[i] = new dot(i);
+    dots[i].X = 50+300+Math.cos( nDots*i*1.125 * (nDots-i))* 100;
+    dots[i].Y = 50+300+Math.sin( nDots*i*1.125 * (nDots-i))* 100;
+  }
+
+  // set their positions
+  for (i = 0; i < nDots; i++) {
+    dots[i].obj.left = dots[i].X;
+    dots[i].obj.top = dots[i].Y;
+  }
+
+  if (isNetscape) {  // start right away since they are positioned at 0, 0
+    startanimate();
+  } else {  // let dots sit there for a few seconds since they're hiding on the real bullets
+    setTimeout("startanimate()", 500);
+  }
+}
+
+function dot(i) {
+  this.X = Xpos;
+  this.Y = Ypos;
+  this.dx = 0;
+  this.dy = 0;
+  this.obj = window.document.getElementById('dot'+i).style;
+  //if (isNetscape) {
+  //  this.obj = eval("document.dot" + i);
+  //} else {
+  //  this.obj = eval("dot" + i + ".style");
+ // }
+  
+  if (i==0) { this.w = 642500; } 
+  if (i==1) { this.w = 55090; }
+  if (i==2) { this.w = 80000; } 
+  if (i==3) { this.w = 25000; }
+  if (i==4) { this.w = 32000; }
+  if (i==5) { this.w = 80000; }
+  if (i==6) { this.w = 55000; }
+  if (i==7) { this.w = 32000; }
+  if (i==8) { this.w = 33000; }
+  if (i==9) { this.w = 34000; }
+  if (i==10){ this.w = 35000; }
+  
+  
+  this.k = 8;  
+  
+  
+}
+
+function startanimate() {
+  setInterval("animate()", 20);
+}
+
+// This is to line up the bullets with actual LI tags on the page
+function setInitPositions(dots) {
+  // initialize dot positions to be on top 
+  // of the bullets in the <ul>
+  var startloc = document.all.tags("LI");
+  var i = 0;
+  for (i = 0; i < startloc.length && i < (nDots - 1); i++) {
+    dots[i+1].X = startloc[i].offsetLeft + startloc[i].offsetParent.offsetLeft - DOTSIZE;
+    dots[i+1].Y = startloc[i].offsetTop + startloc[i].offsetParent.offsetTop + 2*DOTSIZE;
+  }
+  
+  // put 0th dot above 1st (it is hidden)
+  dots[0].X = dots[1].X;
+  dots[0].Y = dots[1].Y - SEGLEN;
+}
+
+// just save mouse position for animate() to use
+function MoveHandler(e) {
+  Xpos = e.pageX;
+  Ypos = e.pageY;  
+  return true;
+}
+
+// just save mouse position for animate() to use
+function MoveHandlerIE() {
+  Xpos = window.event.x;
+  Ypos = window.event.y;  
+}
+
+if (isNetscape) {
+  document.captureEvents(Event.MOUSEMOVE);
+  document.onMouseMove = MoveHandler;
+} else {
+  document.onmousemove = MoveHandlerIE;
+}
+
+function vec(X, Y) {
+  this.X = X;
+  this.Y = Y;
+}
+
+// adds force in X and Y to spring for dot[i] on dot[j]
+function springForce(i, j, spring) {
+  var dx = (dots[i].X - dots[j].X);
+  var dy = (dots[i].Y - dots[j].Y);
+  var len = Math.sqrt(dx*dx + dy*dy);
+  if (len > SEGLEN) {
+    var springF = dots[i].k * ( (dots[i].w + dots[j].w) / len / 2    );
+    spring.X += (dx / len) * springF;
+    spring.Y += (dy / len) * springF;
+  }
+}
+
+function animate() {
+// dots[0] follows the mouse,
+// though no dot is drawn there
+var start = 0;
+if (followmouse) {
+  dots[0].X = Xpos;
+  dots[0].Y = Ypos;
+  start = 1;
+}
+
+  dots[0].obj.left = dots[0].X-5;
+  dots[0].obj.top =  dots[0].Y-5;
+
+for (i = start; i < nDots; i++ ) {
+  var spring1 = new vec(0, 0);
+  var spring2 = new vec(0, 0);
+  var spring3 = new vec(0, 0);
+  var spring4 = new vec(0, 0);
+  var spring5 = new vec(0, 0);
+  var spring6 = new vec(0, 0);
+  var spring7 = new vec(0, 0);
+  if (i == 1 ){
+    springForce(0, 1, spring1);          
+	springForce(2, 1, spring2);          
+	springForce(3, 1, spring3);          
+	springForce(4, 1, spring4);          
+	springForce(5, 1, spring5);
+    spring1.X = spring1.X + spring2.X+ spring3.X+ spring4.X+ spring5.X;
+    spring1.Y = spring1.Y + spring2.Y+ spring3.Y+ spring4.Y+ spring5.Y;
+  }
+  if (i == 2 ){
+    springForce(0, 2, spring1);          
+	springForce(1, 2, spring2);          
+	springForce(3, 2, spring3);          
+	springForce(4, 2, spring4);          
+	springForce(5, 2, spring5);
+    spring1.X = spring1.X + spring2.X+ spring3.X+ spring4.X+ spring5.X;
+    spring1.Y = spring1.Y + spring2.Y+ spring3.Y+ spring4.Y+ spring5.Y;
+  }
+  if (i == 3 ){
+    springForce(0, 3, spring1);          
+	springForce(1, 3, spring2);          
+	springForce(2, 3, spring3);          
+	springForce(4, 3, spring4);          
+	springForce(5, 3, spring5);
+    spring1.X = spring1.X + spring2.X+ spring3.X+ spring4.X+ spring5.X;
+    spring1.Y = spring1.Y + spring2.Y+ spring3.Y+ spring4.Y+ spring5.Y;
+  }
+  if (i == 4 ){
+    springForce(0, 4, spring1);          
+	springForce(2, 4, spring2);          
+	springForce(3, 4, spring3);          
+	springForce(1, 4, spring4);          
+	springForce(5, 4, spring5);
+    spring1.X = spring1.X + spring2.X+ spring3.X+ spring4.X+ spring5.X;
+    spring1.Y = spring1.Y + spring2.Y+ spring3.Y+ spring4.Y+ spring5.Y;
+  }
+  if (i == 5 ){
+    springForce(0, 5, spring1);          
+	springForce(2, 5, spring2);          
+	springForce(3, 5, spring3);          
+	springForce(4, 5, spring4);          
+	springForce(1, 5, spring5);
+    spring1.X = spring1.X + spring2.X+ spring3.X+ spring4.X+ spring5.X;
+    spring1.Y = spring1.Y + spring2.Y+ spring3.Y+ spring4.Y+ spring5.Y;
+  }  
+  
+  if (i <= 5) {
+    //springForce(0, i, spring1);          
+  } else {
+    springForce( 5, i, spring1);
+    springForce( 1, i, spring2);          
+	springForce( 2, i, spring3);
+	springForce( 3, i, spring4);          
+	springForce( 4, i, spring5); 
+    springForce( 0, i, spring6);	
+    spring1.X = spring1.X + spring2.X+ spring3.X+ spring4.X+ spring5.X+ spring6.X;
+    spring1.Y = spring1.Y + spring2.Y+ spring3.Y+ spring4.Y+ spring5.Y+ spring6.Y;	
+  }        
+  
+  
+  // air resisitance/friction
+  var resist = new vec(-dots[i].dx * RESISTANCE, -dots[i].dy * RESISTANCE);
+
+  // compute new accel, including gravity
+  var accel = new vec((spring1.X + resist.X)/ dots[i].w, (spring1.Y + resist.Y)/ dots[i].w + GRAVITY);
+
+  // compute new velocity
+  dots[i].dx += (DELTAT * accel.X);
+  dots[i].dy += (DELTAT * accel.Y);
+
+  // stop dead so it doesn't jitter when nearly still
+  if (Math.abs(dots[i].dx) < STOPVEL &&
+  Math.abs(dots[i].dy) < STOPVEL &&
+  Math.abs(accel.X) < STOPACC &&
+  Math.abs(accel.Y) < STOPACC) {
+    dots[i].dx = 0;
+    dots[i].dy = 0;
+  }
+
+  // move to new position
+  dots[i].X += dots[i].dx;
+  dots[i].Y += dots[i].dy;
+
+  // get size of window
+  var height, width;
+  if (isNetscape) {
+    height = window.innerHeight; 
+    width = window.innerWidth;
+  } else {
+    height = document.body.clientHeight;
+    width = document.body.clientWidth;
+  }
+
+  // move img to new position
+  dots[i].obj.left = dots[i].X-5;
+  dots[i].obj.top =  dots[i].Y-5;
+  }
+}
+
+
+
+
+// End -->
+</script>
+
+    <p>
+        &nbsp;</p>
+    <p>
+        &nbsp;</p>
+
+</body>
+</html>

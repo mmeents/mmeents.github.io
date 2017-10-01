@@ -1,0 +1,89 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<style TYPE="text/css"><!-- a:link {text-decoration: none; }--> </style>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+
+<center>
+
+<script language="JavaScript">
+
+function setUp() {
+if(document.layers)
+ for(document.all=document.layers,x=0;x<document.all.length;x++)
+  document.all[x].style=document.all[x]
+if(!document.all)
+ if(document.getElementsByTagName)
+  document.all=document.getElementsByTagName("div")
+}
+
+function turnoff() {
+ document.all["curtan"].style.visibility="hidden";
+ document.all["program"].style.visibility="visible"; 
+}
+function turnoffE() {
+ document.all["curtan"].style.visibility="hidden";
+ document.all["aError"].style.visibility="visible"; 
+}
+
+function GoSwitch(){ 
+ document.all["curtan"].style.visibility="hidden";
+ document.all["program"].style.visibility="visible";   
+}
+
+function GoSwitchBack(){
+ document.all["program"].style.visibility="hidden";
+ document.all["curtan"].style.visibility="visible";    
+}
+
+// just save mouse position for animate() to use
+function MoveHandler(e) {
+  Xpos = e.pageX;
+  Ypos = e.pageY;  
+  return true;
+}
+
+// just save mouse position for animate() to use
+function MoveHandlerIE() {
+  Xpos = window.event.x;
+  Ypos = window.event.y;  
+}
+
+var isNetscape = navigator.appName=="Netscape";
+if (isNetscape) {
+  document.captureEvents(Event.MOUSEMOVE);
+  document.onMouseMove = MoveHandler;
+} else {
+  document.onmousemove = MoveHandlerIE;
+}
+
+</script>
+
+
+<div id="curtan" style="position:absolute;visibility:show;left:0;top:0;height:100%;width:100%;" OnMouseOver="JavaScript:GoSwitch();">
+ <table cols="1" width="100%" height="100%" bgcolor="#0044cc" border=1>
+ <tr><td align="center" valign="center">Curtan</td></tr> 
+ </table>
+</div>
+
+<div id="program" style="position:absolute;visibility:hidden;left:0;top:0;height:100%;width:50%;" ONMouseOver="JavaScript:GoSwitchBack();"> 
+ <table cols="1" width="100%" height="100%" bgcolor="#ffffff" border=1>
+ <tr><td align="center" valign="center"> Program <br></td></tr> 
+ </table>
+</div>
+
+<div id="aError" style="position:absolute;visibility:hidden;left:0;top:0;height:100%;width:100%;"> 
+ <table cols="1" width="100%" height="100%" bgcolor="#ffffff">
+ <tr><td align="center" valign="center">err<br></td></tr> 
+ </table>
+</div>
+
+
+<script LANGUAGE="JavaScript"> 
+setUp();
+</script>  
+<!--  turnoff(); -->
+
+</body>
+</html>
