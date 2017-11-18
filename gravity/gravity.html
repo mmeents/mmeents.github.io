@@ -7,9 +7,9 @@
 
 <center>
 
-<div id="dot0"  style="left:480; top:400; position: absolute; height: 33; width: 33;"><img SRC="bullet2.gif" height=33 width=33></div>
+<div id="dot0"  style="left:50%; top:50%; position: absolute; height: 33; width: 33;"><img SRC="bullet2.gif" height=33 width=33></div>
 <div id="dot1"  style="position: absolute; height: 11; width: 11;"><img SRC="bullet1.gif" height=22 width=22></div><!-- red  -->
-<div id="dot2"  style="position: absolute; height: 22; width: 21;"><img SRC="bullet2.gif" height=22 width=22></div><!-- yellow  -->
+<div id="dot2"  style="position: absolute; height: 22; width: 21;"><img SRC="bullet5.gif" height=22 width=22></div>
 <div id="dot3"  style="position: absolute; height: 33; width: 31;"><img SRC="bullet3.gif" height=22 width=22></div><!-- green  -->
 <div id="dot4"  style="position: absolute; height: 44; width: 41;"><img SRC="bullet4.gif" height=22 width=22></div><!-- blue  -->
 <div id="dot5"  style="position: absolute; height: 55; width: 51;"><img SRC="bullet5.gif" height=22 width=22></div><!-- maroon  -->
@@ -37,14 +37,14 @@ var SEGLEN = 5;
 // spring constant, stiffness of springs
 var SPRINGK = 40;
 var GRAVITY = 0.0;
-var RESISTANCE = 0.015;
+var RESISTANCE = 0.001;
 
 // stopping criteria to prevent endless jittering
 // doesn't work when sitting on bottom since floor
 // doesn't push back so acceleration always as big
 // as gravity
-var STOPVEL = 0.1;
-var STOPACC = 0.1;
+var STOPVEL = 0.01;
+var STOPACC = 0.01;
 var DOTSIZE = 11;
 // BOUNCE is percent of velocity retained when bounced
 var BOUNCE = 0.98;
