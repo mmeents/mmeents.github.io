@@ -96,8 +96,11 @@
     function doBack() {
       window.history.back();
     }
+	function doResizeWidget(){
+	  $('#twitter-widget-0').height(1669);
+	}
 	$(function(){	
-	  setTimeout(function(){ $('#twitter-widget-0').height(1669); }, 1440);	  
+	  setTimeout( doResizeWidget(), 3000);	  
 	});
   </script>  
   
