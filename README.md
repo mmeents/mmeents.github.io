@@ -2,6 +2,6 @@
 
 Hello World App.
 
-http://mmeents.github.io/default.html 
+https://mmeents.github.io/default.html 
 
 Cheers 
