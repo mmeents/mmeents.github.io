@@ -5,15 +5,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Matt Meents</title>  
-  <link href="https://raw.githubusercontent.com/mmeents/mmeents.github.io/master/css/bootstrap.css" rel="stylesheet"/>       <!-- Bootstrap core CSS -->
-  <link href="https://raw.githubusercontent.com/mmeents/mmeents.github.io/master/css/style.css" rel="stylesheet"/>  
-  <script src="https://raw.githubusercontent.com/mmeents/mmeents.github.io/master/js/react.production.min.js" crossorigin></script>
-  <script src="https://raw.githubusercontent.com/mmeents/mmeents.github.io/master/js/react-dom.production.min.js" crossorigin></script>  
-  <script src="https://raw.githubusercontent.com/mmeents/mmeents.github.io/master/js/babel.min.js"></script>
+  <link href="css/bootstrap.min.css" rel="stylesheet"/>       <!-- Bootstrap core CSS -->
+  <link href="css/style.css" rel="stylesheet"/>  
+  <script src="js/react.production.min.js"></script>
+  <script src="js/react-dom.production.min.js"></script>  
+  <script src="js/babel.min.js"></script>
 </head>
 <body>
-  <script src="https://raw.githubusercontent.com/mmeents/mmeents.github.io/master/Scripts/jquery-1.11.3.min.js"></script>
-  <script src="https://raw.githubusercontent.com/mmeents/mmeents.github.io/master/js/bootstrap.min.js"></script>
+  <script src="Scripts/jquery-1.11.3.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
   
   
   
@@ -75,86 +75,7 @@
         <div class="coinmarketcap-currency-widget" data-currency="obsidian" data-base="USD" data-secondary="BTC"></div>
       </div>
 	  <div class="col-sm-4">
-	  <script type="text/babel">
-		class Square extends React.Component {
-		  render() {
-			return (
-			  <button
-				className="square"
-				onClick={() => this.props.onClick()}
-			  >
-				{this.props.value}
-			  </button>
-			);
-		  }
-		}
-
-		class Board extends React.Component {
-		  constructor(props) {
-			super(props);
-			this.state = {
-			  squares: Array(9).fill(null),
-			};
-		  }
-
-		  handleClick(i) {
-			const squares = this.state.squares.slice();
-			squares[i] = 'X';
-			this.setState({squares: squares});
-		  }
-
-		  renderSquare(i) {
-			return (
-			  <Square
-				value={this.state.squares[i]}
-				onClick={() => this.handleClick(i)}
-			  />
-			);
-		  }
-
-		  render() {
-			const status = 'Next player: X';
-
-			return (
-			  <div>
-				<div className="status">{status}</div>
-				<div className="board-row">
-				  {this.renderSquare(0)}{this.renderSquare(1)}{this.renderSquare(2)}
-				</div>
-				<div className="board-row">
-				  {this.renderSquare(3)}{this.renderSquare(4)}{this.renderSquare(5)}
-				</div>
-				<div className="board-row">
-				  {this.renderSquare(6)}{this.renderSquare(7)}{this.renderSquare(8)}
-				</div>
-			  </div>
-			);
-		  }
-		}
-
-		class Game extends React.Component {
-		  render() {
-			return (
-			  <div className="game">
-				<div className="game-board">
-				  <Board />
-				</div>
-				<div className="game-info">
-				  <div>{/* status */}</div>
-				  <ol>{/* TODO */}</ol>
-				</div>
-			  </div>
-			);
-		  }
-		}
-
-		// ========================================
-
-		ReactDOM.render(
-		  <Game />,
-		  document.getElementById('root')
-		);
-		</script>		
+	 <!--   <script type="text/babel"> </script>  --> 
 	  </div> 
     </div>
 	</div>
