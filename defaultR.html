@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head runat="server">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Matt Meents</title>  
+  <link href="https://raw.githubusercontent.com/mmeents/mmeents.github.io/master/css/bootstrap.css" rel="stylesheet"/>       <!-- Bootstrap core CSS -->
+  <link href="https://raw.githubusercontent.com/mmeents/mmeents.github.io/master/css/style.css" rel="stylesheet"/>  
+  <script src="https://raw.githubusercontent.com/mmeents/mmeents.github.io/master/js/react.production.min.js" crossorigin></script>
+  <script src="https://raw.githubusercontent.com/mmeents/mmeents.github.io/master/js/react-dom.production.min.js" crossorigin></script>  
+  <script src="https://raw.githubusercontent.com/mmeents/mmeents.github.io/master/js/babel.min.js"></script>
+</head>
+<body>
+  <script src="https://raw.githubusercontent.com/mmeents/mmeents.github.io/master/Scripts/jquery-1.11.3.min.js"></script>
+  <script src="https://raw.githubusercontent.com/mmeents/mmeents.github.io/master/js/bootstrap.min.js"></script>
+  
+  
+  
+<form id="form1">  
+<nav class="navbar navbar-fixed-top navbar-logo navbar">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <h3>Mattei Productions</H3> 
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="Resume.html">mattmeents@gmail.com</a></li>  
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Other Examples <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">          
+            <li><a href="gravity\gravity.html">Solar System</a></li>            
+            <li class="divider"></li>            
+            <li><a href="javascript:pu('https://www.ma3000.com/productfeatures.html');">MA3000</a></li>            
+            <li><a href="javascript:pu('https://www.ma3000.com/webcalendar.html');">Web Calendar</a></li> 
+                      
+          </ul>
+        </li>                   
+      </ul>
+    </div>
+  </div>
+</nav>  
+<br/><br/>
+<div class="well well-LG">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+         <h3 class="panel-title">Sweet Links</h3>
+
+    </div>
+    <div class="panel-body">
+      <div class="col-sm-4">
+
+    <a class="twitter-timeline" href="https://twitter.com/mattei420" data-widget-id="663250791675752448">Tweets by @Mattei420</a>
+    <script>!function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+        if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); }
+      }(document, "script", "twitter-wjs");</script>
+  
+      </div>
+      <div class="col-sm-4">
+        <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js"></script>
+        <div class="coinmarketcap-currency-widget" data-currency="bitcoin" data-base="USD" data-secondary="BTC"></div>
+        <div class="coinmarketcap-currency-widget" data-currency="vericoin" data-base="USD" data-secondary="BTC"></div>
+        <div class="coinmarketcap-currency-widget" data-currency="stratis" data-base="USD" data-secondary="BTC"></div>
+        <div class="coinmarketcap-currency-widget" data-currency="siacoin" data-base="USD" data-secondary="BTC"></div>        
+        <div class="coinmarketcap-currency-widget" data-currency="zcash" data-base="USD" data-secondary="BTC"></div>
+        <div class="coinmarketcap-currency-widget" data-currency="dash" data-base="USD" data-secondary="BTC"></div>
+        <div class="coinmarketcap-currency-widget" data-currency="neblio" data-base="USD" data-secondary="BTC"></div>        
+        <div class="coinmarketcap-currency-widget" data-currency="obsidian" data-base="USD" data-secondary="BTC"></div>
+      </div>
+	  <div class="col-sm-4">
+	  <script type="text/babel">
+		class Square extends React.Component {
+		  render() {
+			return (
+			  <button
+				className="square"
+				onClick={() => this.props.onClick()}
+			  >
+				{this.props.value}
+			  </button>
+			);
+		  }
+		}
+
+		class Board extends React.Component {
+		  constructor(props) {
+			super(props);
+			this.state = {
+			  squares: Array(9).fill(null),
+			};
+		  }
+
+		  handleClick(i) {
+			const squares = this.state.squares.slice();
+			squares[i] = 'X';
+			this.setState({squares: squares});
+		  }
+
+		  renderSquare(i) {
+			return (
+			  <Square
+				value={this.state.squares[i]}
+				onClick={() => this.handleClick(i)}
+			  />
+			);
+		  }
+
+		  render() {
+			const status = 'Next player: X';
+
+			return (
+			  <div>
+				<div className="status">{status}</div>
+				<div className="board-row">
+				  {this.renderSquare(0)}{this.renderSquare(1)}{this.renderSquare(2)}
+				</div>
+				<div className="board-row">
+				  {this.renderSquare(3)}{this.renderSquare(4)}{this.renderSquare(5)}
+				</div>
+				<div className="board-row">
+				  {this.renderSquare(6)}{this.renderSquare(7)}{this.renderSquare(8)}
+				</div>
+			  </div>
+			);
+		  }
+		}
+
+		class Game extends React.Component {
+		  render() {
+			return (
+			  <div className="game">
+				<div className="game-board">
+				  <Board />
+				</div>
+				<div className="game-info">
+				  <div>{/* status */}</div>
+				  <ol>{/* TODO */}</ol>
+				</div>
+			  </div>
+			);
+		  }
+		}
+
+		// ========================================
+
+		ReactDOM.render(
+		  <Game />,
+		  document.getElementById('root')
+		);
+		</script>		
+	  </div> 
+    </div>
+	</div>
+</div> 
+</form> 
+
+<br/><br/>
+	<div class="container-fluid">
+	  <div class="panel center-block">
+		<p class="text-center">
+		  MattMeents@gmail.com<br/>
+		  2017 <span class="glyphicon glyphicon-copyright-mark"></span> Matthew Meents 
+		</p> 
+	  </div>
+	</div>
+      
+  <script type="text/javascript">
+    var ppd = new Date();
+    function pu(s) {
+      ppd = new Date();
+      ns = 'MM' + ppd.getTime();
+      try {
+        var x = window.open(s, ns, 'location=yes,menubar=yes,resizable=yes,scrollbars=yes,toolbar=yes,status=yes');
+      } catch (e) { }
+    }
+    function doBack() {
+      window.history.back();
+    }
+	function doResizeWidget(){
+	  $('#twitter-widget-0').height(1669);
+	}
+	$(function(){	
+	  setTimeout( doResizeWidget(), 3000);	  
+	});
+  </script>  
+  
+</body>
+</html>	
