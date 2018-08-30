@@ -90,6 +90,14 @@
 	</div>
       
   <script type="text/javascript">
+
+    function doResizeWidget() {
+      $('#twitter-widget-0').height(1669);
+    }
+    $(function () {
+      setTimeout(doResizeWidget(), 2500);
+      setTimeout(doResizeWidget(), 5000);
+    });
     var ppd = new Date();
     function pu(s) {
       ppd = new Date();
@@ -101,12 +109,7 @@
     function doBack() {
       window.history.back();
     }
-	function doResizeWidget(){
-	  $('#twitter-widget-0').height(1669);
-	}
-	$(function(){	
-	  setTimeout( doResizeWidget(), 3000);	  
-	});
+	
   </script>  
   
 </body>
