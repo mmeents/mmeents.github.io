@@ -92,11 +92,11 @@
   <script type="text/javascript">
 
     function doResizeWidget() {
+	  $('#twitter-widget-0').height(1669);
 	  var aHeight = $('#twitter-widget-0').height();
 	  if (aHeight < 1668){
 	    setTimeout(doResizeWidget(), 2000);
-	  }
-      $('#twitter-widget-0').height(1669);
+	  }      
     }    
     $(window).load(function(){  
       setTimeout(doResizeWidget(), 2500);      
