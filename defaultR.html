@@ -83,7 +83,16 @@
         <div class="coinmarketcap-currency-widget" data-currency="obsidian" data-base="USD" data-secondary="BTC"></div>
       </div>
 	  <div class="col-sm-4">
-	 <!--   <script type="text/babel"> </script>  --> 
+	  <script type="text/babel"> 
+	    const e = React.createElement;
+
+		// Display a "Like" <button>
+		return e(
+		  'button',
+		  { onClick: () => this.setState({ liked: true }) },
+		  'Like'
+		);
+	  </script> 
 	  </div> 
     </div>
 	</div>
