@@ -92,11 +92,14 @@
   <script type="text/javascript">
 
     function doResizeWidget() {
+	  var aHeight = $('#twitter-widget-0').height();
+	  if (aHeight < 1668){
+	    setTimeout(doResizeWidget(), 2000);
+	  }
       $('#twitter-widget-0').height(1669);
-    }
-    $(function () {
-      setTimeout(doResizeWidget(), 2500);
-      setTimeout(doResizeWidget(), 5000);
+    }    
+    $(window).load(function(){  
+      setTimeout(doResizeWidget(), 2500);      
     });
     var ppd = new Date();
     function pu(s) {
