@@ -18,7 +18,7 @@
 | | | | 
 |Database & SQL Server Admin| 19 years |Database Deployment and operation are a specialty of mine.  Database are a part of just about every project I have worked on.  I have experience automating the backup and extraction of data and databases.  | 
 | | | | 
-|IIS | |Operational Security lockdown, deployment and operation of websites on Internet Information System.  I produced and operated MA3000.com, MasterLinkPro and Blueskymls websites.  As wel as produced Installs and Installer for remote deploment of WebCalendar to law firms using it. | 
+|IIS | |Website Security lockdown, deployment and operation of websites on IIS.  I produced and operated MA3000.com, MasterLinkPro and Blueskymls websites.  MA3000.com was the formal training ground.  As well as produced Installs and Installer for remote deployment of WebCalendar Website to the law firms using it. | 
 | | | | 
 |ASP.NET Core| | An ASP.NET Core app is a console app that creates a web server in its Main method. I have yet to find a reason to use this technique. | 
 | | | | 
