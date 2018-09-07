@@ -16,7 +16,7 @@
 | | | | 
 |UX Design| years | The process of refining the user experience towards simplification and creates a desire to use the new system.   | 
 | | | | 
-|Database & SQL Server Admin| 19 years |I consider Database Deployment and opeartion to be a speciality of mine.  Database are a part of just about every project I have worked on. | 
+|Database & SQL Server Admin| 19 years |Database Deployment and operation are a specialty of mine.  Database are a part of just about every project I have worked on.  I have experience automating the backup and extraction of data and databases.  | 
 | | | | 
 |IIS | |Operational Security lockdown, deployment and operation of websites on Internet Information System.  I produced and operated MA3000.com, MasterLinkPro and Blueskymls websites.  As wel as produced Installs and Installer for remote deploment of WebCalendar to law firms using it. | 
 | | | | 
