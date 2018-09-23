@@ -4,7 +4,7 @@
 <style TYPE="text/css"><!-- a:link {text-decoration: none; }--> </style>
 </head>
 <body bgcolor="#CCFFFF">
-
+<script src="../Scripts/jquery-1.11.3.min.js"></script>
 <center>
 
 <!-- ONE STEP TO INSTALL ELASTIC BULLETS:
@@ -25,7 +25,6 @@
 <div id="dot6" style="position: absolute; height: 11; width: 11;"><img SRC="bullet.gif" height=11 width=11></div>
 <script LANGUAGE="JavaScript">
 
-<!-- Begin
 var nDots = 7;
 var Xpos = 0;
 var Ypos = 0;
@@ -67,10 +66,10 @@ function init() {
   }
 
   // set their positions
-  //for (i = 0; i < nDots; i++) {
-  //  dots[i].obj.left = dots[i].X;
-  //  dots[i].obj.top = dots[i].Y;
- // }
+  for (i = 0; i < nDots; i++) {
+    dots[i].obj.left = dots[i].X;
+    dots[i].obj.top = dots[i].Y;
+  }
 
   if (isNetscape) {  // start right away since they are positioned at 0, 0
     startanimate();
@@ -84,11 +83,7 @@ function dot(i) {
   this.Y = Ypos;
   this.dx = 0;
   this.dy = 0;
-  if (isNetscape) {
-    this.obj = eval("document.dot" + i);
-  } else {
-    this.obj = eval("dot" + i + ".style");
-  }
+  this.obj = $('#dot'+ i);  
   this.w = 2+i;
 }
 
