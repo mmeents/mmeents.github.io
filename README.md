@@ -2,7 +2,7 @@
 ##### a little about me and my Tech.
 | Core Tech |  |  Experience|
 | --- | --- | --- |
-|.NET C# | many years | I got into .Net and C# since before it ever became a thing.  It all started more than 30 years ago in the 1986 school year, a computer club where we could stay after school and program in BASIC on an Apple computer.  Since then I have watched it evolve into an interpreter Basic and Visual Basic along with big stint in vbs and js scripting.  vbs and asp were the origins of VB.NET and ASP.NET in 2003 and 2005.  One of my first pieces is still in use today and that is the [UserManager in C0DEC0RE](https://github.com/mmeents/DataMattei/blob/master/C0DEC0RE/MMWebSiteUsers.cs).  I put it together in 2003 and it has served across 6 different websites. | 
+|.NET C# | many years | I got into .Net and C# since before it ever became a thing.  It all started more than 30 years ago in the 1986 school year, a computer club where we could stay after school and program in BASIC on an Apple computer.  Since then I have watched it evolve into turbo Pascal then Delphi and Visual Basic.  vbs and asp were the origins of VB.NET and ASP.NET in 2003 and 2005.  One of my first .NET 2 piece is still in use today and that is the [UserManager in C0DEC0RE](https://github.com/mmeents/DataMattei/blob/master/C0DEC0RE/MMWebSiteUsers.cs).  I put it together in 2003 and it has served across 6 different websites. |
 | | | | 
 |SQL Queries | 19 years | I have written all types of queries with many types of data.  I am comfortable with cross-server, cross-database referencing, query development, performance optimizaion, profiling, Reporting, view, function and procedure function development. I published a [database workshow](https://github.com/mmeents/DataMattei/tree/master/dbWorkshopDemo) application in which I use it to produce commonly used stored procedures and cursors all via querying the database server for the data types.  | 
 | | | |
@@ -12,7 +12,7 @@
 | | | | 
 |Responsive Web Design | 5 years | I have been using Bootstrap since 2013 or so when I was introduced to its capabilities at an event at Microsoft in NYC.  I have been using it for all website development since.  Responsive design means looking consistent across different devices but it also means performance and not letting the user wait. which is usually resolved via SQL.    | 
 | | | | 
-|UX Design| years | The process of refining the user experience towards simplification and creates a desire to use the new system.   | 
+|UX Design| years | My UI expierience started with the command line.    | 
 | | | | 
 |IIS | |Website Security lockdown, deployment and operation of websites on IIS.  I produced and operated MA3000.com, MasterLinkPro and Blueskymls websites.  MA3000.com was the formal training ground.  As well as produced Installs and Installer for remote deployment of WebCalendar Website to the law firms using it. | 
 | | | | 
