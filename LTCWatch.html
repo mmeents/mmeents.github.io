@@ -54,25 +54,34 @@
   </div>
 </nav>  
 <br/><br/>
-<div class="well well-LG" style="background-color:black">
-  <div class="panel" style="min-height:720px;background-color:black">
+<div class="well well-LG" style="background-color:black;padding-left:0px;padding-right:0px;">
+  <div class="panel" style="min-height:640px;background-color:black;padding-left:0px;padding-right:0px;">
     <div class="panel-heading">
          <h3 class="panel-title">LTC Chart Watch</h3>
-
     </div>
     <div class="panel-body" style="padding:0,0;min-height:inherit;background-color:black">
-      <div class="col-sm-4" style="padding:0,0;min-height:inherit;">
+      <div class="col-sm-6" style="padding:0,0;min-height:inherit;">
        <div>
          <!-- TradingView Widget BEGIN -->
-          <div class="tradingview-widget-container" style="padding:0 0;min-height:720px;">
-            <div id="tradingview_fa2b8" style="min-height:inherit;height:720px;padding-left:0;padding-right:1;"></div>
+          <div class="tradingview-widget-container" style="padding:0 0;min-height:640px;">
+            <div id="tradingview_fa2b8" style="min-height:inherit;height:640px;padding-left:0;padding-right:1;"></div>
             <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/BINANCE-LTCBTC/" rel="noopener" target="_blank"><span class="blue-text">LTC BTC Binance Chart</span></a> by TradingView</div>
             <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
             <script type="text/javascript">
             new TradingView.widget({"autosize":true,
               "symbol": "BINANCE:LTCBTC",
-              "interval": "1","timezone": "Etc/UTC", "theme": "Dark","style": "1", "locale": "en","toolbar_bg": "#f1f3f6", "enable_publishing": false,"allow_symbol_change": true, "details": true,"calendar": true, 
-              "studies": ["VSTOP@tv-basicstudies"],
+              "interval": "5",
+              "timezone": "Etc/UTC",
+              "theme": "Dark",
+              "style": "1",
+              "locale": "en",
+              "toolbar_bg": "#f1f3f6",
+              "enable_publishing": false,
+              "hide_side_toolbar": false,
+              "allow_symbol_change": true,
+              "watchlist": ["COINBASE:BTCUSD", "BITFINEX:BTCUSD", "BINANCE:LTCBTC", "COINBASE:LTCBTC", "POLONIEX:LTCBTC"],
+              "details": true,
+              "studies": ["BB@tv-basicstudies", "MASimple@tv-basicstudies", "MAExp@tv-basicstudies", "VSTOP@tv-basicstudies"],
               "container_id": "tradingview_fa2b8"
             });
             </script>
@@ -81,38 +90,33 @@
          
        </div>  
       </div>
-      <div class="col-sm-4" style="padding:0 0;min-height:inherit;">
+      <div class="col-sm-6" style="padding:0 0;min-height:inherit;">
          <!-- TradingView Widget BEGIN -->
           <div class="tradingview-widget-container">
-            <div id="tradingview_fa2b9" style="min-height:inherit;height:720px;padding-left:0;padding-right:1;"></div>
-            <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/POLONIEX-LTCBTC/" rel="noopener" target="_blank"><span class="blue-text">LTCBTC Poloniex Chart</span></a> by TradingView</div>            
+            <div id="tradingview_fa2b9" style="min-height:inherit;height:640px;padding-left:0;padding-right:1;"></div>
+            <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/BITFINEX-BTCUSD/" rel="noopener" target="_blank"><span class="blue-text">BITFINEX BTCUSD Chart</span></a> by TradingView</div>            
             <script type="text/javascript">
             new TradingView.widget({"autosize":true,
-              "symbol": "POLONIEX:LTCBTC",
-              "interval": "1","timezone": "Etc/UTC", "theme": "Dark","style": "1", "locale": "en","toolbar_bg": "#f1f3f6", "enable_publishing": false,"allow_symbol_change": true, "details": true,"calendar": true, 
-              "studies": ["VSTOP@tv-basicstudies"],
+              "symbol": "BITFINEX:BTCUSD",
+              "interval": "5",
+              "timezone": "Etc/UTC",
+              "theme": "Dark",
+              "style": "1",
+              "locale": "en",
+              "toolbar_bg": "#f1f3f6",
+              "enable_publishing": false,
+              "hide_side_toolbar": false,
+              "allow_symbol_change": true,
+              "watchlist": ["COINBASE:BTCUSD", "BITFINEX:BTCUSD", "BINANCE:LTCBTC", "COINBASE:LTCBTC", "POLONIEX:LTCBTC"],
+              "details": true,
+              "studies": ["BB@tv-basicstudies", "MASimple@tv-basicstudies", "MAExp@tv-basicstudies", "VSTOP@tv-basicstudies"],
               "container_id": "tradingview_fa2b9"
             });
             </script>
           </div>
           <!-- TradingView Widget END -->
       </div>
-      <div class="col-sm-4"  style="padding:0 0;min-height:inherit;">
-         <!-- TradingView Widget BEGIN -->
-          <div class="tradingview-widget-container">
-            <div id="tradingview_fa2ba" style="min-height:inherit;height:720px;padding-left:0;padding-right:1;"></div>
-            <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/BINANCE-BTCUSDC/" rel="noopener" target="_blank"><span class="blue-text">BTCUSDC Binance Chart</span></a> by TradingView</div>            
-            <script type="text/javascript">
-            new TradingView.widget({"autosize":true,
-              "symbol": "BINANCE:BTCUSDC",
-              "interval": "1","timezone": "Etc/UTC", "theme": "Dark","style": "1", "locale": "en","toolbar_bg": "#f1f3f6", "enable_publishing": false,"allow_symbol_change": true, "details": true,"calendar": true, 
-              "studies": ["VSTOP@tv-basicstudies"],
-              "container_id": "tradingview_fa2ba"
-            });
-            </script>
-          </div>
-          <!-- TradingView Widget END -->
-      </div> 
+     
     </div>
 	</div>
 </div> 
