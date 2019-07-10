@@ -22,7 +22,7 @@
   <script src="MainMenu.js"></script>  
   
 <form id="form1"><nav class="navbar navbar-fixed-top navbar-logo navbar" id="mainmenu"></nav>
-<br/><br/>
+<br/><br/><br />
 <div class="well well-LG">
   <div class="panel panel-info">
     <div class="panel-heading">
@@ -107,7 +107,7 @@
     }    
     $(window).load(function () {       
       setTimeout(doResizeWidget, 1500);      
-      $('#mainmenu').html(PrintMainMenu('Mattei\'s Blog'));
+      $('#mainmenu').html(PrintMainMenu('default.html','Mattei\'s Blog'));
     });
     var ppd = new Date();
     function pu(s) {
