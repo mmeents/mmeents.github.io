@@ -19,126 +19,100 @@
 <body style="background-color:black;">
   <script src="Scripts/jquery-1.11.3.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
-  
-  
-  
-<form id="form1">  
-<nav class="navbar navbar-fixed-top navbar-logo navbar">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <h3>Mattei Productions</H3> 
+  <script src="MainMenu.js"></script>
+
+  <form id="form1">
+    <nav class="navbar navbar-fixed-top navbar-logo navbar" id="mainmenu"></nav>
+    <br /><br />
+
+    <div class="well well-LG" style="background-color:black;border-bottom-color:black;">
+      <div class="panel" style="min-height:640px;background-color:black;padding-left:0px;padding-right:0px;">
+        <div class="panel-heading">
+          <h3 class="panel-title">LTC Chart Watch</h3>
+        </div>
+        <div class="panel-body" style="padding:0,0;min-height:inherit;background-color:black">
+          <div class="col-sm-7" style="padding:0,0;min-height:inherit;">
+            <div>
+              <!-- TradingView Widget BEGIN -->
+              <div class="tradingview-widget-container" style="padding:0 0;min-height:640px;">
+                <div id="tradingview_fa2b8" style="min-height:inherit;height:640px;padding-left:0;padding-right:1;"></div>
+                <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/BINANCE-LTCBTC/" rel="noopener" target="_blank"><span class="blue-text">LTC BTC Binance Chart</span></a> by TradingView</div>
+                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                <script type="text/javascript">
+                  new TradingView.widget({
+                    "autosize": true,
+                    "symbol": "BINANCE:LTCBTC",
+                    "interval": "5",
+                    "timezone": "Etc/UTC",
+                    "theme": "Dark",
+                    "style": "1",
+                    "locale": "en",
+                    "toolbar_bg": "#f1f3f6",
+                    "enable_publishing": false,
+                    "hide_side_toolbar": false,
+                    "allow_symbol_change": true,
+                    "watchlist": ["OTC:GBTC", "BITTREX:BTCUSDT", "COINBASE:BTCUSD", "BITFINEX:BTCUSD", "BINANCE:LTCBTC", "COINBASE:LTCBTC", "POLONIEX:LTCBTC", "BITTREX:STRATBTC", "BITTREX:STRATBTC", "POLONIEX:STRATUSD", "POLONIEX:STRATBTC"],
+                    "details": true,
+                    "studies": ["BB@tv-basicstudies", "MASimple@tv-basicstudies", "MAExp@tv-basicstudies", "VSTOP@tv-basicstudies"],
+                    "container_id": "tradingview_fa2b8"
+                  });
+                </script>
+              </div>
+              <!-- TradingView Widget END -->
+
+            </div>
+          </div>
+          <div class="col-sm-5" style="padding:0 0;min-height:inherit;">
+            <!-- TradingView Widget BEGIN -->
+            <div class="tradingview-widget-container">
+              <div id="tradingview_fa2b9" style="min-height:inherit;height:640px;padding-left:0;padding-right:1;"></div>
+              <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/BITFINEX-BTCUSD/" rel="noopener" target="_blank"><span class="blue-text">BITFINEX BTCUSD Chart</span></a> by TradingView</div>
+              <script type="text/javascript">
+                new TradingView.widget({
+                  "autosize": true,
+                  "symbol": "BITFINEX:BTCUSD",
+                  "interval": "5",
+                  "timezone": "Etc/UTC",
+                  "theme": "Dark",
+                  "style": "1",
+                  "locale": "en",
+                  "toolbar_bg": "#f1f3f6",
+                  "enable_publishing": false,
+                  "hide_side_toolbar": false,
+                  "allow_symbol_change": true,
+                  "watchlist": ["BITTREX:BTCUSDT", "COINBASE:BTCUSD", "BITFINEX:BTCUSD", "BINANCE:LTCBTC", "COINBASE:LTCBTC", "POLONIEX:LTCBTC", "BITTREX:STRATBTC", "BITTREX:STRATBTC", "POLONIEX:STRATUSD", "POLONIEX:STRATBTC"],
+                  "details": true,
+                  "studies": ["BB@tv-basicstudies", "MASimple@tv-basicstudies", "MAExp@tv-basicstudies", "VSTOP@tv-basicstudies"],
+                  "container_id": "tradingview_fa2b9"
+                });
+              </script>
+            </div>
+            <!-- TradingView Widget END -->
+          </div>
+
+        </div>
+      </div>
     </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="javascript:pu('MatthewMeents.docx');">mattmeents@gmail.com</a></li>  
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Other Examples <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">          
-            <li><a href="gravity\gravity.html">Solar System</a></li>            
-            <li class="divider"></li>            
-			<!--<li><a href="javascript:pu('http://www.blueskymls.com/');">Blue Sky MLS</a></li>   -->         
-		<!--	<li><a href="javascript:pu('https://www.masterlinkpro.com/');">Master Link Pro</a></li>   -->
-			<li class="divider"></li>            
-            <li><a href="javascript:pu('https://www.ma3000.com/productfeatures.html');">MA3000</a></li>            
-            <li><a href="javascript:pu('https://www.ma3000.com/webcalendar.html');">Web Calendar</a></li>                       
-          </ul>
-        </li>                   
-      </ul>
+  </form>
+
+  <br /><br />
+  <div class="container-fluid">
+    <div class="panel center-block" style="background-color:black;border-bottom-color:black;">
+      <p class="text-center">
+        MattMeents@gmail.com<br />
+        2019 <span class="glyphicon glyphicon-copyright-mark"></span> Matthew Meents
+      </p>
     </div>
   </div>
-</nav>  
-<br/><br/>
-<div class="well well-LG" style="background-color:black;border-bottom-color:black;">
-  <div class="panel" style="min-height:640px;background-color:black;padding-left:0px;padding-right:0px;">
-    <div class="panel-heading">
-         <h3 class="panel-title">LTC Chart Watch</h3>
-    </div>
-    <div class="panel-body" style="padding:0,0;min-height:inherit;background-color:black">
-      <div class="col-sm-7" style="padding:0,0;min-height:inherit;">
-       <div>
-         <!-- TradingView Widget BEGIN -->
-          <div class="tradingview-widget-container" style="padding:0 0;min-height:640px;">
-            <div id="tradingview_fa2b8" style="min-height:inherit;height:640px;padding-left:0;padding-right:1;"></div>
-            <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/BINANCE-LTCBTC/" rel="noopener" target="_blank"><span class="blue-text">LTC BTC Binance Chart</span></a> by TradingView</div>
-            <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-            <script type="text/javascript">
-            new TradingView.widget({"autosize":true,
-              "symbol": "BINANCE:LTCBTC",
-              "interval": "5",
-              "timezone": "Etc/UTC",
-              "theme": "Dark",
-              "style": "1",
-              "locale": "en",
-              "toolbar_bg": "#f1f3f6",
-              "enable_publishing": false,
-              "hide_side_toolbar": false,
-              "allow_symbol_change": true,
-              "watchlist": ["OTC:GBTC","BITTREX:BTCUSDT", "COINBASE:BTCUSD", "BITFINEX:BTCUSD", "BINANCE:LTCBTC", "COINBASE:LTCBTC", "POLONIEX:LTCBTC", "BITTREX:STRATBTC", "BITTREX:STRATBTC", "POLONIEX:STRATUSD", "POLONIEX:STRATBTC"],
-              "details": true,
-              "studies": ["BB@tv-basicstudies", "MASimple@tv-basicstudies", "MAExp@tv-basicstudies", "VSTOP@tv-basicstudies"],
-              "container_id": "tradingview_fa2b8"
-            });
-            </script>
-          </div>
-          <!-- TradingView Widget END -->
-         
-       </div>  
-      </div>
-      <div class="col-sm-5" style="padding:0 0;min-height:inherit;">
-         <!-- TradingView Widget BEGIN -->
-          <div class="tradingview-widget-container">
-            <div id="tradingview_fa2b9" style="min-height:inherit;height:640px;padding-left:0;padding-right:1;"></div>
-            <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/BITFINEX-BTCUSD/" rel="noopener" target="_blank"><span class="blue-text">BITFINEX BTCUSD Chart</span></a> by TradingView</div>            
-            <script type="text/javascript">
-            new TradingView.widget({"autosize":true,
-              "symbol": "BITFINEX:BTCUSD",
-              "interval": "5",
-              "timezone": "Etc/UTC",
-              "theme": "Dark",
-              "style": "1",
-              "locale": "en",
-              "toolbar_bg": "#f1f3f6",
-              "enable_publishing": false,
-              "hide_side_toolbar": false,
-              "allow_symbol_change": true,
-              "watchlist": ["BITTREX:BTCUSDT", "COINBASE:BTCUSD", "BITFINEX:BTCUSD", "BINANCE:LTCBTC", "COINBASE:LTCBTC", "POLONIEX:LTCBTC", "BITTREX:STRATBTC", "BITTREX:STRATBTC", "POLONIEX:STRATUSD", "POLONIEX:STRATBTC"],
-              "details": true,
-              "studies": ["BB@tv-basicstudies", "MASimple@tv-basicstudies", "MAExp@tv-basicstudies", "VSTOP@tv-basicstudies"],
-              "container_id": "tradingview_fa2b9"
-            });
-            </script>
-          </div>
-          <!-- TradingView Widget END -->
-      </div>
-     
-    </div>
-	</div>
-</div> 
-</form> 
 
-<br/><br/>
-	<div class="container-fluid">
-	  <div class="panel center-block" style="background-color:black;border-bottom-color:black;">
-		<p class="text-center">
-		  MattMeents@gmail.com<br/>
-		  2019 <span class="glyphicon glyphicon-copyright-mark"></span> Matthew Meents 
-		</p> 
-	  </div>
-	</div>
-      
   <script type="text/javascript">
 
     function doResizeWidget() {
-    
-    }    
-    $(window).load(function(){  
-    //  setTimeout(doResizeWidget, 1500);      
+
+    }
+    $(window).load(function () {
+      //  setTimeout(doResizeWidget, 1500);
+      $('#mainmenu').html(PrintMainMenu('Mattei\'s LTC Watch'));
     });
     var ppd = new Date();
     function pu(s) {
@@ -151,8 +125,8 @@
     function doBack() {
       window.history.back();
     }
-	
-  </script>  
-  
+
+  </script>
+
 </body>
 </html>	

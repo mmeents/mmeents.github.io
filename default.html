@@ -19,40 +19,9 @@
 <body>
   <script src="Scripts/jquery-1.11.3.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
+  <script src="MainMenu.js"></script>  
   
-  
-  
-<form id="form1">  
-<nav class="navbar navbar-fixed-top navbar-logo navbar">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <h3>Mattei Productions</H3> 
-    </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="javascript:pu('MatthewMeents.docx');">mattmeents@gmail.com</a></li>  
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Other Examples <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">          
-            <li><a href="gravity\gravity.html">Solar System</a></li>            
-            <li class="divider"></li>            
-			<li><a href="javascript:pu('http://www.blueskymls.com/');">Blue Sky MLS</a></li>            
-		<!--	<li><a href="javascript:pu('https://www.masterlinkpro.com/');">Master Link Pro</a></li>            -->
-			<li class="divider"></li>            
-            <li><a href="javascript:pu('https://www.ma3000.com/productfeatures.html');">MA3000</a></li>            
-            <li><a href="javascript:pu('https://www.ma3000.com/webcalendar.html');">Web Calendar</a></li>                       
-          </ul>
-        </li>                   
-      </ul>
-    </div>
-  </div>
-</nav>  
+<form id="form1"><nav class="navbar navbar-fixed-top navbar-logo navbar" id="mainmenu"></nav>
 <br/><br/>
 <div class="well well-LG">
   <div class="panel panel-info">
@@ -62,48 +31,44 @@
     </div>
     <div class="panel-body">
       <div class="col-sm-4">
-
-       <div>
-         <UL><li> Resume of Matt Meents <ul>
-            <li> <a href="javascript:pu('MatthewMeents.docx');"> Word Format </a>  </li>
-            <li> <a href="javascript:pu('MattMeents.pdf');"> PDF Format </a>  </li>			
-          </ul></li></ul> <br/><br/>
+         <div>
+           <UL><li> Resume of Matt Meents <ul>
+              <li> <a href="javascript:pu('MatthewMeents.docx');"> Word Format </a>  </li>
+              <li> <a href="javascript:pu('MattMeents.pdf');"> PDF Format </a>  </li>			
+            </ul></li></ul> <br/><br/>
           
-          <UL><li> Additional works of Matt Meents <ul>
-            <li> <a href="javascript:pu('https://github.com/mmeents/DataMattei');"> My Core library of common data tools and extensions </a>  </li>
-            <li> <a href="javascript:pu('https://github.com/mmeents/CryptoAdvisor');"> Version 1 of the Crypto Trader called CryptoAdvisor used mainly as a reference.  Sorry version 2 is private, so pm me for permissions if interested. </a>  </li>			
-          </ul></li></ul> <br/><br/>
+            <UL><li> Additional works of Matt Meents <ul>
+              <li> <a href="javascript:pu('https://github.com/mmeents/DataMattei');"> My Core library of common data tools and extensions </a>  </li>
+              <li> <a href="javascript:pu('https://github.com/mmeents/CryptoAdvisor');"> Version 1 of the Crypto Trader called CryptoAdvisor used mainly as a reference.  Sorry version 2 is private, so pm me for permissions if interested. </a>  </li>			
+            </ul></li></ul> <br/><br/>
                   
-	     <UL><li> Sweet links <ul>
-  <li> <a href="javascript:pu('https://mmeents.github.io/BTCWatch.html');">BTC Charts.</a>  </li>           
-  <li> <a href="javascript:pu('https://mmeents.github.io/ADAWatch.html');">ADA Chart.</a>  </li>
-  <li> <a href="javascript:pu('https://mmeents.github.io/LTCWatch.html');">LTC Chart.</a>  </li>
-  <li> <a href="javascript:pu('https://github.com/cjbarber/ToolsOfTheTrade');"> Tools of the Trade </a>  </li>
+	          <UL>
+              <li> Sweet links <ul>
+              <li> <a href="javascript:pu('https://mmeents.github.io/BTCWatch.html');">BTC Charts.</a>  </li>           
+              <li> <a href="javascript:pu('https://mmeents.github.io/ADAWatch.html');">ADA Chart.</a>  </li>
+              <li> <a href="javascript:pu('https://mmeents.github.io/LTCWatch.html');">LTC Chart.</a>  </li>
+              <li> <a href="javascript:pu('https://github.com/cjbarber/ToolsOfTheTrade');"> Tools of the Trade </a>  </li>
 
-  <li> <a href="javascript:pu('https://Dice.com');"> Dice</a> <a href="javascript:pu('http://www.dice.com/external/content/documentation/api.html');"> API</a>,   </li>
-  <li> <a href="javascript:pu('https://Indeed.com');"> Indeed</a>  </li>
-  <li> <a href="javascript:pu('https://Monster.com');"> Monster</a>  </li>
+              <li> <a href="javascript:pu('https://Dice.com');"> Dice</a> <a href="javascript:pu('http://www.dice.com/external/content/documentation/api.html');"> API</a>,   </li>
+              <li> <a href="javascript:pu('https://Indeed.com');"> Indeed</a>  </li>
+              <li> <a href="javascript:pu('https://Monster.com');"> Monster</a>  </li>
 
-
-</ul></li> </UL>
-         
-       <UL><li> More links <ul>			    
-         
-       </div>
-    
-  
+            </ul></li> 
+           </UL>         
+         </div>  
       </div>
+
       <div class="col-sm-4">
         <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js"></script>
         <div class="coinmarketcap-currency-widget" data-currency="bitcoin" data-base="USD" data-secondary="BTC"></div>
-        <div class="coinmarketcap-currency-widget" data-currency="2010" data-base="USD" data-secondary="BTC"></div>
+        <div class="coinmarketcap-currency-widget" data-currency="litecoin" data-base="USD" data-secondary="BTC"></div>
+        <div class="coinmarketcap-currency-widget" data-currency="cardano" data-base="USD" data-secondary="BTC"></div>
         <div class="coinmarketcap-currency-widget" data-currency="stratis" data-base="USD" data-secondary="BTC"></div>
-        <div class="coinmarketcap-currency-widget" data-currency="vericoin" data-base="USD" data-secondary="BTC"></div>        
-        <div class="coinmarketcap-currency-widget" data-currency="siacoin" data-base="USD" data-secondary="BTC"></div>        
-        <div class="coinmarketcap-currency-widget" data-currency="zcash" data-base="USD" data-secondary="BTC"></div>
         <div class="coinmarketcap-currency-widget" data-currency="dash" data-base="USD" data-secondary="BTC"></div>
-        <div class="coinmarketcap-currency-widget" data-currency="neblio" data-base="USD" data-secondary="BTC"></div>        
-        
+        <div class="coinmarketcap-currency-widget" data-currency="siacoin" data-base="USD" data-secondary="BTC"></div>
+        <div class="coinmarketcap-currency-widget" data-currency="zcash" data-base="USD" data-secondary="BTC"></div>        
+        <div class="coinmarketcap-currency-widget" data-currency="neblio" data-base="USD" data-secondary="BTC"></div>
+
       </div>
 	  <div class="col-sm-4">
 
@@ -133,15 +98,16 @@
       
   <script type="text/javascript">
 
-    function doResizeWidget() {
-	  $('#twitter-widget-0').height(1669);
-	  var aHeight = $('#twitter-widget-0').height();
-	  if (aHeight < 1668){
-	    setTimeout(doResizeWidget, 2000);
-	  }      
+    function doResizeWidget() {      
+	    $('#twitter-widget-0').height(1669);
+	    var aHeight = $('#twitter-widget-0').height();
+	    if (aHeight < 1668){
+	      setTimeout(doResizeWidget, 2000);
+	    }      
     }    
-    $(window).load(function(){  
+    $(window).load(function () {       
       setTimeout(doResizeWidget, 1500);      
+      $('#mainmenu').html(PrintMainMenu('Mattei\'s Blog'));
     });
     var ppd = new Date();
     function pu(s) {

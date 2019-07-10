@@ -19,8 +19,11 @@
 <body style="background-color:black;">
   <script src="Scripts/jquery-1.11.3.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
-  <script> import { PrintMainMenu } from 'MainMenu.js'; </script>
+  <script src="MainMenu.js"></script>
+
   <form id="form1">
+    <nav class="navbar navbar-fixed-top navbar-logo navbar" id="mainmenu"></nav>
+    <br/><br />
 
     <div class="panel" style="background-color:black">
       <div class="col-sm-12" style="padding:0,0;min-height:inherit;">
@@ -31,30 +34,31 @@
             <div class="tradingview-widget-copyright">&nbsp;</div>
             <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
             <script type="text/javascript">
-            new TradingView.widget({"autosize":true,"symbol": "COINBASE:BTCUSD",
-              "interval": "1", "timezone": "Etc/UTC", "theme": "Dark", "style": "1",
-              "locale": "en", "toolbar_bg": "#f1f3f6",
-              "enable_publishing": false,
-              "withdateranges":true,
-              "hide_side_toolbar": false,
-              "allow_symbol_change": true,
-              "watchlist": ["OTC:GBTC", "OTC:ETHE",
-                "BITFINEX:BTCUSD", "BITTREX:BTCUSDT", "COINBASE:BTCUSD", "BINANCE:BTCUSD",
-                "BINANCE:LTCBTC", "COINBASE:LTCBTC", "POLONIEX:LTCBTC",
-                "BINANCE:LTCUSDC", "COINBASE:LTCUSD", "POLONIEX:LTCUSDC",
-                "BITTREX:ADABTC", "BINANCE:ADABTC", "BINANCE:ADAUSD", "BITTREX:ADAUSD",
-                "BITTREX:STRATBTC", "BITTREX:STRATBTC", "POLONIEX:STRATUSD", "POLONIEX:STRATBTC"
-              ],
-              "details": false,
-              "studies": [
-                "BB@tv-basicstudies",
-                "MASimple@tv-basicstudies",
-                "MAExp@tv-basicstudies",
-                "VSTOP@tv-basicstudies"
-              ],
-              "no_referral_id": true,
-              "container_id": "tradingview_fa2b8"
-            });
+              new TradingView.widget({
+                "autosize": true, "symbol": "COINBASE:BTCUSD",
+                "interval": "1", "timezone": "Etc/UTC", "theme": "Dark", "style": "1",
+                "locale": "en", "toolbar_bg": "#f1f3f6",
+                "enable_publishing": false,
+                "withdateranges": true,
+                "hide_side_toolbar": false,
+                "allow_symbol_change": true,
+                "watchlist": ["OTC:GBTC", "OTC:ETHE",
+                  "BITFINEX:BTCUSD", "BITTREX:BTCUSDT", "COINBASE:BTCUSD", "BINANCE:BTCUSD",
+                  "BINANCE:LTCBTC", "COINBASE:LTCBTC", "POLONIEX:LTCBTC",
+                  "BINANCE:LTCUSDC", "COINBASE:LTCUSD", "POLONIEX:LTCUSDC",
+                  "BITTREX:ADABTC", "BINANCE:ADABTC", "BINANCE:ADAUSD", "BITTREX:ADAUSD",
+                  "BITTREX:STRATBTC", "BITTREX:STRATBTC", "POLONIEX:STRATUSD", "POLONIEX:STRATBTC"
+                ],
+                "details": false,
+                "studies": [
+                  "BB@tv-basicstudies",
+                  "MASimple@tv-basicstudies",
+                  "MAExp@tv-basicstudies",
+                  "VSTOP@tv-basicstudies"
+                ],
+                "no_referral_id": true,
+                "container_id": "tradingview_fa2b8"
+              });
             </script>
           </div>
           <!-- TradingView Widget END -->
@@ -62,7 +66,7 @@
         </div>
       </div>
 
-      <div class="col-sm-12" style="padding:0 0;min-height:inherit;">        
+      <div class="col-sm-12" style="padding:0 0;min-height:inherit;">
       </div>
     </div>
 
@@ -82,8 +86,9 @@
 
     function doResizeWidget() {
     }
-    $(window).load(function(){
-    //  setTimeout(doResizeWidget, 1500);
+    $(window).load(function () {
+      //  setTimeout(doResizeWidget, 1500);
+      $('#mainmenu').html(PrintMainMenu('Mattei\'s BTC Watch'));
     });
     var ppd = new Date();
     function pu(s) {

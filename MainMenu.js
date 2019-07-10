@@ -1,8 +1,6 @@
-﻿
-
-
-function PrintMainMenu( sTitle ){
-  let sOut = '<nav class="navbar navbar-fixed-top navbar-logo navbar"><div class="container-fluid">' +
+﻿function PrintMainMenu(sTitle) {
+   // <nav class="navbar navbar-fixed-top navbar-logo navbar " > </nav>
+  let sOut = '<div class="container-fluid">' +
     '<div class="navbar-header">' +
       '<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>' +
       '<h3>'+sTitle+'</h3>' +
@@ -16,21 +14,14 @@ function PrintMainMenu( sTitle ){
             '<li><a href="gravity\gravity.html">Digital Solar System</a></li>' +
             '<li class="divider"></li>' +
             '<li><a href="CryptoWatch.html">Big List of Crypto</a></li>' +
-            '<li><a href="LTCWatch.html">Big Charts</a></li>' +
+            '<li><a href="BigCryptoChart.html">Big Charts</a></li>' +
             '<li><a href="BTCWatch.html">Dual Long Charts</a></li>' +
-            '<li><a href="BTCWatch.html">Dual Side Charts</a></li>' +            
+            '<li><a href="LTCWatch.html">Dual Side Charts</a></li>' +            
             '' +            
           '</ul>' +
         '</li>' +
       '</ul>' +
     '</div>' +
-  '</div></nav>'; 
+  '</div>'; 
   return sOut;
-}
-
-export { PrintMainMenu };
-
-
-
-
-
+};
