@@ -1,89 +1,319 @@
-<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
-<html>
+﻿<html>
 <head>
-<style TYPE="text/css"><!-- a:link {text-decoration: none; }--> </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125039435-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-125039435-1');
+  </script>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Drawing Board</title>
+  <style TYPE="text/css">
+    <!--
+
+    a:link {
+      text-decoration: none;
+    }
+    -->
+  </style>
 </head>
-<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body bgcolor="#FFFFFF" leftmargin="5" topmargin="5" marginheight="5" marginwidth="5">
+  <script src="jquery-1.11.3.min.js"></script>
 
-<center>
+  <canvas id="stage" width="800" height="600" style="background-color:#333;" ></canvas>
 
-<script language="JavaScript">
+  <script type="text/javascript">
 
-function setUp() {
-if(document.layers)
- for(document.all=document.layers,x=0;x<document.all.length;x++)
-  document.all[x].style=document.all[x]
-if(!document.all)
- if(document.getElementsByTagName)
-  document.all=document.getElementsByTagName("div")
-}
+    function doBodyResize() {
+      $('#stage').height(window.innerHeight - 2);
+      $('#stage').width(window.innerWidth - 2);
+      vr.size();
+    }
 
-function turnoff() {
- document.all["curtan"].style.visibility="hidden";
- document.all["program"].style.visibility="visible"; 
-}
-function turnoffE() {
- document.all["curtan"].style.visibility="hidden";
- document.all["aError"].style.visibility="visible"; 
-}
+    var vr = {
+      nonce: 0,
+      mousex: 0, mousey: 0,
+      mousecx: 0, mousecy: 0, mouseIsDown: 0,
+      mouserx: 0, mousery: 0,
+      canvas: document.getElementById("stage"),
+      height: 0, width: 0,
+      f20Height: 0, f05Height: 0, f15Height: 0,
+      f20Width: 0, f05Width: 0, f15Width: 0,
+      start: function () {
+        this.context = this.canvas.getContext("2d");
+        this.canvas.addEventListener("mousemove", mouseMove, false);
+        this.canvas.addEventListener("mousedown", mouseDown, false);
+        this.canvas.addEventListener("mouseup", mouseUp, false);
 
-function GoSwitch(){ 
- document.all["curtan"].style.visibility="hidden";
- document.all["program"].style.visibility="visible";   
-}
+        this.interval = setInterval(vr.redraw, 500);
+        this.size();
+      },
+      size: function () {
+        this.height = (this.canvas ? this.canvas.height : 0);
+        this.f20Height = (this.canvas ? this.height * 0.2 : 0);
+        this.f05Height = (this.canvas ? this.height * 0.065 : 0);
+        this.f15Height = (this.canvas ? this.height * 0.145 : 0);
+        this.width = (this.canvas ? this.canvas.width : 0);
+        this.f20Width = (this.canvas ? this.width * 0.2 : 0);
+        this.f05Width = (this.canvas ? this.width * 0.05 : 0);
+        this.f15Width = (this.canvas ? this.width * 0.15 : 0);
+      },      
+      redraw: function () {
 
-function GoSwitchBack(){
- document.all["program"].style.visibility="hidden";
- document.all["curtan"].style.visibility="visible";    
-}
+        vr.nonce++;
+        aCanvas = vr.context;
 
-// just save mouse position for animate() to use
-function MoveHandler(e) {
-  Xpos = e.pageX;
-  Ypos = e.pageY;  
-  return true;
-}
+        if (aCanvas) {
+          aCanvas.clearRect(0, 0, vr.canvas.width, vr.canvas.height);
 
-// just save mouse position for animate() to use
-function MoveHandlerIE() {
-  Xpos = window.event.x;
-  Ypos = window.event.y;  
-}
+          aCanvas.font = "12px Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace";
+          aCanvas.fillStyle = "#FFFFFF";
+          aCanvas.fillText("" + vr.nonce + " :Mx " + vr.mousex + " My " + vr.mousey +
+            (vr.mouseIsDown == 1 ? " :Mcx " + vr.mousecx + " Mcy " + vr.mousecy : "") +
+            (vr.mouserx == 0 ? "" : " Rx " + vr.mouserx + " Ry " + vr.mousery), 10, vr.f20Height * 5 - 20);
+        }
 
-var isNetscape = navigator.appName=="Netscape";
-if (isNetscape) {
-  document.captureEvents(Event.MOUSEMOVE);
-  document.onMouseMove = MoveHandler;
-} else {
-  document.onmousemove = MoveHandlerIE;
-}
+        if (gc) {
+          gc.drawGameConsole();
+        }
 
-</script>
+      }      
+    }, gc = {
+      drawGameConsole: function () {
+        aCanvas = vr.context;
+        aCanvas.beginPath();
+        aCanvas.lineWidth = 1;
+        aCanvas.strokeStyle = "#FFFFFF";
+
+        aleftsidex = vr.f05Width;
+        arightsidex = vr.width - (vr.f20Width * 2);
+        
+        aIH = 28;
+        aIW = 25;
+
+   //    aCanvas.moveTo(aleftsidex, vr.f05Height);
+   //     aCanvas.lineTo(arightsidex, vr.f05Height);
+   //     aCanvas.lineTo(arightsidex, vr.f20Height * 3);
+   //     aCanvas.lineTo(aleftsidex, vr.f20Height * 3);
+   //     aCanvas.lineTo(aleftsidex, vr.f05Height);
+   //     aCanvas.stroke();
+
+        aCanvas.drawImage(document.getElementById("rsi"), aleftsidex, vr.f05Height, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("rsw"), aleftsidex + aIW ,  vr.f05Height, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("rsp"), aleftsidex + aIW *2 ,  vr.f05Height, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("rss"), aleftsidex + aIW *3 ,  vr.f05Height, aIW, aIH);        
+        aCanvas.drawImage(document.getElementById("rsc"), aleftsidex + aIW *4 ,  vr.f05Height, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("rsec"),aleftsidex + aIW *5, vr.f05Height, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("rsg"), aleftsidex + aIW *6 ,  vr.f05Height, aIW, aIH);        
+        aCanvas.drawImage(document.getElementById("rsm"), aleftsidex + aIW *7 ,  vr.f05Height, aIW, aIH);                
+        aCanvas.drawImage(document.getElementById("rsss"), aleftsidex + aIW *8 , vr.f05Height, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("rst"), aleftsidex + aIW *9 , vr.f05Height, aIW, aIH);        
+        aCanvas.drawImage(document.getElementById("rsaf"), aleftsidex + aIW * 10, vr.f05Height, aIW, aIH);
+
+        aCanvas.drawImage(document.getElementById("hsh"), aleftsidex, vr.f05Height + aIH * 2, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("hsl"), aleftsidex + aIW, vr.f05Height + aIH * 2, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("hsm"), aleftsidex + aIW * 2, vr.f05Height + aIH * 2, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("hsmi"), aleftsidex + aIW * 3, vr.f05Height + aIH * 2, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("hss"), aleftsidex + aIW * 4, vr.f05Height + aIH * 2, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("bsb"), aleftsidex + aIW * 5, vr.f05Height + aIH * 2, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("bsc"), aleftsidex + aIW * 6, vr.f05Height + aIH * 2, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("bsg"), aleftsidex + aIW * 7, vr.f05Height + aIH * 2, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("bsn"), aleftsidex + aIW * 8, vr.f05Height + aIH * 2, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("bsp"), aleftsidex + aIW * 9, vr.f05Height + aIH * 2, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("bspa"), aleftsidex + aIW * 10, vr.f05Height + aIH * 2, aIW, aIH);       
 
 
-<div id="curtan" style="position:absolute;visibility:show;left:0;top:0;height:100%;width:100%;" OnMouseOver="JavaScript:GoSwitch();">
- <table cols="1" width="100%" height="100%" bgcolor="#0044cc" border=1>
- <tr><td align="center" valign="center">Curtan</td></tr> 
- </table>
-</div>
-
-<div id="program" style="position:absolute;visibility:hidden;left:0;top:0;height:100%;width:50%;" ONMouseOver="JavaScript:GoSwitchBack();"> 
- <table cols="1" width="100%" height="100%" bgcolor="#ffffff" border=1>
- <tr><td align="center" valign="center"> Program <br></td></tr> 
- </table>
-</div>
-
-<div id="aError" style="position:absolute;visibility:hidden;left:0;top:0;height:100%;width:100%;"> 
- <table cols="1" width="100%" height="100%" bgcolor="#ffffff">
- <tr><td align="center" valign="center">err<br></td></tr> 
- </table>
-</div>
+        aCanvas.drawImage(document.getElementById("fsc"), aleftsidex, vr.f05Height + aIH * 4, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("fsco"), aleftsidex + aIW, vr.f05Height + aIH * 4, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("fscb"), aleftsidex + aIW * 2, vr.f05Height + aIH * 4, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("fsht"), aleftsidex + aIW * 3, vr.f05Height + aIH * 4, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("fst"), aleftsidex + aIW * 4, vr.f05Height + aIH * 4, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("gsf"), aleftsidex + aIW * 5, vr.f05Height + aIH * 4, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("gsfp"), aleftsidex + aIW * 6, vr.f05Height + aIH * 4, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("gsg"), aleftsidex + aIW * 7, vr.f05Height + aIH * 4, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("gsgg"), aleftsidex + aIW * 8, vr.f05Height + aIH * 4, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("gsm"), aleftsidex + aIW * 9, vr.f05Height + aIH * 4, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("gst"), aleftsidex + aIW * 10, vr.f05Height + aIH * 4, aIW, aIH);
 
 
-<script LANGUAGE="JavaScript"> 
-setUp();
-</script>  
-<!--  turnoff(); -->
+        aCanvas.drawImage(document.getElementById("fab"), aleftsidex, vr.f05Height + aIH * 6, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("fabs"), aleftsidex + aIW, vr.f05Height + aIH * 6, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("fac"), aleftsidex + aIW * 2, vr.f05Height + aIH * 6, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("fas"), aleftsidex + aIW * 3, vr.f05Height + aIH * 6, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("faw"), aleftsidex + aIW * 4, vr.f05Height + aIH * 6, aIW, aIH);        
+        aCanvas.drawImage(document.getElementById("habb"), aleftsidex + aIW * 5, vr.f05Height + aIH * 6, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("hals"), aleftsidex + aIW * 6, vr.f05Height + aIH * 6, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("har"), aleftsidex + aIW * 7, vr.f05Height + aIH * 6, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("hat"), aleftsidex + aIW * 8, vr.f05Height + aIH * 6, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("hacu"), aleftsidex + aIW * 9, vr.f05Height + aIH * 6, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("hsd"), aleftsidex + aIW * 10, vr.f05Height + aIH * 6, aIW, aIH);
+
+                      
+        aCanvas.drawImage(document.getElementById("dsbr"), aleftsidex  ,         vr.f05Height + aIH * 10, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("dscc"), aleftsidex + aIW , vr.f05Height + aIH * 10, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("dsco"), aleftsidex + aIW * 2, vr.f05Height + aIH * 10, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("dsd"),  aleftsidex + aIW * 3, vr.f05Height + aIH * 10, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("dsfy"), aleftsidex + aIW * 4, vr.f05Height + aIH * 10, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("dsgs"), aleftsidex + aIW * 5, vr.f05Height + aIH * 10, aIW, aIH);  
+
+        
+
+
+
+        aCanvas.drawImage(document.getElementById("ffb"), aleftsidex, vr.f05Height + aIH * 14, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("ffcf"), aleftsidex + aIW  , vr.f05Height + aIH * 14, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("ffic"), aleftsidex + aIW * 2, vr.f05Height + aIH * 14, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("fflb"), aleftsidex + aIW * 3, vr.f05Height + aIH * 14, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("ffp"), aleftsidex + aIW * 4, vr.f05Height + aIH * 14, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("ffpo"), aleftsidex + aIW * 5, vr.f05Height + aIH * 14, aIW, aIH);
+
+
+        aCanvas.drawImage(document.getElementById("fmb"), aleftsidex , vr.f05Height + aIH * 16, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("fmc"), aleftsidex + aIW  , vr.f05Height + aIH * 16, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("fmch"), aleftsidex + aIW * 2, vr.f05Height + aIH * 16, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("fmco"), aleftsidex + aIW * 3, vr.f05Height + aIH * 16, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("fmf"), aleftsidex + aIW * 4, vr.f05Height + aIH * 16, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("fmfb"), aleftsidex + aIW * 5, vr.f05Height + aIH * 16, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("fmv"), aleftsidex + aIW * 6, vr.f05Height + aIH * 16, aIW, aIH);
+
+     
+
+        
+
+      
+
+
+      }
+    };
+
+    function rightClick(e) {
+      x = e.clientX;
+      y = e.clientY;
+      if (vr) {
+        vr.mouserx = x;
+        vr.mousery = y;
+      }
+    }
+
+    function mouseMove(e) {
+      x = e.clientX;
+      y = e.clientY;
+      if (vr) {
+        vr.mousex = x;
+        vr.mousey = y;
+      }
+    }
+
+    function mouseDown(e) {
+      cx = e.clientX;
+      cy = e.clientY;
+      if (vr) {
+        vr.mousecx = cx;
+        vr.mousecy = cy;
+        vr.mouseIsDown = 1;
+      }
+    }
+
+    function mouseUp(e) {
+      cx = e.clientX;
+      cy = e.clientY;
+      if (vr) {
+        vr.mousecx = cx;
+        vr.mousecy = cy;
+        vr.mouseIsDown = 0;
+      }
+    }
+    
+  //  function doAdvance() {      
+  //    vr.redraw();
+  //  }
+
+    var ppd = new Date();
+    function pu(s) {
+      ppd = new Date();
+      ns = 'MM' + ppd.getTime();
+      try {
+        var x = window.open(s, ns, 'location=yes,menubar=yes,resizable=yes,scrollbars=yes,toolbar=yes,status=yes');
+      } catch (e) { }
+    }
+
+    $(window).load(function () {
+      document.getElementsByTagName("BODY")[0].onresize = function () { doBodyResize(); };
+      setTimeout(doBodyResize, 50);
+      vr.start();
+    });
+
+
+  </script>
+
+<img src="plops/Bs-b.png" hidden="hidden" id="bsb" />
+<img src="plops/Bs-c.png" hidden="hidden" id="bsc" />
+<img src="plops/Bs-g.png" hidden="hidden" id="bsg" />
+<img src="plops/Bs-n.png" hidden="hidden" id="bsn" />
+<img src="plops/Bs-p.png" hidden="hidden" id="bsp" />
+<img src="plops/Bs-pa.png" hidden="hidden" id="bspa" />
+<img src="plops/Cur-S.png" hidden="hidden" id="curs" />
+<img src="plops/Ds-br.png" hidden="hidden" id="dsbr" />
+<img src="plops/Ds-cc.png" hidden="hidden" id="dscc" />
+<img src="plops/Ds-co.png" hidden="hidden" id="dsco" />
+<img src="plops/Ds-d.png" hidden="hidden" id="dsd" />
+<img src="plops/Ds-fy.png" hidden="hidden" id="dsfy" />
+<img src="plops/Ds-gs.png" hidden="hidden" id="dsgs" />
+<img src="plops/Fa-b.png" hidden="hidden" id="fab" />
+<img src="plops/Fa-bs.png" hidden="hidden" id="fabs" />
+<img src="plops/Fa-c.png" hidden="hidden" id="fac" />
+<img src="plops/Fa-s.png" hidden="hidden" id="fas" />
+<img src="plops/Fa-w.png" hidden="hidden" id="faw" />
+<img src="plops/Ff-b.png" hidden="hidden" id="ffb" />
+<img src="plops/Ff-cf.png" hidden="hidden" id="ffcf" />
+<img src="plops/Ff-ic.png" hidden="hidden" id="ffic" />
+<img src="plops/Ff-lb.png" hidden="hidden" id="fflb" />
+<img src="plops/Ff-p.png" hidden="hidden" id="ffp" />
+<img src="plops/Ff-po.png" hidden="hidden" id="ffpo" />
+<img src="plops/Fm-b.png" hidden="hidden" id="fmb" />
+<img src="plops/Fm-c.png" hidden="hidden" id="fmc" />
+<img src="plops/Fm-ch.png" hidden="hidden" id="fmch" />
+<img src="plops/Fm-co.png" hidden="hidden" id="fmco" />
+<img src="plops/Fm-f.png" hidden="hidden" id="fmf" />
+<img src="plops/Fm-fb.png" hidden="hidden" id="fmfb" />
+<img src="plops/Fm-v.png" hidden="hidden" id="fmv" />
+<img src="plops/Fs-c.png" hidden="hidden" id="fsc" />
+<img src="plops/Fs-co.png" hidden="hidden" id="fsco" />
+<img src="plops/Fs-cupboard.png" hidden="hidden" id="fscb" />
+<img src="plops/Fs-ht.png" hidden="hidden" id="fsht" />
+<img src="plops/Fs-t.png" hidden="hidden" id="fst" />
+<img src="plops/Gs-f.png" hidden="hidden" id="gsf" />
+<img src="plops/Gs-fp.png" hidden="hidden" id="gsfp" />
+<img src="plops/Gs-g.png" hidden="hidden" id="gsg" />
+<img src="plops/Gs-gg.png" hidden="hidden" id="gsgg" />
+<img src="plops/Gs-m.png" hidden="hidden" id="gsm" />
+<img src="plops/Gs-t.png" hidden="hidden" id="gst" />
+<img src="plops/Ha-bb.png" hidden="hidden" id="habb" />
+<img src="plops/Ha-ls.png" hidden="hidden" id="hals" />
+<img src="plops/Ha-r.png" hidden="hidden" id="har" />
+<img src="plops/Ha-t.png" hidden="hidden" id="hat" />
+<img src="plops/Hs-cu.png" hidden="hidden" id="hacu" />
+<img src="plops/Hs-d.png" hidden="hidden" id="hsd" />
+<img src="plops/Hs-h.png" hidden="hidden" id="hsh" />
+<img src="plops/Hs-l.png" hidden="hidden" id="hsl" />
+<img src="plops/Hs-m.png" hidden="hidden" id="hsm" />
+<img src="plops/Hs-mi.png" hidden="hidden" id="hsmi" />
+<img src="plops/Hs-s.png" hidden="hidden" id="hss" />
+<img src="plops/Rs-af.png" hidden="hidden" id="rsaf" />
+<img src="plops/Rs-c.png" hidden="hidden" id="rsc" />
+<img src="plops/Rs-ec.png" hidden="hidden" id="rsec" />
+<img src="plops/Rs-g.png" hidden="hidden" id="rsg" />
+<img src="plops/Rs-i.png" hidden="hidden" id="rsi" />
+<img src="plops/Rs-m.png" hidden="hidden" id="rsm" />
+<img src="plops/Rs-p.png" hidden="hidden" id="rsp" />
+<img src="plops/Rs-s.png" hidden="hidden" id="rss" />
+<img src="plops/Rs-ss.png" hidden="hidden" id="rsss" />
+<img src="plops/Rs-t.png" hidden="hidden" id="rst" />
+<img src="plops/Rs-w.png" hidden="hidden" id="rsw" />
+
 
 </body>
 </html>

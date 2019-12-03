@@ -1,0 +1,382 @@
+﻿<html>
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125039435-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-125039435-1');
+  </script>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Drawing Board</title>
+  <style TYPE="text/css">
+    <!--
+    a:link {
+      text-decoration: none;
+    }
+    -->
+  </style>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="5" topmargin="5" marginheight="0" marginwidth="0" style="overflow: hidden" >
+  <script src="jquery-1.11.3.min.js"></script>
+
+  <canvas id="stage" width="800" height="600" style="background-color:#333;"></canvas>
+
+  <script type="text/javascript">
+
+    function doResize() {
+      $('#stage').height(window.innerHeight - 2);
+      $('#stage').width(window.innerWidth - 2);
+      vr.size();
+    }
+
+    var vr = {
+      nonce: 0,
+      mousex: 0, mousey: 0,
+      mousecx: 0, mousecy: 0, mouseIsDown: 0,
+      mouserx: 0, mousery: 0,      
+      canvas: document.getElementById("stage"),
+      height: 0, width: 0,
+      canvasScaleX: 0, canvasScaleY:0, canvasRectTop:0, canvasRectLeft:0,
+      f20Height: 0, f05Height: 0, f15Height: 0,
+      f20Width: 0, f05Width: 0, f15Width: 0,
+      start: function () {
+        this.context = this.canvas.getContext("2d");
+        this.canvas.addEventListener("mousemove", mouseMove, false);
+        this.canvas.addEventListener("mousedown", mouseDown, false);
+        this.canvas.addEventListener("mouseup", mouseUp, false);
+
+        window.addEventListener("keydown", keyDown, false);
+        window.addEventListener("keyup", keyUp, false);
+       
+
+        this.interval = setInterval(vr.redraw, 65);
+        this.size();
+      },
+      size: function () {
+        var rect = this.canvas.getBoundingClientRect();
+        this.canvasRectTop = rect.top;
+        this.canvasRectLeft = rect.left;
+
+        this.width = (this.canvas ? this.canvas.width : 0);        
+        this.height = (this.canvas ? this.canvas.height : 0);
+        this.canvasScaleX = this.width / rect.width;
+        this.canvasScaleY = this.height / rect.height; 
+
+        this.f20Height = (this.canvas ? this.height * 0.2 : 0);
+        this.f05Height = (this.canvas ? this.height * 0.065 : 0);
+        this.f15Height = (this.canvas ? this.height * 0.145 : 0);
+        
+        this.f20Width = (this.canvas ? this.width * 0.2 : 0);
+        this.f05Width = (this.canvas ? this.width * 0.05 : 0);
+        this.f15Width = (this.canvas ? this.width * 0.15 : 0);
+        
+      },
+      redraw: function () {
+        vr.nonce++;
+        aCanvas = vr.context;
+        if (aCanvas) {
+          aCanvas.clearRect(0, 0, vr.canvas.width, vr.canvas.height);
+          aCanvas.font = "12px Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace";
+          aCanvas.fillStyle = "#FFFFFF";
+          aCanvas.fillText("" + vr.nonce + " :Mx " + vr.mousex + " My " + vr.mousey +
+            " :Sx " + vr.canvasScaleX + " Sy " + vr.canvasScaleY +
+            (vr.mouseIsDown == 1 ? " :Mcx " + vr.mousecx + " Mcy " + vr.mousecy : "") +
+            (vr.mouserx == 0 ? "" : " Rx " + vr.mouserx + " Ry " + vr.mousery), 10, vr.f20Height * 5 - 20);
+        }
+
+        if (gc) {
+          gc.drawGameConsole();
+          gc.advanceActors();
+          gc.drawActors();
+        }
+      }      
+    }, gc = {
+      iconWidth: 25,
+      iconHeight: 28,
+      hasCurActor: false,
+      currentActor: {name:"placeholder"}, 
+      actors: [],
+      start: function () {
+        aActor = new actor("curs", vr.width / 4, vr.height / 4,      0, 1, 1, 0, 50);
+    //    aActor = new actor("curs", vr.width / 4, 3 * vr.height / 4,  0, 2, 2, 0, 5);
+    //    aActor = new actor("curs", 3 * vr.width / 4, vr.height / 4,  0, 2, 2, 0, 5);
+    //    aActor = new actor("curs", 3 * vr.width / 4, 3 * vr.height / 4, 0, 2, 2, 0, 5);
+      },
+      actorAt: function (aX, aY) {        
+        y = 0;
+        if (gc.actors) {
+          y = gc.actors.length;
+        }
+        if (y > 0) {          
+          ax = (cx - vr.canvasRectLeft) * vr.canvasScaleX;
+          ay = (cy - vr.canvasRectTop) * vr.canvasScaleY;
+          for (i = 0; i <= y; i++) {
+            aActor = gc.actors[i];
+            if (aActor) {
+              if ((ax <= gc.actors[i].loc.X + (gc.iconWidth/2)) && (ax >= gc.actors[i].loc.X - (gc.iconWidth/2))) {
+                if ((ay <= gc.actors[i].loc.Y + (gc.iconHeight / 2)) && (ay >= gc.actors[i].loc.Y - (gc.iconHeight / 2))) {
+                  return i;
+                }
+              }
+            }
+          }          
+        }
+        return -1;
+      },
+      drawGameConsole: function () {
+        aCanvas = vr.context;        
+        aCanvas.lineWidth = 1;
+        aCanvas.strokeStyle = "#FFFFFF";
+
+        aleftsidex = vr.f05Width;
+        arightsidex = vr.width - (vr.f20Width * 2);
+
+      },
+      advanceActors: function () {
+        y = 0;
+        if (gc.actors) {
+          y = gc.actors.length;
+        }
+        if (y > 0) {                   
+          for (i = 0; i <= y; i++) {
+            aActor = gc.actors[i];
+            if (aActor) {
+
+              // identify bounds
+              aVRWidth = vr.width;
+              aVRHeight = vr.height;
+              aRotStepBy = Math.PI / 12;
+              aJetStregth = 5;
+
+              // check for bounds and reverse direction.
+              if ((gc.actors[i].loc.X + gc.actors[i].delta.X > aVRWidth) || (gc.actors[i].loc.X + gc.actors[i].delta.X < 0)) {
+                gc.actors[i].delta.X = -1 * gc.actors[i].delta.X;
+              }
+
+              if ((gc.actors[i].loc.Y + gc.actors[i].delta.Y > aVRHeight) || (gc.actors[i].loc.Y + gc.actors[i].delta.Y < 0)) {
+                gc.actors[i].delta.Y = -1 * gc.actors[i].delta.Y;
+              }
+
+              if (gc.actors[i].turningLeft) {
+                gc.actors[i].delta.R = aRotStepBy;
+              } else {
+                if (gc.actors[i].turningRight) {
+                  gc.actors[i].delta.R = aRotStepBy *-1;
+                } else {
+                  gc.actors[i].delta.R = 0;
+                }
+              }
+
+              if (gc.actors[i].jetsFiring) {
+                gc.actors[i].accel.X += aJetStregth * Math.cos(gc.actors[i].loc.R) / gc.actors[i].Mass;
+                gc.actors[i].accel.Y += aJetStregth * Math.sin(gc.actors[i].loc.R) / gc.actors[i].Mass;
+              } else {
+                gc.actors[i].accel.X = 0;
+                gc.actors[i].accel.Y = 0;
+              }
+
+              // calculate new delta via acceleration 
+              gc.actors[i].delta.X += gc.actors[i].accel.X;
+              gc.actors[i].delta.Y += gc.actors[i].accel.Y;
+              //gc.actors[i].delta.R += gc.actors[i].accel.R;
+
+               // calculate new position and rotation via delta.
+              gc.actors[i].loc.X += gc.actors[i].delta.X;
+              gc.actors[i].loc.Y += gc.actors[i].delta.Y;
+              gc.actors[i].loc.R += gc.actors[i].delta.R;
+
+              // mod radius back down under +- 2 Pi 
+              if (gc.actors[i].loc.R > 0) {
+                while (gc.actors[i].loc.R > 2 * Math.PI) { gc.actors[i].loc.R = gc.actors[i].loc.R - 2 * Math.PI; }
+              } else {
+                while (gc.actors[i].loc.R < -2 * Math.PI) { gc.actors[i].loc.R = gc.actors[i].loc.R + 2 * Math.PI; }
+              }     
+         
+              
+            }
+          }
+        }
+      },
+      drawActors: function () {
+        y = 0;
+        if (gc.actors) {
+          y = gc.actors.length;
+        }
+        if (y > 0) {
+          aCanvas = vr.context;  
+          aIH = 22;
+          aIW = 18;
+          for (i = 0; i <= y; i++) {
+            aActor = gc.actors[i];
+            if (aActor) {
+              aElementId = gc.actors[i].Id;
+              aElement = document.getElementById(aElementId);
+              // aCanvas.drawImage(aElement, gc.actors[i].loc.X, gc.actors[i].loc.Y, aIW, aIH);            
+                            
+              aRotConst = 3 * Math.PI / 4;
+              aCanvas.beginPath();
+              aCanvas.lineWidth = 1;
+              aCanvas.strokeStyle = "#FFFFFF";
+              aCanvas.moveTo(gc.actors[i].loc.X + aIW / 2 * Math.cos(gc.actors[i].loc.R - aRotConst),
+                gc.actors[i].loc.Y + aIH / 2 * Math.sin(gc.actors[i].loc.R - aRotConst));
+              aCanvas.lineTo(gc.actors[i].loc.X + aIW / 2 * Math.cos(gc.actors[i].loc.R),
+                gc.actors[i].loc.Y + aIH / 2 * Math.sin(gc.actors[i].loc.R));
+              aCanvas.lineTo(gc.actors[i].loc.X + aIW / 2 * Math.cos(gc.actors[i].loc.R + aRotConst),
+                gc.actors[i].loc.Y + aIH / 2 * Math.sin(gc.actors[i].loc.R + aRotConst));
+              aCanvas.lineTo(gc.actors[i].loc.X + (aIW / 2 * 0.7) * Math.cos(gc.actors[i].loc.R + aRotConst),
+                gc.actors[i].loc.Y + (aIH / 2 * 0.7) * Math.sin(gc.actors[i].loc.R + aRotConst));
+              aCanvas.lineTo(gc.actors[i].loc.X + (aIW / 2 *0.7) * Math.cos(gc.actors[i].loc.R - aRotConst),
+                gc.actors[i].loc.Y + (aIH / 2 * 0.7) * Math.sin(gc.actors[i].loc.R - aRotConst));
+              aCanvas.closePath();
+              aCanvas.stroke();
+
+              if (aActor == gc.currentActor) {
+                s = ":" + gc.actors[i].loc.X + " y:" + gc.actors[i].loc.Y + " r:" + gc.actors[i].loc.R;
+                aCanvas.font = "6px Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace";
+                aCanvas.fillStyle = "#FFFFFF";
+                aCanvas.fillText(s, gc.actors[i].loc.X, gc.actors[i].loc.Y);
+
+                aCanvas.beginPath();
+                aCanvas.arc(gc.actors[i].loc.X, gc.actors[i].loc.Y, aIH/2, 0, 2 * Math.PI);
+                aCanvas.stroke();
+              }
+            }            
+          }
+        }
+      }
+    };
+
+    function vec(aX, aY, aR) {
+      this.X = aX;   
+      this.Y = aY;   
+      this.R = aR;  // rotation
+    }
+
+    function actor(aId, aX, aY, aR, adx, ady, adr, aM) {      
+      this.Id = aId;
+      this.actorType = "Ship";
+      this.loc = new vec(aX, aY, aR);
+      this.delta = new vec(adx, ady, adr);
+      this.accel = new vec(0, 0, 0);
+      this.color = "#ffffff";     
+      this.turningLeft = false;
+      this.turningRight = false;
+      this.jetsFiring = false;
+      this.blownUp = false;
+      this.Mass = aM;      
+      gc.actors.push(this);
+    }
+
+    
+
+    function rightClick(e) {
+      x = e.clientX;
+      y = e.clientY;
+      if (vr) {
+        vr.mouserx = x;
+        vr.mousery = y;
+      }
+    }
+
+    function mouseMove(e) {
+      x = e.clientX;
+      y = e.clientY;
+      if (vr) {
+        vr.mousex = x;
+        vr.mousey = y;
+      }
+    }
+
+    function mouseDown(e) {
+      cx = e.clientX;
+      cy = e.clientY;
+      if (vr) {
+        vr.mousecx = cx;
+        vr.mousecy = cy;
+        vr.mouseIsDown = 1;
+        if (gc) {
+          i = gc.actorAt(cx, cy);
+          if (i >= 0) {
+            gc.currentActor = gc.actors[i];
+            gc.hasCurActor = true;
+          }
+        }
+      }
+    }
+
+    function mouseUp(e) {
+      cx = e.clientX;
+      cy = e.clientY;
+      if (vr) {
+        vr.mousecx = cx;
+        vr.mousecy = cy;
+        vr.mouseIsDown = 0;
+      }
+    }
+
+    function keyUp(aEvent) {
+      if (gc.currentActor) {
+        gc.currentActor.turningLeft = false;
+        gc.currentActor.turningRight = false;
+        gc.currentActor.jetsFiring = false;
+      }
+    }
+    
+
+    function keyDown(aEvent) {
+      if ((aEvent) && (gc.hasCurActor)) {
+        aKey = aEvent.key;
+        aCode = aEvent.code;
+        if (gc.currentActor) {
+          if (aCode == "ArrowLeft") {
+            gc.currentActor.turningLeft = false;
+            gc.currentActor.turningRight = true;
+          } else {
+            if (aCode == "ArrowRight") {
+              gc.currentActor.turningLeft = true;
+              gc.currentActor.turningRight = false;
+            } else {
+              gc.currentActor.turningLeft = false;
+              gc.currentActor.turningRight = false;
+            }
+          }
+
+          if (aCode == "ArrowUp") {
+            //    gc.currentActor.delta.Y -= 1;
+          }
+          if (aCode == "ArrowDown") {
+            gc.currentActor.jetsFiring = true;
+          }
+        }
+      }
+    }
+
+
+
+    var ppd = new Date();
+    function pu(s) {
+      ppd = new Date();
+      ns = 'MM' + ppd.getTime();
+      try {
+        var x = window.open(s, ns, 'location=yes,menubar=yes,resizable=yes,scrollbars=yes,toolbar=yes,status=yes');
+      } catch (e) { }
+    }
+
+    $(window).load(function () {
+      document.getElementsByTagName("BODY")[0].onresize = function () { doResize(); };
+      setTimeout(doResize, 50);
+      gc.start();
+      vr.start();
+    });
+
+
+  </script>
+
+  <img src="plops/Cur-S.png" hidden="hidden" id="curs" />
+
+
+</body>
+</html>
