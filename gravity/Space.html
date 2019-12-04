@@ -96,8 +96,6 @@
         }
       }      
     }, gc = {
-      iconWidth: 25,
-      iconHeight: 28,
       hasCurActor: false,
       currentActor: {name:"placeholder"}, 
       actors: [],
@@ -120,8 +118,8 @@
           for (i = 0; i <= y; i++) {
             aActor = gc.actors[i];
             if (aActor) {
-              if ((ax <= gc.actors[i].loc.X + (gc.iconWidth/2)) && (ax >= gc.actors[i].loc.X - (gc.iconWidth/2))) {
-                if ((ay <= gc.actors[i].loc.Y + (gc.iconHeight / 2)) && (ay >= gc.actors[i].loc.Y - (gc.iconHeight / 2))) {
+              if ((ax <= gc.actors[i].loc.X + (aIW / 2)) && (ax >= gc.actors[i].loc.X - (aIW/2))) {
+                if ((ay <= gc.actors[i].loc.Y + (aIH / 2)) && (ay >= gc.actors[i].loc.Y - (aIH/2))) {
                   return i;
                 }
               }
@@ -148,7 +146,7 @@
                 gc.currentActor.turningLeft = true;
                 gc.currentActor.turningRight = false;
               }
-              setTimeout(keyUp, 65);
+              setTimeout(keyUp, 130);
             }
           }
           
@@ -361,9 +359,7 @@
       this.Mass = aM;      
       gc.actors.push(this);
     }
-
     
-
     function rightClick(e) {
       x = e.clientX;
       y = e.clientY;
@@ -419,7 +415,6 @@
       }
     }
     
-
     function keyDown(aEvent) {
       if ((aEvent) && (gc.hasCurActor)) {
         aKey = aEvent.key;
@@ -447,9 +442,7 @@
         }
       }
     }
-
-
-
+        
     var ppd = new Date();
     function pu(s) {
       ppd = new Date();
@@ -465,7 +458,6 @@
       gc.start();
       vr.start();
     });
-
 
   </script>
   </body>
