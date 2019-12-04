@@ -10,7 +10,7 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Drawing Board</title>
+  <title>Drive Space Craft</title>
   <style TYPE="text/css">
     <!--
     a:link {
@@ -22,7 +22,7 @@
 <body bgcolor="#FFFFFF" leftmargin="5" topmargin="5" marginheight="0" marginwidth="0" style="overflow: hidden" >
   <script src="jquery-1.11.3.min.js"></script>
 
-  <canvas id="stage" width="800" height="600" style="background-color:#333;"></canvas>
+  <canvas id="stage" width="960" height="540" style="background-color:#333;"></canvas>
 
   <script type="text/javascript">
 
@@ -32,7 +32,8 @@
       vr.size();
     }
 
-    var vr = {
+    var aIH = 22, aIW = 18,
+      vr = {
       nonce: 0,
       mousex: 0, mousey: 0,
       mousecx: 0, mousecy: 0, mouseIsDown: 0,
@@ -77,14 +78,15 @@
       redraw: function () {
         vr.nonce++;
         aCanvas = vr.context;
-        if (aCanvas) {
+        if (aCanvas) {          
           aCanvas.clearRect(0, 0, vr.canvas.width, vr.canvas.height);
-          aCanvas.font = "12px Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace";
-          aCanvas.fillStyle = "#FFFFFF";
-          aCanvas.fillText("" + vr.nonce + " :Mx " + vr.mousex + " My " + vr.mousey +
-            " :Sx " + vr.canvasScaleX + " Sy " + vr.canvasScaleY +
-            (vr.mouseIsDown == 1 ? " :Mcx " + vr.mousecx + " Mcy " + vr.mousecy : "") +
-            (vr.mouserx == 0 ? "" : " Rx " + vr.mouserx + " Ry " + vr.mousery), 10, vr.f20Height * 5 - 20);
+
+       //   aCanvas.font = "12px Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace";
+       //   aCanvas.fillStyle = "#FFFFFF";
+       //   aCanvas.fillText("" + vr.nonce + " :Mx " + vr.mousex + " My " + vr.mousey +
+       //     " :Sx " + vr.canvasScaleX + " Sy " + vr.canvasScaleY +
+       //     (vr.mouseIsDown == 1 ? " :Mcx " + vr.mousecx + " Mcy " + vr.mousecy : "") +
+       //     (vr.mouserx == 0 ? "" : " Rx " + vr.mouserx + " Ry " + vr.mousery), 10, vr.f20Height * 5 - 20);
         }
 
         if (gc) {
@@ -100,12 +102,14 @@
       currentActor: {name:"placeholder"}, 
       actors: [],
       start: function () {
-        aActor = new actor("curs", vr.width / 4, vr.height / 4,      0, 1, 1, 0, 50);
+
+        aActor = new actor("curs", 420, 270, 3 * Math.PI/2, 0, 0, 0, 50);
+
     //    aActor = new actor("curs", vr.width / 4, 3 * vr.height / 4,  0, 2, 2, 0, 5);
     //    aActor = new actor("curs", 3 * vr.width / 4, vr.height / 4,  0, 2, 2, 0, 5);
     //    aActor = new actor("curs", 3 * vr.width / 4, 3 * vr.height / 4, 0, 2, 2, 0, 5);
       },
-      actorAt: function (aX, aY) {        
+      actorAt: function (cx, cy) {        
         y = 0;
         if (gc.actors) {
           y = gc.actors.length;
@@ -126,6 +130,30 @@
         }
         return -1;
       },
+      buttonAt: function (cx, cy) {
+        if (gc.hasCurActor) {
+          ax = (cx - vr.canvasRectLeft) * vr.canvasScaleX;
+          ay = (cy - vr.canvasRectTop) * vr.canvasScaleY;
+          if ((ay <= aIH + (aIH / 2)) && (ay >= aIH - (aIH / 2))) {
+            if ((ax >= aIW - (aIW / 2)) && (ax <= 3 * aIW + 10 + (aIW / 2))) {
+              if (ax <= aIW + (aIW / 2)) { 
+                // turn left
+                gc.currentActor.turningLeft = false;
+                gc.currentActor.turningRight = true;
+              } else if (ax <= 2 * aIW + 5 + (aIW / 2)) {
+                // jets
+                gc.currentActor.jetsFiring = true;
+              } else {
+                // turn right
+                gc.currentActor.turningLeft = true;
+                gc.currentActor.turningRight = false;
+              }
+              setTimeout(keyUp, 65);
+            }
+          }
+          
+        }
+      },
       drawGameConsole: function () {
         aCanvas = vr.context;        
         aCanvas.lineWidth = 1;
@@ -133,6 +161,62 @@
 
         aleftsidex = vr.f05Width;
         arightsidex = vr.width - (vr.f20Width * 2);
+
+        if (gc.hasCurActor) {
+          aCanvas.fillStyle = "#FFFFFF";
+          
+          aCanvas.beginPath();
+          aCanvas.arc(aIW, aIH, aIH / 2, 0, 2 * Math.PI);
+          if (gc.currentActor.turningRight) {
+            aCanvas.fillStyle = "#FFFFFF";
+            aCanvas.fill()
+          }
+          aCanvas.stroke();
+
+          aCanvas.beginPath();
+          aCanvas.moveTo(aIW + aIW / 4, aIH);
+          aCanvas.lineTo(aIW - aIW / 4, aIH);
+          aCanvas.lineTo(aIW - aIW / 8, aIH - aIH / 4);
+          aCanvas.lineTo(aIW - aIW / 8, aIH + aIH / 4);
+          aCanvas.lineTo(aIW - aIW / 4, aIH);          
+          aCanvas.stroke();
+
+
+          aCanvas.beginPath();
+          aCanvas.arc(aIW + aIW + 5, aIH, aIH / 2, 0, 2 * Math.PI);
+          if (gc.currentActor.jetsFiring) {
+            aCanvas.fillStyle = "#FFFFFF";
+            aCanvas.fill()
+          }
+          aCanvas.stroke();
+
+          aCanvas.beginPath();          
+          aCanvas.moveTo(2 * aIW + 5, aIH - aIH / 4);
+          aCanvas.lineTo(2 * aIW + 5, aIH + aIH / 4);
+          aCanvas.lineTo(2 * aIW + 5 - aIW/8, aIH + aIH / 8);
+          aCanvas.lineTo(2 * aIW + 5 + aIW/8, aIH + aIH / 8);
+          aCanvas.lineTo(2 * aIW + 5, aIH + aIH / 4);          
+          aCanvas.stroke();
+
+
+          aCanvas.beginPath();
+          aCanvas.arc(3 * aIW + 10, aIH, aIH / 2, 0, 2 * Math.PI);          
+          if (gc.currentActor.turningLeft) {
+            aCanvas.fillStyle = "#FFFFFF";
+            aCanvas.fill()
+          }
+          aCanvas.stroke();
+
+          aCanvas.beginPath();
+          aCanvas.moveTo(3 * aIW + 10 - aIW / 4, aIH);
+          aCanvas.lineTo(3 * aIW + 10 + aIW / 4, aIH);
+          aCanvas.lineTo(3 * aIW + 10 + aIW / 8, aIH - aIH / 4);
+          aCanvas.lineTo(3 * aIW + 10 + aIW / 8, aIH + aIH / 4);
+          aCanvas.lineTo(3 * aIW + 10 + aIW / 4, aIH);
+          aCanvas.stroke();
+
+
+        }
 
       },
       advanceActors: function () {
@@ -212,8 +296,8 @@
           for (i = 0; i <= y; i++) {
             aActor = gc.actors[i];
             if (aActor) {
-              aElementId = gc.actors[i].Id;
-              aElement = document.getElementById(aElementId);
+              // aElementId = gc.actors[i].Id;
+              // aElement = document.getElementById(aElementId);
               // aCanvas.drawImage(aElement, gc.actors[i].loc.X, gc.actors[i].loc.Y, aIW, aIH);            
                             
               aRotConst = 3 * Math.PI / 4;
@@ -233,15 +317,23 @@
               aCanvas.closePath();
               aCanvas.stroke();
 
-              if (aActor == gc.currentActor) {
-                s = ":" + gc.actors[i].loc.X + " y:" + gc.actors[i].loc.Y + " r:" + gc.actors[i].loc.R;
-                aCanvas.font = "6px Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace";
+              if (!gc.hasCurActor) {
+                
+                aCanvas.font = "18px Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace";
                 aCanvas.fillStyle = "#FFFFFF";
-                aCanvas.fillText(s, gc.actors[i].loc.X, gc.actors[i].loc.Y);
+                aCanvas.fillText(" <- Click Ship to board", 520, 270);
 
-                aCanvas.beginPath();
-                aCanvas.arc(gc.actors[i].loc.X, gc.actors[i].loc.Y, aIH/2, 0, 2 * Math.PI);
-                aCanvas.stroke();
+              } else {
+                if (aActor == gc.currentActor) {
+                  //  s = ":" + gc.actors[i].loc.X + " y:" + gc.actors[i].loc.Y + " r:" + gc.actors[i].loc.R;
+                  //  aCanvas.font = "6px Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace";
+                  aCanvas.fillStyle = "#FFFFFF";
+                  //  aCanvas.fillText(s, gc.actors[i].loc.X, gc.actors[i].loc.Y);
+
+                  aCanvas.beginPath();
+                  aCanvas.arc(gc.actors[i].loc.X, gc.actors[i].loc.Y, aIH / 2, 0, 2 * Math.PI);
+                  aCanvas.stroke();
+                }
               }
             }            
           }
@@ -302,6 +394,8 @@
           if (i >= 0) {
             gc.currentActor = gc.actors[i];
             gc.hasCurActor = true;
+          } else {
+            gc.buttonAt(cx, cy);
           }
         }
       }
@@ -374,9 +468,5 @@
 
 
   </script>
-
-  <img src="plops/Cur-S.png" hidden="hidden" id="curs" />
-
-
-</body>
+  </body>
 </html>
