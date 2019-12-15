@@ -1,0 +1,233 @@
+<html>
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125039435-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-125039435-1');
+  </script>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Test Store </title>
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/bootstrap-dialog.min.css" rel="stylesheet" />
+  <style TYPE="text/css">
+    <!--
+    a:link {
+      text-decoration: none;
+    }
+    -->
+  </style>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="5" topmargin="5" marginheight="5" marginwidth="5">
+  <script src="Scripts/jquery-1.11.3.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/bootstrap-dialog.min.js"></script>
+  <script src="js/sjcl.js"></script>
+
+  <canvas id="stage" width="1920" height="1080" style="background-color:#000;"></canvas>
+
+  <script type="text/javascript">
+
+    function doBodyResize() {
+      $('#stage').height(window.innerHeight - 2);
+      $('#stage').width(window.innerWidth - 2);
+      vr.size();
+    }
+
+    var vr = {
+      nonce: 0,
+      mousex: 0, mousey: 0,
+      mousecx: 0, mousecy: 0, mouseIsDown: 0,
+      mouserx: 0, mousery: 0,
+      canvas: document.getElementById("stage"),
+      height: 0, width: 0,
+      f20Height: 0, f05Height: 0, f15Height: 0,
+      f20Width: 0, f05Width: 0, f15Width: 0,
+      dlgPasswordIsShowing: 0,
+      start: function () {
+        this.context = this.canvas.getContext("2d");
+        this.canvas.addEventListener("mousemove", mouseMove, false);
+        this.canvas.addEventListener("mousedown", mouseDown, false);
+        this.canvas.addEventListener("mouseup", mouseUp, false);
+
+        this.interval = setInterval(vr.redraw, 500);
+        this.size();
+        sjcl.random.startCollectors();
+      },
+      size: function () {
+        this.height = (this.canvas ? this.canvas.height : 0);
+        this.f20Height = (this.canvas ? this.height * 0.2 : 0);
+        this.f05Height = (this.canvas ? this.height * 0.065 : 0);
+        this.f15Height = (this.canvas ? this.height * 0.145 : 0);
+        this.width = (this.canvas ? this.canvas.width : 0);
+        this.f20Width = (this.canvas ? this.width * 0.2 : 0);
+        this.f05Width = (this.canvas ? this.width * 0.05 : 0);
+        this.f15Width = (this.canvas ? this.width * 0.15 : 0);
+      },
+      redraw: function () {
+
+        vr.nonce++;
+        aCanvas = vr.context;
+
+        if (aCanvas) {
+          // clear the canvas
+          aCanvas.clearRect(0, 0, vr.canvas.width, vr.canvas.height);
+
+          //   aCanvas.font = "12px Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace";
+          //   aCanvas.fillStyle = "#FFFFFF";
+          //   aCanvas.fillText("" + vr.nonce + " :Mx " + vr.mousex + " My " + vr.mousey +
+          //     (vr.mouseIsDown == 1 ? " :Mcx " + vr.mousecx + " Mcy " + vr.mousecy : "") +
+          //     (vr.mouserx == 0 ? "" : " Rx " + vr.mouserx + " Ry " + vr.mousery), 10, vr.f20Height * 5 - 20);
+        }
+
+        // redraw
+        if (gc) {
+          gc.drawGameConsole();
+        }
+
+      }
+    }, gc = {
+      drawGameConsole: function () {
+        aCanvas = vr.context;
+        aCanvas.beginPath();
+        aCanvas.lineWidth = 1;
+        aCanvas.strokeStyle = "#FFFFFF";
+
+        aleftsidex = vr.f05Width;
+        arightsidex = vr.width - (vr.f20Width * 2);
+
+        alsc = localStorage.length;
+        aCanvas.font = "12px Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace";
+        aCanvas.fillStyle = "#FFFFFF";        
+        if (alsc > 0) {
+          for (aI = 0; aI < alsc; aI++) {
+            alskey = localStorage.key(aI);
+            alsval = localStorage.getItem(alskey);
+            aCanvas.fillText(" " + alskey + ":" + alsval, 10, (13 * aI) + 100);
+          }
+
+        } else {
+
+          aCanvas.fillText(" Local storage is empty, Click to set password. ", vr.f20Width * 2, vr.f20Height*2);
+
+        }
+
+        if (vr.mouseIsDown) {
+          if (alsc <= 0) {
+            vr.mouseIsDown = 0;
+            if (vr.dlgPasswordIsShowing == 0) {
+              vr.dlgPasswordIsShowing = 1;
+              doGetPasswordDlg();
+            }
+            //localStorage.setItem("ac", "Test of the set of the local storage. ");
+            //localStorage.removeItem("ac");
+          } else {
+            localStorage.removeItem("aMP");
+            localStorage.removeItem("aKey");
+            localStorage.removeItem("aCKey");
+          }
+        }
+                     
+      }
+    };
+
+    function rightClick(e) {      
+      if (vr) {
+        vr.mouserx = e.clientX;
+        vr.mousery = e.clientY;
+      }
+    }
+
+    function mouseMove(e) {      
+      if (vr) {
+        vr.mousex = e.clientX;
+        vr.mousey = e.clientY;
+      }
+    }
+
+    function mouseDown(e) {      
+      if (vr) {
+        vr.mousecx = e.clientX;
+        vr.mousecy = e.clientY;
+        vr.mouseIsDown = 1;
+      }
+    }
+
+    function mouseUp(e) {      
+      if (vr) {
+        vr.mousecx = e.clientX;
+        vr.mousecy = e.clientY;
+        vr.mouseIsDown = 0;
+      }
+    }
+
+    function doGetPasswordDlg() {
+      BootstrapDialog.show({
+        title: 'Set the storage password',
+        draggable: false, 
+        message: function (dialog) {
+          var $message = $('<div></div>').load('dlgSetPassword.html');
+          return $message;
+        },
+        buttons: [{
+          label: 'Save',
+          cssClass: 'btn-primary',
+          icon: 'glyphicon glyphicon-ok',
+          action: function (dialog) {   
+            aMP = document.getElementById("passPhrase").value;
+            if (aMP != "") {
+              aKey = doBuildKey(aMP);                            
+              let rp = {}
+              aCKey = sjcl.encrypt(aKey.AESKey.key, JSON.stringify(aKey), aKey, rp);
+              localStorage.setItem("aKey", JSON.stringify(aKey));
+              localStorage.setItem("aCKey", JSON.stringify(aCKey));              
+              dialog.close();
+              vr.dlgPasswordIsShowing = 0;
+            }            
+          }
+        }, {
+          label: 'Close',
+          icon: 'glyphicon glyphicon-ban-circle',
+          action: function (dialog) {
+            dialog.close();
+            vr.dlgPasswordIsShowing = 0;
+          }
+        }]
+      });
+    }
+
+    function doBuildKey(aMP) {
+      let aKey = {};
+      aKey.iter = 10;      
+      aKey.keysize = 256;
+      aKey.salt = [-1107749069, -782876423];
+      aKey.AESKey = sjcl.misc.cachedPbkdf2(aMP, aKey);
+      return aKey;
+    }
+
+    var ppd = new Date();
+    function pu(s) {
+      ppd = new Date();
+      ns = 'MM' + ppd.getTime();
+      try {
+        var x = window.open(s, ns, 'location=yes,menubar=yes,resizable=yes,scrollbars=yes,toolbar=yes,status=yes');
+      } catch (e) { }
+    }
+
+    $(window).load(function () {
+      document.getElementsByTagName("BODY")[0].onresize = function () { doBodyResize(); };
+      setTimeout(doBodyResize, 50);
+      vr.start();
+    });
+
+
+  </script>
+
+
+
+
+</body>
+</html>

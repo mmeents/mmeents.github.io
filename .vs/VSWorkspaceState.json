@@ -1,8 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\gravity"
+    "\\gravity",
+    "\\js",
+    "\\Scripts",
+    "\\Styles",
+    "\\view"
   ],
-  "SelectedNode": "\\gravity\\DriveCraft.html",
+  "SelectedNode": "\\dlgAddDrawingBoardItem.html",
   "PreviewInSolutionExplorer": false
 }

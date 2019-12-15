@@ -1,0 +1,463 @@
+﻿<html>
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125039435-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-125039435-1');
+  </script>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Drawing Board Canvas workshop </title>
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/bootstrap-dialog.min.css" rel="stylesheet" />
+  <style TYPE="text/css">
+    <!--
+    a:link {
+      text-decoration: none;
+    }
+    -->
+  </style>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" style="overflow: hidden">
+  <script src="Scripts/jquery-1.11.3.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/bootstrap-dialog.min.js"></script>
+  <!-- 480 960 1440  810 540 270  -->
+  <canvas id="stage" width="1440" height="810" style="background-color:#000;"></canvas>
+
+  <script type="text/javascript">
+
+    function doBodyResize() {
+      $('#stage').height(window.innerHeight - 2);
+      $('#stage').width(window.innerWidth - 2);
+      vr.size();
+    }
+
+    var vr = {
+      nonce: 0,
+      mousex: 0, mousey: 0,
+      mousecx: 0, mousecy: 0, mouseIsDown: 0,
+      mousedx: 0, mousedy: 0,
+      mouserx: 0, mousery: 0,
+      canvas: document.getElementById("stage"),
+      height: 0, width: 0,
+      canvasScaleX: 0, canvasScaleY: 0, canvasRectTop: 0, canvasRectLeft: 0,
+      f20Height: 0, f05Height: 0, f15Height: 0,
+      f20Width: 0, f05Width: 0, f15Width: 0,
+      start: function () {
+        this.context = this.canvas.getContext("2d");
+        this.canvas.addEventListener("mousemove", mouseMove, false);
+        this.canvas.addEventListener("mousedown", mouseDown, false);
+        this.canvas.addEventListener("mouseup", mouseUp, false);
+
+        this.interval = setInterval(vr.redraw, 500);
+        this.size();
+
+      },
+      size: function () {
+        let rect = this.canvas.getBoundingClientRect();
+        this.canvasRectTop = rect.top;
+        this.canvasRectLeft = rect.left;
+
+        this.width = (this.canvas ? this.canvas.width : 0);
+        this.height = (this.canvas ? this.canvas.height : 0);
+        this.canvasScaleX = this.width / rect.width;
+        this.canvasScaleY = this.height / rect.height;
+
+        this.f20Height = (this.canvas ? this.height * 0.2 : 0);
+        this.f05Height = (this.canvas ? this.height * 0.065 : 0);
+        this.f15Height = (this.canvas ? this.height * 0.145 : 0);
+
+        this.f20Width = (this.canvas ? this.width * 0.2 : 0);
+        this.f05Width = (this.canvas ? this.width * 0.05 : 0);
+        this.f15Width = (this.canvas ? this.width * 0.15 : 0);
+      },
+      redraw: function () {
+
+        vr.nonce++;
+        let aCanvas = vr.context;
+
+        if (aCanvas) {
+          // clear the canvas
+          aCanvas.clearRect(0, 0, vr.canvas.width, vr.canvas.height);          
+          //   aCanvas.font = "12px Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace";
+          //   aCanvas.fillStyle = "#FFFFFF";
+          //   aCanvas.fillText("" + vr.nonce + " :Mx " + vr.mousex + " My " + vr.mousey +
+          //     (vr.mouseIsDown == 1 ? " :Mcx " + vr.mousecx + " Mcy " + vr.mousecy : "") +
+          //     (vr.mouserx == 0 ? "" : " Rx " + vr.mouserx + " Ry " + vr.mousery), 10, vr.f20Height * 5 - 20);
+        }
+
+        // redraw
+        if (gc) {
+          gc.drawGameConsole();
+          gc.drawFrame();
+
+          if (vr.mouseIsDown) {
+            let vrmousedx = (vr.mousecx - vr.canvasRectLeft) * vr.canvasScaleX;
+            let vrmousedy = (vr.mousecy - vr.canvasRectTop) * vr.canvasScaleY;
+
+            if ((vrmousedx > vr.f05Width * 2) && (vrmousedx < vr.width - vr.f05Width * 2) &&
+              (vrmousedy > vr.f05Height * 2) && (vrmousedy < vr.height - vr.f05Height * 2) &&
+              (vr.mousedx > vr.f05Width * 2) && (vr.mousedx < vr.width - vr.f05Width * 2) &&
+              (vr.mousedy > vr.f05Height * 2) && (vr.mousedy < vr.height - vr.f05Height * 2)) {
+              aCanvas.beginPath();
+              aCanvas.lineWidth = 1;
+              aCanvas.strokeStyle = "#FFFFFF";             
+              aCanvas.moveTo(vr.mousedx, vr.mousedy);
+              aCanvas.lineTo(vrmousedx, vrmousedy);
+              aCanvas.stroke();
+            }
+          }
+        }
+
+        
+
+
+      }
+    }, gc = {
+      hasCurFrame: false,
+      currentFrame: {},
+      frames: [],
+      start: function () {
+        if (!this.hasCurFrame) {
+          this.currentFrame = new frame(0);
+          this.hasCurFrame = true;
+        }
+      },
+      drawGameConsole: function () {
+        let aCanvas = vr.context;
+
+        if (aCanvas) {
+          /*
+          aCanvas.beginPath();
+          aCanvas.lineWidth = 1;
+          aCanvas.strokeStyle = "#3F3F3F";
+          aCanvas.moveTo(vr.f20Width * 4, vr.f05Height);
+          aCanvas.lineTo(vr.f20Width * 5, vr.f05Height);
+          aCanvas.lineTo(vr.f20Width * 4 + vr.f05Width * 3, vr.f05Height);
+          aCanvas.lineTo(vr.f20Width * 4 + vr.f05Width * 3, vr.f20Height * 4);
+          aCanvas.lineTo(vr.f05Width, vr.f20Height * 4);
+          aCanvas.lineTo(vr.f05Width, vr.f20Height * 4 + vr.f05Height);
+          aCanvas.lineTo(vr.f20Width * 4, vr.f20Height * 4 + vr.f05Height);
+          aCanvas.lineTo(vr.f20Width * 4, vr.f20Height * 4);
+          aCanvas.lineTo(vr.f20Width * 4 + vr.f05Width, vr.f20Height * 4);
+          aCanvas.lineTo(vr.f20Width * 4 + vr.f05Width, vr.f05Height);
+          aCanvas.lineTo(vr.f20Width * 4 + vr.f05Width * 2, vr.f05Height);
+          aCanvas.lineTo(vr.f20Width * 4 + vr.f05Width * 2, vr.f20Height * 4);
+          aCanvas.lineTo(vr.f20Width * 5, vr.f20Height * 4);
+          aCanvas.lineTo(vr.f20Width * 5, vr.f20Height * 5);
+          aCanvas.lineTo(vr.f20Width * 4, vr.f20Height * 5);
+          aCanvas.lineTo(vr.f20Width * 4, vr.f20Height * 4 + vr.f05Height);
+          aCanvas.lineTo(vr.f20Width * 4 + vr.f05Width * 2, vr.f20Height * 4 + vr.f05Height);
+          aCanvas.lineTo(vr.f20Width * 4 + vr.f05Width * 2, vr.f20Height * 4);
+          aCanvas.lineTo(vr.f20Width * 4 + vr.f05Width, vr.f20Height * 4);
+          aCanvas.stroke();
+          */
+        } // pencil measures
+
+        let aBRG = aCanvas.createRadialGradient(vr.f20Width * 2 + vr.f05Width, vr.f20Height * 2 + vr.f05Height, 0, vr.f20Width * 2 + vr.f05Width, vr.f20Height * 2 + vr.f05Height, vr.f20Height * 2.5);
+        aBRG.addColorStop(0, "#ebcb07");
+        aBRG.addColorStop(1, "#716203");
+
+        // frame controls
+        let fc = 0;
+        if (gc.frames) fc = gc.frames.length;
+        if (fc > 0) {
+
+          aCanvas.fillStyle = "#1F1F1F";
+          aCanvas.fillRect(vr.f05Width, 0, vr.f20Width * 5 - vr.f05Width, vr.f05Height);
+
+          // add button
+          aCanvas.fillStyle = "#3F3F3F";
+          if (fc < 19) {
+            aCanvas.fillRect(vr.f05Width + ((fc) * vr.f05Width), 10, vr.f05Width - 20, vr.f05Height - 20);
+            aCanvas.font = "16px Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace";
+            aCanvas.fillStyle = "#FFFFFF";
+            aCanvas.fillText("+", vr.f05Width + ((fc) * vr.f05Width) + (vr.f05Width / 2) - 10, (vr.f05Height / 2) + 5);
+          }
+
+          // frame buttons
+          for (let i = 0; i < fc; i++) {
+            aFrame = gc.frames[i];
+            if (aFrame && gc.hasCurFrame && (gc.currentFrame.id == aFrame.id)) {
+              aCanvas.fillStyle = aFrame.color;
+              aCanvas.fillRect(vr.f05Width + (i * vr.f05Width), 10, vr.f05Width, vr.f05Height - 20);
+            } else {
+              aCanvas.fillStyle = "#3F3F3F";
+              aCanvas.fillRect(vr.f05Width + (i * vr.f05Width), 10, vr.f05Width, vr.f05Height - 20);
+            }
+            aCanvas.font = "16px Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace";
+            aCanvas.fillStyle = "#FFFFFF";
+            aCanvas.fillText(i + 1, vr.f05Width + (i * vr.f05Width) + (vr.f05Width / 2) - 5, (vr.f05Height / 2) + 5);
+          }
+
+          // frame current selected highlights
+          if (aFrame && gc.hasCurFrame) {
+            aCanvas.font = "16px Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace";
+            aCanvas.fillStyle = "#FFFFFF";
+            aCanvas.fillText(gc.currentFrame.id + 1, vr.f05Width + (gc.currentFrame.id * vr.f05Width) + (vr.f05Width / 2) - 5, (vr.f05Height / 2) + 5);
+
+            aCanvas.strokeStyle = aBRG;
+            aCanvas.lineWidth = 4;
+            aCanvas.strokeRect(vr.f05Width + (gc.currentFrame.id * vr.f05Width), 10, vr.f05Width, vr.f05Height - 20);
+          }
+        }
+
+        // display border
+        aCanvas.strokeStyle = aBRG;
+        aCanvas.lineWidth = 4;
+        aCanvas.strokeRect(vr.f05Width * 2, vr.f05Height * 2, vr.f20Width * 4, vr.f20Height * 4 - vr.f05Height * 1);
+
+        //aCanvas.beginPath();
+        //aCanvas.moveTo(vr.f05Width, vr.f05Height);
+        //aCanvas.lineTo(vr.f20Height * 4, vr.f05Height);
+        //aCanvas.lineTo(vr.f20Height * 4, vr.f20Height * 4);
+        //aCanvas.lineTo(vr.f05Width, vr.f20Height * 4 );
+        //aCanvas.lineTo(vr.f05Width, vr.f05Height);
+        //aCanvas.stroke();
+
+
+
+      },
+      drawFrame: function () {
+        let fc = 0;
+        if (gc.frames) fc = gc.frames.length;
+        if (fc > 0) {
+          let aCanvas = vr.context;
+          let aBRG = aCanvas.createRadialGradient(vr.f20Width * 2 + vr.f05Width, vr.f20Height * 2 + vr.f05Height, 0, vr.f20Width * 2 + vr.f05Width, vr.f20Height * 2 + vr.f05Height, vr.f20Height * 2.5);
+          aBRG.addColorStop(0, "#ebcb07");
+          aBRG.addColorStop(1, "#716203");
+          for (let i = 0; i < fc; i++) {
+            aFrame = gc.frames[i];
+            if (aFrame && this.hasCurFrame && (this.currentFrame.id == i)) {
+              if (aFrame.items) {
+
+                let ic = aFrame.items.length;
+                // draw add item button
+                aCanvas.fillStyle = "#3F3F3F";
+                aB = Math.trunc(ic / 2) - 1;
+                aA = !(Math.trunc((ic % 2) * 10) > 0);
+                aCanvas.fillRect((aA ? 10 : (vr.f05Width)), (vr.f05Height * (aB + 3)), vr.f05Width - 20, vr.f05Height - 20);
+                aCanvas.font = "16px Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace";
+                aCanvas.fillStyle = "#FFFFFF";
+                aCanvas.fillText("Add", (aA ? 10 : (vr.f05Width) + 5), vr.f05Height * (aB + 3) + vr.f05Height / 2 - 5);
+
+                for (let j = 0; j < ic; j++) {
+                  aItem = aFrame.items[j];
+
+                  if (aItem) {
+                    // draw menu items.
+                    aCanvas.fillStyle = "#3F3F3F";
+                    
+                    aB = Math.trunc(j / 2) -1;
+                    aA = !(Math.trunc((j % 2) * 10) > 0);
+                    aCanvas.fillRect((aA ? 10 : (vr.f05Width )), (vr.f05Height * (aB+3)), vr.f05Width - 20, vr.f05Height - 20);
+                    aCanvas.font = "16px Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace";
+                    aCanvas.fillStyle = "#FFFFFF";
+                    aCanvas.fillText(aItem.type, (aA ? 10 : (vr.f05Width ) + 5), vr.f05Height * (aB + 3) + vr.f05Height/2 - 5);
+
+                    if (gc.currentFrame.CurrentItem.id == aItem.id) {
+                      aCanvas.strokeStyle = aBRG;
+                      aCanvas.lineWidth = 4;
+                      aCanvas.strokeRect((aA ? 10 : (vr.f05Width + 5)), (vr.f05Height * (aB + 3)), vr.f05Width - 20, vr.f05Height - 20);
+                    }
+
+                    // draw display
+                    if (aItem.type == "tText") {
+                      aCanvas.font = aItem.fontCSS;
+                      aCanvas.fillStyle = "#FFFFFF";
+                      aCanvas.fillText(aItem.text, vr.f05Width * 2 + aItem.loc.x, vr.f05Height*2+ aItem.loc.y);
+                    }
+
+                  }
+                }  // foreach of the drawables in items do
+
+
+
+
+              }
+            } // if we have the current frame.
+          }  // iterate frames looking for current.
+        }
+      },
+      drawItem: function () {
+      }
+    };
+
+    function frame(aId) {
+      this.id = aId;
+      this.color = "#000000";
+      this.hasCurItem = false;
+      this.CurrentItem = {};
+      this.items = [];
+      gc.frames.push(this);
+    }
+
+    function vrec(aX, aY, aW, aH) {
+      this.x = aX;
+      this.y = aY;
+      this.w = aW;
+      this.h = aH;
+    }
+
+    function drawable(aOwnerFrame, aId, avrec, aType) {
+      this.owner = aOwnerFrame;
+      this.id = aId;
+      this.loc = avrec;
+      this.type = aType;
+      this.text = "";
+      this.fontCSS = "12px Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace";
+      aOwnerFrame.items.push(this);
+      aOwnerFrame.CurrentItem = this;
+      if (!aOwnerFrame.hasCurItem) aOwnerFrame.hasCurItem = true;
+    }
+       
+    function mouseMove(e) {
+      if (vr) {
+        vr.mousecx = e.clientX;
+        vr.mousecy = e.clientY;
+      }
+    }
+
+    function mouseDown(e) {
+      if (vr) {
+        vr.mousecx = e.clientX;
+        vr.mousecy = e.clientY;
+        let ax = (vr.mousecx - vr.canvasRectLeft) * vr.canvasScaleX;
+        let ay = (vr.mousecy - vr.canvasRectTop) * vr.canvasScaleY;
+        if ((vr.mouseIsDown == 0) && ((ax > vr.f05Width * 2) && (ax < vr.width - vr.f05Width * 2) && (ay > vr.f05Height * 2) && (ay < vr.height - vr.f05Height * 2))) {
+          vr.mousedx = (vr.mousecx - vr.canvasRectLeft) * vr.canvasScaleX;
+          vr.mousedy = (vr.mousecy - vr.canvasRectTop) * vr.canvasScaleY;
+        }
+        vr.mouseIsDown = 1;
+      }
+    }
+
+    function mouseUp(e) {
+      if (vr) {
+        vr.mousecx = e.clientX;
+        vr.mousecy = e.clientY;
+        vr.mouseIsDown = 0;
+
+        if (gc) {  // translate most recient coords to model 
+          let ax = (vr.mousecx - vr.canvasRectLeft) * vr.canvasScaleX;  
+          let ay = (vr.mousecy - vr.canvasRectTop) * vr.canvasScaleY;
+          if (ay < vr.f05Height) {
+            if (ax < vr.f05Width) {
+              // top left spot open
+
+            } else {
+              // set current
+              let indexAt = Math.trunc((ax - vr.f05Width) / vr.f05Width);
+              if (indexAt < gc.frames.length) {
+                gc.currentFrame = gc.frames[indexAt];
+              } else {  // do add frame op
+                gc.currentFrame = new frame(gc.frames.length);
+              }
+            }
+          } else {  // ay is less than top menu row
+            // ay bigger than top menu row.
+            if ((ay > vr.f05Height * 2) && (ax < vr.f05Width * 2)) {
+              let aBase = Math.trunc((ay - (vr.f05Height * 2)) / vr.f05Height);
+              let aChunk = Math.trunc(ax / vr.f05Width);
+              let aIndex = aBase * 2 + aChunk;
+              let aIC = gc.currentFrame.items.length;
+              if (aIndex < aIC) {
+                if (gc.currentFrame.CurrentItem && gc.currentFrame.items[aIndex].id == gc.currentFrame.CurrentItem.id) {
+                  doEditItemDialog(false, gc.currentFrame.items[aIndex]);
+                } else {
+                  gc.currentFrame.CurrentItem = gc.currentFrame.items[aIndex];
+                }
+                
+              } else {
+                doEditItemDialog(true, 0);
+              }              
+            }
+
+            if ((ax > vr.f05Width * 2) && (ax < vr.width - vr.f05Width * 2) && (ay > vr.f05Height * 2) && (ay < vr.height - vr.f05Height * 2)) {
+              if (gc.currentFrame.CurrentItem) {                
+                gc.currentFrame.CurrentItem.loc.x = gc.currentFrame.CurrentItem.loc.x + (ax - vr.mousedx);
+                gc.currentFrame.CurrentItem.loc.y = gc.currentFrame.CurrentItem.loc.y + (ay - vr.mousedy);                
+              }
+            }
+
+          }  // ay was > f05Width 
+
+          vr.mousedx = 0;
+          vr.mousedy = 0;
+          vr.mousecx = 0;
+          vr.mousecy = 0;
+
+        } // if game controler is up
+      }  // if viewer is up
+    }
+
+    function doSetEditData() {
+      if (gc.hasCurFrame && gc.currentFrame.hasCurItem) {
+        let aItem = gc.currentFrame.CurrentItem;
+        if (aItem) {
+          document.getElementById("edType").value = aItem.type;
+          document.getElementById("edText").value = aItem.text;
+          document.getElementById("edFontCSS").value = aItem.fontCSS;          
+        }
+      }
+    }
+
+    function doEditItemDialog(aIsNew, aItem) {
+      BootstrapDialog.show({
+        title: "" + (aIsNew ? 'Adding new Item' : 'Edit the '+ aItem.type),
+        draggable: false,
+        message: function (dialog) {
+          var $message = $('<div></div>').load((aIsNew?'dlgAddDrawingBoardItem.html':'dlgEditDrawingBoardItem.html'));
+          return $message;
+        },         
+        buttons: [{
+          label: 'Save',
+          cssClass: 'btn-primary',
+          icon: 'glyphicon glyphicon-ok',
+          action: function (dialog) {
+            //aMP = document.getElementById("passPhrase").value;
+            if (aIsNew) {
+              aItem = new drawable(gc.currentFrame, gc.currentFrame.items.length, new vrec(10, 10, 10, 10), "");              
+            }
+            aItem.type = document.getElementById("edType").value;
+            aItem.text = document.getElementById("edText").value;
+            aItem.fontCSS = document.getElementById("edFontCSS").value;
+            dialog.close();            
+          }
+        }, {
+          label: 'Close',
+          icon: 'glyphicon glyphicon-ban-circle',
+          action: function (dialog) {
+            dialog.close();            
+          }
+        }]
+      });
+    }
+
+    var ppd = new Date();
+    function pu(s) {
+      ppd = new Date();
+      ns = 'MM' + ppd.getTime();
+      try {
+        var x = window.open(s, ns, 'location=yes,menubar=yes,resizable=yes,scrollbars=yes,toolbar=yes,status=yes');
+      } catch (e) { }
+    }
+
+    $(window).load(function () {
+      document.getElementsByTagName("BODY")[0].onresize = function () { doBodyResize(); };
+      setTimeout(doBodyResize, 50);
+      gc.start();
+      vr.start();
+    });
+
+
+  </script>
+
+
+
+</body>
+</html>

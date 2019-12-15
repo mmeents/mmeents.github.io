@@ -1,0 +1,33 @@
+<form id="formEditItem">
+  <div class="form-group">
+    <table class="form-group">
+      <tr><td colspan="2"> Item Type </td></tr>
+      <tr>
+        <td class="col-sm-3"> Type : </td>
+        <td class="col-sm-9">
+          <select id="edType" onchange="" class="form-control">
+            <option value="tText">Text</option>
+            <option value="tRect">Rectangle</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td class="col-sm-3">Text : </td>
+        <td class="col-sm-9">
+          <input id="edText" type="text" class="form-control" />
+        </td>
+      </tr>
+      <tr>
+        <td class="col-sm-3">Font CSS:   </td>
+        <td class="col-sm-9">
+          <input id="edFontCSS" type="text" class="form-control" />
+        </td>
+      </tr>
+      <tr><td class="col-sm-3"> New form-control </td><td class="col-sm-9"> </td></tr>
+      <tr><td class="col-sm-3">  </td><td class="col-sm-9"> </td></tr>
+    </table>
+  </div>
+</form>
+<script type="text/javascript">
+  doSetEditData();
+</script>
