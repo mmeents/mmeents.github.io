@@ -131,31 +131,26 @@
         let aCanvas = vr.context;
 
         if (aCanvas) {
-          /*
+
+          let ahvrw = Math.trunc(vr.f05Width / 2);
+          let ahvrh = Math.trunc(vr.f05Height / 2); 
+
+          // scale line above
+          aCanvas.beginPath();
+          aCanvas.lineWidth = 1;
+          aCanvas.strokeStyle = "#3F3F3F";          
+          aCanvas.moveTo(vr.f05Width * 2 + ahvrw, vr.f05Height * 2 - ahvrh);
+          aCanvas.lineTo(vr.width - vr.f05Width * 2 - ahvrw, vr.f05Height * 2 - ahvrh);
+          aCanvas.stroke();
+
+          // scale line on right
           aCanvas.beginPath();
           aCanvas.lineWidth = 1;
           aCanvas.strokeStyle = "#3F3F3F";
-          aCanvas.moveTo(vr.f20Width * 4, vr.f05Height);
-          aCanvas.lineTo(vr.f20Width * 5, vr.f05Height);
-          aCanvas.lineTo(vr.f20Width * 4 + vr.f05Width * 3, vr.f05Height);
-          aCanvas.lineTo(vr.f20Width * 4 + vr.f05Width * 3, vr.f20Height * 4);
-          aCanvas.lineTo(vr.f05Width, vr.f20Height * 4);
-          aCanvas.lineTo(vr.f05Width, vr.f20Height * 4 + vr.f05Height);
-          aCanvas.lineTo(vr.f20Width * 4, vr.f20Height * 4 + vr.f05Height);
-          aCanvas.lineTo(vr.f20Width * 4, vr.f20Height * 4);
-          aCanvas.lineTo(vr.f20Width * 4 + vr.f05Width, vr.f20Height * 4);
-          aCanvas.lineTo(vr.f20Width * 4 + vr.f05Width, vr.f05Height);
-          aCanvas.lineTo(vr.f20Width * 4 + vr.f05Width * 2, vr.f05Height);
-          aCanvas.lineTo(vr.f20Width * 4 + vr.f05Width * 2, vr.f20Height * 4);
-          aCanvas.lineTo(vr.f20Width * 5, vr.f20Height * 4);
-          aCanvas.lineTo(vr.f20Width * 5, vr.f20Height * 5);
-          aCanvas.lineTo(vr.f20Width * 4, vr.f20Height * 5);
-          aCanvas.lineTo(vr.f20Width * 4, vr.f20Height * 4 + vr.f05Height);
-          aCanvas.lineTo(vr.f20Width * 4 + vr.f05Width * 2, vr.f20Height * 4 + vr.f05Height);
-          aCanvas.lineTo(vr.f20Width * 4 + vr.f05Width * 2, vr.f20Height * 4);
-          aCanvas.lineTo(vr.f20Width * 4 + vr.f05Width, vr.f20Height * 4);
+          aCanvas.moveTo(vr.width - vr.f05Width * 2 + ahvrw, vr.f05Height * 2 + ahvrh);
+          aCanvas.lineTo(vr.width - vr.f05Width * 2 + ahvrw, vr.height - vr.f05Height * 2 - ahvrh);
           aCanvas.stroke();
-          */
+        
         } // pencil measures
 
         let aBRG = aCanvas.createRadialGradient(vr.f20Width * 2 + vr.f05Width, vr.f20Height * 2 + vr.f05Height, 0, vr.f20Width * 2 + vr.f05Width, vr.f20Height * 2 + vr.f05Height, vr.f20Height * 2.5);
@@ -167,14 +162,14 @@
         if (gc.frames) fc = gc.frames.length;
         if (fc > 0) {
 
-          aCanvas.fillStyle = "#1F1F1F";
-          aCanvas.fillRect(vr.f05Width, 0, vr.f20Width * 5 - vr.f05Width, vr.f05Height);
+          //aCanvas.fillStyle = "#1F1F1F";
+          //aCanvas.fillRect(vr.f05Width, 0, vr.f20Width * 5 - vr.f05Width, vr.f05Height);
 
           // add button
           aCanvas.fillStyle = "#3F3F3F";
           if (fc < 19) {
             aCanvas.fillRect(vr.f05Width + ((fc) * vr.f05Width), 10, vr.f05Width - 20, vr.f05Height - 20);
-            aCanvas.font = "16px Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace";
+            aCanvas.font = "16px Courier New";
             aCanvas.fillStyle = "#FFFFFF";
             aCanvas.fillText("+", vr.f05Width + ((fc) * vr.f05Width) + (vr.f05Width / 2) - 10, (vr.f05Height / 2) + 5);
           }
@@ -189,14 +184,14 @@
               aCanvas.fillStyle = "#3F3F3F";
               aCanvas.fillRect(vr.f05Width + (i * vr.f05Width), 10, vr.f05Width, vr.f05Height - 20);
             }
-            aCanvas.font = "16px Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace";
+            aCanvas.font = "16px Courier New";
             aCanvas.fillStyle = "#FFFFFF";
             aCanvas.fillText(i + 1, vr.f05Width + (i * vr.f05Width) + (vr.f05Width / 2) - 5, (vr.f05Height / 2) + 5);
           }
 
           // frame current selected highlights
           if (aFrame && gc.hasCurFrame) {
-            aCanvas.font = "16px Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace";
+            aCanvas.font = "16px Courier New";
             aCanvas.fillStyle = "#FFFFFF";
             aCanvas.fillText(gc.currentFrame.id + 1, vr.f05Width + (gc.currentFrame.id * vr.f05Width) + (vr.f05Width / 2) - 5, (vr.f05Height / 2) + 5);
 
@@ -230,6 +225,7 @@
           let aBRG = aCanvas.createRadialGradient(vr.f20Width * 2 + vr.f05Width, vr.f20Height * 2 + vr.f05Height, 0, vr.f20Width * 2 + vr.f05Width, vr.f20Height * 2 + vr.f05Height, vr.f20Height * 2.5);
           aBRG.addColorStop(0, "#ebcb07");
           aBRG.addColorStop(1, "#716203");
+
           for (let i = 0; i < fc; i++) {
             aFrame = gc.frames[i];
             if (aFrame && this.hasCurFrame && (this.currentFrame.id == i)) {
@@ -241,35 +237,40 @@
                 aB = Math.trunc(ic / 2) - 1;
                 aA = !(Math.trunc((ic % 2) * 10) > 0);
                 aCanvas.fillRect((aA ? 10 : (vr.f05Width)), (vr.f05Height * (aB + 3)), vr.f05Width - 20, vr.f05Height - 20);
-                aCanvas.font = "16px Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace";
+                aCanvas.font = "16px Courier New";
                 aCanvas.fillStyle = "#FFFFFF";
-                aCanvas.fillText("Add", (aA ? 10 : (vr.f05Width) + 5), vr.f05Height * (aB + 3) + vr.f05Height / 2 - 5);
+                aCanvas.fillText("Add", (aA ? 15 : (vr.f05Width) + 5), vr.f05Height * (aB + 3) + vr.f05Height / 2 - 5);
 
                 for (let j = 0; j < ic; j++) {
                   aItem = aFrame.items[j];
 
                   if (aItem) {
-                    // draw menu items.
-                    aCanvas.fillStyle = "#3F3F3F";
-                    
+                    // draw menu items.                                        
                     aB = Math.trunc(j / 2) -1;
                     aA = !(Math.trunc((j % 2) * 10) > 0);
+                    aCanvas.fillStyle = "#3F3F3F";
                     aCanvas.fillRect((aA ? 10 : (vr.f05Width )), (vr.f05Height * (aB+3)), vr.f05Width - 20, vr.f05Height - 20);
-                    aCanvas.font = "16px Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace";
+                    aCanvas.font = "16px Courier New";
                     aCanvas.fillStyle = "#FFFFFF";
-                    aCanvas.fillText(aItem.type, (aA ? 10 : (vr.f05Width ) + 5), vr.f05Height * (aB + 3) + vr.f05Height/2 - 5);
-
+                    aCanvas.fillText(aItem.type, (aA ? 15 : (vr.f05Width) + 5), vr.f05Height * (aB + 3) + vr.f05Height / 2 - 5);
+                    
                     if (gc.currentFrame.CurrentItem.id == aItem.id) {
                       aCanvas.strokeStyle = aBRG;
                       aCanvas.lineWidth = 4;
-                      aCanvas.strokeRect((aA ? 10 : (vr.f05Width + 5)), (vr.f05Height * (aB + 3)), vr.f05Width - 20, vr.f05Height - 20);
+                      aCanvas.strokeRect((aA ? 10 : (vr.f05Width)), (vr.f05Height * (aB + 3)), vr.f05Width - 20, vr.f05Height - 20);
+                      aCanvas.lineWidth = 1;
                     }
 
                     // draw display
                     if (aItem.type == "tText") {
                       aCanvas.font = aItem.fontCSS;
-                      aCanvas.fillStyle = "#FFFFFF";
+                      aCanvas.fillStyle = aItem.colorA;
                       aCanvas.fillText(aItem.text, vr.f05Width * 2 + aItem.loc.x, vr.f05Height*2+ aItem.loc.y);
+                    }
+
+                    if (aItem.type == "tRect") {                      
+                      aCanvas.fillStyle = aItem.colorA;
+                      aCanvas.fillRect(vr.f05Width * 2 + aItem.loc.x, vr.f05Height *2 + aItem.loc.y, aItem.loc.w, aItem.loc.h);
                     }
 
                   }
@@ -310,6 +311,7 @@
       this.type = aType;
       this.text = "";
       this.fontCSS = "12px Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace";
+      this.colorA = "#FFFFFF";
       aOwnerFrame.items.push(this);
       aOwnerFrame.CurrentItem = this;
       if (!aOwnerFrame.hasCurItem) aOwnerFrame.hasCurItem = true;
@@ -328,7 +330,9 @@
         vr.mousecy = e.clientY;
         let ax = (vr.mousecx - vr.canvasRectLeft) * vr.canvasScaleX;
         let ay = (vr.mousecy - vr.canvasRectTop) * vr.canvasScaleY;
-        if ((vr.mouseIsDown == 0) && ((ax > vr.f05Width * 2) && (ax < vr.width - vr.f05Width * 2) && (ay > vr.f05Height * 2) && (ay < vr.height - vr.f05Height * 2))) {
+        if ((vr.mouseIsDown == 0) &&
+          ((ax > vr.f05Width * 2) && (ax < vr.width - vr.f05Width * 2) &&
+           (ay > vr.f05Height * 2) && (ay < vr.height - vr.f05Height * 2))) {
           vr.mousedx = (vr.mousecx - vr.canvasRectLeft) * vr.canvasScaleX;
           vr.mousedy = (vr.mousecy - vr.canvasRectTop) * vr.canvasScaleY;
         }
@@ -378,7 +382,7 @@
             }
 
             if ((ax > vr.f05Width * 2) && (ax < vr.width - vr.f05Width * 2) && (ay > vr.f05Height * 2) && (ay < vr.height - vr.f05Height * 2)) {
-              if (gc.currentFrame.CurrentItem) {                
+              if (gc.currentFrame.CurrentItem) { // move current item.               
                 gc.currentFrame.CurrentItem.loc.x = gc.currentFrame.CurrentItem.loc.x + (ax - vr.mousedx);
                 gc.currentFrame.CurrentItem.loc.y = gc.currentFrame.CurrentItem.loc.y + (ay - vr.mousedy);                
               }
@@ -401,41 +405,55 @@
         if (aItem) {
           document.getElementById("edType").value = aItem.type;
           document.getElementById("edText").value = aItem.text;
-          document.getElementById("edFontCSS").value = aItem.fontCSS;          
+          document.getElementById("edFontCSS").value = aItem.fontCSS;
+          document.getElementById("edColorA").value = aItem.colorA;
+          document.getElementById("edX").value = aItem.loc.x;
+          document.getElementById("edY").value = aItem.loc.y;
+          document.getElementById("edW").value = aItem.loc.w;
+          document.getElementById("edH").value = aItem.loc.h;
         }
       }
     }
 
     function doEditItemDialog(aIsNew, aItem) {
-      BootstrapDialog.show({
-        title: "" + (aIsNew ? 'Adding new Item' : 'Edit the '+ aItem.type),
+      let adlg = BootstrapDialog.show({
+        title: "" + (aIsNew ? 'Adding new Item' : 'Edit the ' + aItem.type),
         draggable: false,
+        data: { 'url': (aIsNew ? 'dlgAddDrawingBoardItem3.html' : 'dlgEditDrawingBoardItem3.html') },
         message: function (dialog) {
-          var $message = $('<div></div>').load((aIsNew?'dlgAddDrawingBoardItem.html':'dlgEditDrawingBoardItem.html'));
+          let $message = $('<div></div>').load(dialog.getData('url'));
           return $message;
-        },         
+        },
         buttons: [{
           label: 'Save',
           cssClass: 'btn-primary',
           icon: 'glyphicon glyphicon-ok',
-          action: function (dialog) {
-            //aMP = document.getElementById("passPhrase").value;
+          action: function (dialog) {            
             if (aIsNew) {
-              aItem = new drawable(gc.currentFrame, gc.currentFrame.items.length, new vrec(10, 10, 10, 10), "");              
+              aItem = new drawable(gc.currentFrame, gc.currentFrame.items.length, new vrec(10, 10, 10, 10), "");
             }
             aItem.type = document.getElementById("edType").value;
             aItem.text = document.getElementById("edText").value;
             aItem.fontCSS = document.getElementById("edFontCSS").value;
-            dialog.close();            
+            aItem.colorA = document.getElementById("edColorA").value;
+            aItem.loc.x = parseInt( document.getElementById("edX").value, 10);
+            aItem.loc.y = parseInt(document.getElementById("edY").value, 10);
+            aItem.loc.w = parseInt(document.getElementById("edW").value, 10);
+            aItem.loc.h = parseInt(document.getElementById("edH").value, 10);
+            dialog.close();
           }
         }, {
           label: 'Close',
           icon: 'glyphicon glyphicon-ban-circle',
           action: function (dialog) {
-            dialog.close();            
+            dialog.close();
           }
-        }]
+        }],
+        onhidden: function (dialog) {
+          
+        }
       });
+
     }
 
     var ppd = new Date();
@@ -451,7 +469,7 @@
       document.getElementsByTagName("BODY")[0].onresize = function () { doBodyResize(); };
       setTimeout(doBodyResize, 50);
       gc.start();
-      vr.start();
+      vr.start();      
     });
 
 
