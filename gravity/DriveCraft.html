@@ -37,6 +37,7 @@
       mouserx: 0, mousery: 0,
       canvas: document.getElementById("stage"),
       height: 0, width: 0,
+      canvasScaleX: 0, canvasScaleY: 0, canvasRectTop: 0, canvasRectLeft: 0,
       f20Height: 0, f05Height: 0, f15Height: 0,
       f20Width: 0, f05Width: 0, f15Width: 0,
       start: function () {
@@ -49,11 +50,19 @@
         this.size();
       },
       size: function () {
+        var rect = this.canvas.getBoundingClientRect();
+        this.canvasRectTop = rect.top;
+        this.canvasRectLeft = rect.left;
+
+        this.width = (this.canvas ? this.canvas.width : 0);
         this.height = (this.canvas ? this.canvas.height : 0);
+        this.canvasScaleX = this.width / rect.width;
+        this.canvasScaleY = this.height / rect.height; 
+        
         this.f20Height = (this.canvas ? this.height * 0.2 : 0);
         this.f05Height = (this.canvas ? this.height * 0.065 : 0);
         this.f15Height = (this.canvas ? this.height * 0.145 : 0);
-        this.width = (this.canvas ? this.canvas.width : 0);
+        
         this.f20Width = (this.canvas ? this.width * 0.2 : 0);
         this.f05Width = (this.canvas ? this.width * 0.05 : 0);
         this.f15Width = (this.canvas ? this.width * 0.15 : 0);
@@ -66,12 +75,7 @@
         if (aCanvas) {
           // clear the canvas 
           aCanvas.clearRect(0, 0, vr.canvas.width, vr.canvas.height);
-
-       //   aCanvas.font = "12px Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace";
-       //   aCanvas.fillStyle = "#FFFFFF";
-       //   aCanvas.fillText("" + vr.nonce + " :Mx " + vr.mousex + " My " + vr.mousey +
-       //     (vr.mouseIsDown == 1 ? " :Mcx " + vr.mousecx + " Mcy " + vr.mousecy : "") +
-       //     (vr.mouserx == 0 ? "" : " Rx " + vr.mouserx + " Ry " + vr.mousery), 10, vr.f20Height * 5 - 20);
+      
         }
 
           // redraw 
@@ -87,96 +91,95 @@
         aCanvas.lineWidth = 1;
         aCanvas.strokeStyle = "#FFFFFF";
 
-        aleftsidex = vr.f05Width;
+        aIH = (vr.width / 12) ;
+        aIW = aIH * 25/ 28 ;
+
+        aleftsidex = aIW / 2;
+        bleftsidex = aIW;
         arightsidex = vr.width - (vr.f20Width * 2);
-        
-        aIH = 28;
-        aIW = 25;
+        atopmargin = aIH / 2;
 
-   //    aCanvas.moveTo(aleftsidex, vr.f05Height);
-   //     aCanvas.lineTo(arightsidex, vr.f05Height);
-   //     aCanvas.lineTo(arightsidex, vr.f20Height * 3);
-   //     aCanvas.lineTo(aleftsidex, vr.f20Height * 3);
-   //     aCanvas.lineTo(aleftsidex, vr.f05Height);
-   //     aCanvas.stroke();
-
-        aCanvas.drawImage(document.getElementById("rsi"), aleftsidex, vr.f05Height, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("rsw"), aleftsidex + aIW ,  vr.f05Height, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("rsp"), aleftsidex + aIW *2 ,  vr.f05Height, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("rss"), aleftsidex + aIW *3 ,  vr.f05Height, aIW, aIH);        
-        aCanvas.drawImage(document.getElementById("rsc"), aleftsidex + aIW *4 ,  vr.f05Height, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("rsec"),aleftsidex + aIW *5, vr.f05Height, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("rsg"), aleftsidex + aIW *6 ,  vr.f05Height, aIW, aIH);        
-        aCanvas.drawImage(document.getElementById("rsm"), aleftsidex + aIW *7 ,  vr.f05Height, aIW, aIH);                
-        aCanvas.drawImage(document.getElementById("rsss"), aleftsidex + aIW *8 , vr.f05Height, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("rst"), aleftsidex + aIW *9 , vr.f05Height, aIW, aIH);        
-        aCanvas.drawImage(document.getElementById("rsaf"), aleftsidex + aIW * 10, vr.f05Height, aIW, aIH);
-
-        aCanvas.drawImage(document.getElementById("hsh"), aleftsidex, vr.f05Height + aIH * 2, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("hsl"), aleftsidex + aIW, vr.f05Height + aIH * 2, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("hsm"), aleftsidex + aIW * 2, vr.f05Height + aIH * 2, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("hsmi"), aleftsidex + aIW * 3, vr.f05Height + aIH * 2, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("hss"), aleftsidex + aIW * 4, vr.f05Height + aIH * 2, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("bsb"), aleftsidex + aIW * 5, vr.f05Height + aIH * 2, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("bsc"), aleftsidex + aIW * 6, vr.f05Height + aIH * 2, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("bsg"), aleftsidex + aIW * 7, vr.f05Height + aIH * 2, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("bsn"), aleftsidex + aIW * 8, vr.f05Height + aIH * 2, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("bsp"), aleftsidex + aIW * 9, vr.f05Height + aIH * 2, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("bspa"), aleftsidex + aIW * 10, vr.f05Height + aIH * 2, aIW, aIH);       
+        aCanvas.drawImage(document.getElementById("rsi"), bleftsidex + aIW * 0, atopmargin, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("rsw"), bleftsidex + aIW * 1, atopmargin, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("rsp"), bleftsidex + aIW * 2, atopmargin, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("rss"), bleftsidex + aIW * 3, atopmargin, aIW, aIH);        
+        aCanvas.drawImage(document.getElementById("rsm"), bleftsidex + aIW * 4, atopmargin, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("rsc"), bleftsidex + aIW * 5, atopmargin, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("rsg"), bleftsidex + aIW * 6, atopmargin, aIW, aIH);        
+        aCanvas.drawImage(document.getElementById("rsec"), bleftsidex + aIW * 7, atopmargin, aIW, aIH);                
+        aCanvas.drawImage(document.getElementById("rsss"), bleftsidex + aIW * 8, atopmargin, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("rst"), bleftsidex + aIW * 9, atopmargin, aIW, aIH);        
+        aCanvas.drawImage(document.getElementById("rsaf"), bleftsidex + aIW * 10, atopmargin, aIW, aIH);
 
 
-        aCanvas.drawImage(document.getElementById("fsc"), aleftsidex, vr.f05Height + aIH * 4, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("fsco"), aleftsidex + aIW, vr.f05Height + aIH * 4, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("fscb"), aleftsidex + aIW * 2, vr.f05Height + aIH * 4, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("fsht"), aleftsidex + aIW * 3, vr.f05Height + aIH * 4, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("fst"), aleftsidex + aIW * 4, vr.f05Height + aIH * 4, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("gsf"), aleftsidex + aIW * 5, vr.f05Height + aIH * 4, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("gsfp"), aleftsidex + aIW * 6, vr.f05Height + aIH * 4, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("gsg"), aleftsidex + aIW * 7, vr.f05Height + aIH * 4, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("gsgg"), aleftsidex + aIW * 8, vr.f05Height + aIH * 4, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("gsm"), aleftsidex + aIW * 9, vr.f05Height + aIH * 4, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("gst"), aleftsidex + aIW * 10, vr.f05Height + aIH * 4, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("bsn"), aleftsidex + aIW * 0, atopmargin + aIH * 0.75, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("bsp"), aleftsidex + aIW * 1, atopmargin + aIH * 0.75, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("bsb"), aleftsidex + aIW * 2, atopmargin + aIH * 0.75, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("bsc"), aleftsidex + aIW * 3, atopmargin + aIH * 0.75, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("bsg"), aleftsidex + aIW * 4, atopmargin + aIH * 0.75, aIW, aIH);        
+        aCanvas.drawImage(document.getElementById("bspa"), aleftsidex + aIW * 5, atopmargin + aIH * 0.75, aIW, aIH);       
+
+        aCanvas.drawImage(document.getElementById("hsh"), aleftsidex + aIW * 6, atopmargin + aIH * 0.75, aIW, aIH);        
+        aCanvas.drawImage(document.getElementById("hsm"), aleftsidex + aIW * 7, atopmargin + aIH * 0.75, aIW, aIH);        
+        aCanvas.drawImage(document.getElementById("hss"), aleftsidex + aIW * 8, atopmargin + aIH * 0.75, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("hacu"), aleftsidex + aIW * 9, atopmargin + aIH * 0.75, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("hsl"), aleftsidex + aIW * 10, atopmargin + aIH * 0.75, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("hsd"), aleftsidex + aIW * 11, atopmargin + aIH * 0.75, aIW, aIH);
 
 
-        aCanvas.drawImage(document.getElementById("fab"), aleftsidex, vr.f05Height + aIH * 6, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("fabs"), aleftsidex + aIW, vr.f05Height + aIH * 6, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("fac"), aleftsidex + aIW * 2, vr.f05Height + aIH * 6, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("fas"), aleftsidex + aIW * 3, vr.f05Height + aIH * 6, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("faw"), aleftsidex + aIW * 4, vr.f05Height + aIH * 6, aIW, aIH);        
-        aCanvas.drawImage(document.getElementById("habb"), aleftsidex + aIW * 5, vr.f05Height + aIH * 6, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("hals"), aleftsidex + aIW * 6, vr.f05Height + aIH * 6, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("har"), aleftsidex + aIW * 7, vr.f05Height + aIH * 6, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("hat"), aleftsidex + aIW * 8, vr.f05Height + aIH * 6, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("hacu"), aleftsidex + aIW * 9, vr.f05Height + aIH * 6, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("hsd"), aleftsidex + aIW * 10, vr.f05Height + aIH * 6, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("fsc"), bleftsidex,            atopmargin + aIH * 1.5, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("fst"), bleftsidex + aIW * 1, atopmargin + aIH * 1.5, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("fscb"), bleftsidex + aIW * 2, atopmargin + aIH * 1.5, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("fsco"), bleftsidex + aIW * 3, atopmargin + aIH * 1.5, aIW, aIH);        
+        aCanvas.drawImage(document.getElementById("fsht"), bleftsidex + aIW * 4, atopmargin + aIH * 1.5, aIW, aIH);        
 
-                      
-        aCanvas.drawImage(document.getElementById("dsbr"), aleftsidex  ,         vr.f05Height + aIH * 10, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("dscc"), aleftsidex + aIW , vr.f05Height + aIH * 10, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("dsco"), aleftsidex + aIW * 2, vr.f05Height + aIH * 10, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("dsd"),  aleftsidex + aIW * 3, vr.f05Height + aIH * 10, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("dsfy"), aleftsidex + aIW * 4, vr.f05Height + aIH * 10, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("dsgs"), aleftsidex + aIW * 5, vr.f05Height + aIH * 10, aIW, aIH);  
+        aCanvas.drawImage(document.getElementById("gsg"), bleftsidex + aIW * 5, atopmargin + aIH * 1.5, aIW, aIH);        
+        aCanvas.drawImage(document.getElementById("gst"), bleftsidex + aIW * 6, atopmargin + aIH * 1.5, aIW, aIH);        
+        aCanvas.drawImage(document.getElementById("gsf"), bleftsidex + aIW * 7, atopmargin + aIH * 1.5, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("gsfp"), bleftsidex + aIW * 8, atopmargin + aIH * 1.5, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("gsm"), bleftsidex + aIW * 9, atopmargin + aIH * 1.5, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("gsgg"), bleftsidex + aIW * 10, atopmargin + aIH * 1.5, aIW, aIH);
+                                 
+        aCanvas.drawImage(document.getElementById("fac"), aleftsidex + aIW * 1, atopmargin + aIH * 2.25, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("fas"), aleftsidex + aIW * 2, atopmargin + aIH * 2.25, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("faw"), aleftsidex + aIW * 3, atopmargin + aIH * 2.25, aIW, aIH);        
+        aCanvas.drawImage(document.getElementById("fab"), aleftsidex + aIW * 4, atopmargin + aIH * 2.25, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("fabs"), aleftsidex + aIW * 5, atopmargin + aIH * 2.25, aIW, aIH);
 
+        aCanvas.drawImage(document.getElementById("habb"), aleftsidex + aIW * 6, atopmargin + aIH * 2.25, aIW, aIH);        
+        aCanvas.drawImage(document.getElementById("har"), aleftsidex + aIW * 7, atopmargin + aIH * 2.25, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("hals"), aleftsidex + aIW *8, atopmargin + aIH * 2.25, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("hat"), aleftsidex + aIW * 9, atopmargin + aIH * 2.25, aIW, aIH);        
+        aCanvas.drawImage(document.getElementById("hsmi"), aleftsidex + aIW * 10, atopmargin + aIH * 2.25, aIW, aIH);
+
+
+        aCanvas.drawImage(document.getElementById("fmb"), bleftsidex + aIW * 2, atopmargin + aIH * 3, aIW, aIH);        
+        aCanvas.drawImage(document.getElementById("fmv"), bleftsidex + aIW * 3, atopmargin + aIH * 3, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("fmf"), bleftsidex + aIW * 4, atopmargin + aIH * 3, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("fmfb"), bleftsidex + aIW * 5, atopmargin + aIH * 3, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("fmc"), bleftsidex + aIW * 6, atopmargin + aIH * 3, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("fmch"), bleftsidex + aIW * 7, atopmargin + aIH * 3, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("fmco"), bleftsidex + aIW * 8, atopmargin + aIH * 3, aIW, aIH);
         
 
+        aCanvas.drawImage(document.getElementById("ffic"), aleftsidex + aIW * 0, atopmargin + aIH * 3.75, aIW, aIH);                        
+        aCanvas.drawImage(document.getElementById("ffp"), aleftsidex + aIW * 1, atopmargin + aIH * 3.75, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("ffb"), aleftsidex + aIW * 2, atopmargin + aIH * 3.75, aIW, aIH);        
+        aCanvas.drawImage(document.getElementById("ffcf"), aleftsidex + aIW * 3, atopmargin + aIH * 3.75, aIW, aIH);        
+        aCanvas.drawImage(document.getElementById("fflb"), aleftsidex + aIW * 4, atopmargin + aIH * 3.75, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("ffpo"), aleftsidex + aIW * 5, atopmargin + aIH * 3.75, aIW, aIH);
+
+        aCanvas.drawImage(document.getElementById("dsbr"), aleftsidex + aIW * 6, atopmargin + aIH * 3.75, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("dscc"), aleftsidex + aIW * 7, atopmargin + aIH * 3.75, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("dsco"), aleftsidex + aIW * 8, atopmargin + aIH * 3.75, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("dsd"), aleftsidex + aIW * 9, atopmargin + aIH * 3.75, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("dsfy"), aleftsidex + aIW * 10, atopmargin + aIH * 3.75, aIW, aIH);
+        aCanvas.drawImage(document.getElementById("dsgs"), aleftsidex + aIW * 11, atopmargin + aIH * 3.75, aIW, aIH);        
+        
+        
 
 
-        aCanvas.drawImage(document.getElementById("ffb"), aleftsidex, vr.f05Height + aIH * 14, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("ffcf"), aleftsidex + aIW  , vr.f05Height + aIH * 14, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("ffic"), aleftsidex + aIW * 2, vr.f05Height + aIH * 14, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("fflb"), aleftsidex + aIW * 3, vr.f05Height + aIH * 14, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("ffp"), aleftsidex + aIW * 4, vr.f05Height + aIH * 14, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("ffpo"), aleftsidex + aIW * 5, vr.f05Height + aIH * 14, aIW, aIH);
 
-
-        aCanvas.drawImage(document.getElementById("fmb"), aleftsidex , vr.f05Height + aIH * 16, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("fmc"), aleftsidex + aIW  , vr.f05Height + aIH * 16, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("fmch"), aleftsidex + aIW * 2, vr.f05Height + aIH * 16, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("fmco"), aleftsidex + aIW * 3, vr.f05Height + aIH * 16, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("fmf"), aleftsidex + aIW * 4, vr.f05Height + aIH * 16, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("fmfb"), aleftsidex + aIW * 5, vr.f05Height + aIH * 16, aIW, aIH);
-        aCanvas.drawImage(document.getElementById("fmv"), aleftsidex + aIW * 6, vr.f05Height + aIH * 16, aIW, aIH);
 
      
 
