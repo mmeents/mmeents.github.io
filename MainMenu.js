@@ -3,10 +3,10 @@
   let sOut = '<div class="container-fluid">' +
     '<div class="navbar-header">' +
     '<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>' +
-      '<ul class="nav navbar-nav navbar-left"><li><a href="' + (sPageName == "default.html" ? "https://github.com/mmeents" : "default.html") + '"' +
+      '<ul id="navbar" class="nav navbar-nav"><li><a href="' + (sPageName == "default.html" ? "https://github.com/mmeents" : "default.html") + '"' +
       sTitle + '</a></li></ul>' +
     '</div>' +
-    '<div id="navbar" class="navbar-collapse collapse">' +
+    '<div id="navbar1" class="navbar-collapse collapse">' +
       '<ul class="nav navbar-nav navbar-right">' +
         '<li><a href="javascript:pu(\'MatthewMeents.docx\');">mattmeents@gmail.com</a></li>' +
         '<li class="dropdown">' +
