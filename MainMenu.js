@@ -3,7 +3,7 @@
   let sOut = '<div class="container-fluid">' +
     '<div class="navbar-header">' +
     '<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>' +
-      '<ul id="navbar" class="nav navbar-nav"><li><a href="' + (sPageName == "default.html" ? "https://github.com/mmeents" : "default.html") + '">' +
+      '<ul id="navbar" class="nav navbar-nav"><li><a href="' + (sPageName == 'default.html' ? 'https://github.com/mmeents' : 'default.html') + '">' +
       sTitle + '</a></li></ul>' +
     '</div>' +
     '<div id="navbar1" class="navbar-collapse collapse">' +
