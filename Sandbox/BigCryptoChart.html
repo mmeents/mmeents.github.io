@@ -13,99 +13,113 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Crypto Watch</title>
-  <link href="css/bootstrap.min.css" rel="stylesheet" />       <!-- Bootstrap core CSS -->
-  <link href="css/style.css" rel="stylesheet" />
+  <link href="../css/bootstrap.min.css" rel="stylesheet" />       <!-- Bootstrap core CSS -->
+  <link href="../Style/style.css" rel="stylesheet" />
 </head>
 <body style="background-color:black;">
-  <script src="Scripts/jquery-1.11.3.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="MainMenu.js"></script>
+    <script src="../Scripts/jquery-1.11.3.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="MainMenu.js"></script>
 
-  <form id="form1">
-    <nav class="navbar navbar-fixed-top navbar-logo navbar" id="mainmenu"></nav>
-    <br/><br />
+    <form id="form1">
+        <nav class="navbar navbar-fixed-top navbar-logo navbar" id="mainmenu" onclick="openFullscreen();"></nav>
+        <br /><br />
 
-    <div class="panel" style="background-color:black">
-      <div class="col-sm-12" style="padding:0,0;min-height:inherit;">
-        <div>
-          <!-- TradingView Widget BEGIN -->
-          <div class="tradingview-widget-container" style="padding:0 0;min-height:540px;">
-            <div id="tradingview_fa2b8" style="min-height:inherit;height:840px;padding-left:0px;padding-right:1px;"></div>
-            <div class="tradingview-widget-copyright">&nbsp;</div>
-            <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-            <script type="text/javascript">
-              new TradingView.widget({
-                "autosize": true, "symbol": "COINBASE:BTCUSD",
-                "interval": "1", "timezone": "Etc/UTC", "theme": "Dark", "style": "1",
-                "locale": "en", "toolbar_bg": "#f1f3f6",
-                "enable_publishing": false,
-                "withdateranges": true,
-                "hide_side_toolbar": false,
-                "allow_symbol_change": true,
-                "watchlist": ["OTC:GBTC", "OTC:ETHE",
-                  "BITFINEX:BTCUSD", "BITTREX:BTCUSDT", "COINBASE:BTCUSD", "BINANCE:BTCUSD",
-                  "BINANCE:LTCBTC", "COINBASE:LTCBTC", "POLONIEX:LTCBTC",
-                  "BINANCE:LTCUSDC", "COINBASE:LTCUSD", "POLONIEX:LTCUSDC",
-                  "BITTREX:ADABTC", "BINANCE:ADABTC", "BINANCE:ADAUSD", "BITTREX:ADAUSD",
-                  "BITTREX:STRATBTC", "BITTREX:STRATBTC", "POLONIEX:STRATUSD", "POLONIEX:STRATBTC"
-                ],
-                "details": false,
-                "studies": [
-                  "BB@tv-basicstudies",
-                  "MASimple@tv-basicstudies",
-                  "MAExp@tv-basicstudies",
-                  "VSTOP@tv-basicstudies"
-                ],
-                "no_referral_id": true,
-                "container_id": "tradingview_fa2b8"
-              });
-            </script>
-          </div>
-          <!-- TradingView Widget END -->
+        <div class="panel" style="background-color:black">
+            <div class="col-sm-12" style="padding:0,0;min-height:inherit;">
+                <div>
+                    <!-- TradingView Widget BEGIN -->
+                    <div class="tradingview-widget-container" style="padding:0 0;min-height:540px;">
+                        <div id="tradingview_fa2b8" style="min-height:inherit;height:840px;padding-left:0px;padding-right:1px;"></div>
+                        <div class="tradingview-widget-copyright">&nbsp;</div>
+                        <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                        <script type="text/javascript">
+                            new TradingView.widget({
+                                "autosize": true, "symbol": "COINBASE:BTCUSD",
+                                "interval": "1", "timezone": "Etc/UTC", "theme": "Dark", "style": "1",
+                                "locale": "en", "toolbar_bg": "#f1f3f6",
+                                "enable_publishing": false,
+                                "withdateranges": true,
+                                "hide_side_toolbar": false,
+                                "allow_symbol_change": true,
+                                "watchlist": ["OTC:GBTC", "OTC:ETHE",
+                                    "BITFINEX:BTCUSD", "BITTREX:BTCUSDT", "COINBASE:BTCUSD", "BINANCE:BTCUSD",
+                                    "BINANCE:LTCBTC", "COINBASE:LTCBTC", "POLONIEX:LTCBTC",
+                                    "BINANCE:LTCUSDC", "COINBASE:LTCUSD", "POLONIEX:LTCUSDC",
+                                    "BITTREX:ADABTC", "BINANCE:ADABTC", "BINANCE:ADAUSD", "BITTREX:ADAUSD",
+                                    "BITTREX:STRATBTC", "BITTREX:STRATBTC", "POLONIEX:STRATUSD", "POLONIEX:STRATBTC"
+                                ],
+                                "details": false,
+                                "studies": [
+                                    "BB@tv-basicstudies",
+                                    "MASimple@tv-basicstudies",
+                                    "MAExp@tv-basicstudies",
+                                    "VSTOP@tv-basicstudies"
+                                ],
+                                "no_referral_id": true,
+                                "container_id": "tradingview_fa2b8"
+                            });
+                        </script>
+                    </div>
+                    <!-- TradingView Widget END -->
 
+                </div>
+            </div>
+
+            <div class="col-sm-12" style="padding:0 0;min-height:inherit;">
+            </div>
         </div>
-      </div>
 
-      <div class="col-sm-12" style="padding:0 0;min-height:inherit;">
-      </div>
+    </form>
+
+    <br /><br />
+
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/WsDyRAPFBC8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+    <div class="container-fluid">
+        <div class="panel center-block" style="background-color:black;">
+            <p class="text-center">
+                MattMeents@gmail.com<br />
+                <span class="glyphicon glyphicon-copyright-mark"></span> Matthew Meents 2019
+            </p>
+        </div>
     </div>
 
-  </form>
+    <script type="text/javascript">
 
-  <br /><br />
-  
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/WsDyRAPFBC8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-  
-  <div class="container-fluid">
-    <div class="panel center-block" style="background-color:black;">
-      <p class="text-center">
-        MattMeents@gmail.com<br />
-        <span class="glyphicon glyphicon-copyright-mark"></span> Matthew Meents 2019
-      </p>
-    </div>
-  </div>
-
-  <script type="text/javascript">
+      var elem = document.getElementById("tradingview_fa2b8");
+      function openFullscreen() {
+        if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+        } else if (elem.mozRequestFullScreen) { /* Firefox */
+                elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+                elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) { /* IE/Edge */
+                elem.msRequestFullscreen();
+        }
+      }
+   
 
     function doResizeWidget() {
     }
     $(window).load(function () {
-      //  setTimeout(doResizeWidget, 1500);
-      $('#mainmenu').html(PrintMainMenu('BigCryptoChart.html','Mattei\'s BTC Watch'));
+    //  setTimeout(doResizeWidget, 1500);
+    $('#mainmenu').html(PrintMainMenu('BigCryptoChart.html','Mattei\'s BTC Watch'));
     });
     var ppd = new Date();
     function pu(s) {
-      ppd = new Date();
-      ns = 'MM' + ppd.getTime();
-      try {
-        var x = window.open(s, ns, 'location=yes,menubar=yes,resizable=yes,scrollbars=yes,toolbar=yes,status=yes');
-      } catch (e) { }
+    ppd = new Date();
+    ns = 'MM' + ppd.getTime();
+    try {
+    var x = window.open(s, ns, 'location=yes,menubar=yes,resizable=yes,scrollbars=yes,toolbar=yes,status=yes');
+    } catch (e) { }
     }
     function doBack() {
-      window.history.back();
+    window.history.back();
     }
 
-  </script>
+    </script>
 
 </body>
 </html>	

@@ -22,7 +22,7 @@
   <script src="MainMenu.js"></script>
 
   <form id="form1">
-    <nav class="navbar navbar-fixed-top navbar-logo navbar" id="mainmenu"></nav>
+    <nav class="navbar navbar-fixed-top navbar-logo navbar" id="mainmenu" onclick="openFullscreen();"></nav>
     <br /><br />   
     
     <div class="well well-LG" style="background-color:black;border-bottom-color:black;">
@@ -36,7 +36,7 @@
 
 
             <!-- TradingView Widget BEGIN -->
-            <div class="tradingview-widget-container" style="padding:0,0;min-height:inherit;height:642px;">
+            <div class="tradingview-widget-container" id="twc1" style="padding:0,0;min-height:inherit;height:642px;">
               <div class="tradingview-widget-container__widget" style="min-height:inherit;height:640px;padding-left:0;padding-right:1;"></div>
               <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/markets/cryptocurrencies/prices-all/" rel="noopener" target="_blank"><span class="blue-text">Cryptocurrency Markets</span></a> by TradingView</div>
               <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async>
@@ -84,6 +84,19 @@
     }
     function doBack() {
       window.history.back();
+      }
+
+      var elem = document.getElementById("twc1");
+    function openFullscreen() {
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.mozRequestFullScreen) { /* Firefox */
+            elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+            elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) { /* IE/Edge */
+            elem.msRequestFullscreen();
+        }
     }
 
   </script>

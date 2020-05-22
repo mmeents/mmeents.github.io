@@ -1,10 +1,13 @@
 {
   "ExpandedNodes": [
     "",
+    "\\css",
+    "\\js",
     "\\Sandbox",
+    "\\Scripts",
     "\\Styles",
     "\\view"
   ],
-  "SelectedNode": "\\default.html",
+  "SelectedNode": "\\CryptoWatch.html",
   "PreviewInSolutionExplorer": false
 }
