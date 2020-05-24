@@ -88,11 +88,12 @@
   <script type="text/javascript">
 
     function doResizeWidget() {
+      openFullscreen();
     }
     $(window).load(function () {
-      //  setTimeout(doResizeWidget, 1500);
+      setTimeout(doResizeWidget, 750);
       $('#mainmenu').html(PrintMainMenu('BigCryptoChart.html','Mattei\'s BTC Watch'));
-      openFullscreen();
+      
     });
     var ppd = new Date();
     function pu(s) {
