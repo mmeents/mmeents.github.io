@@ -22,11 +22,11 @@
   <script src="MainMenu.js"></script>
 
   <form id="form1">
-    <nav class="navbar navbar-fixed-top navbar-logo navbar" id="mainmenu" onclick="openFullscreen();"></nav>
+    <nav class="navbar navbar-fixed-top navbar-logo navbar" id="mainmenu"></nav>
     <br/><br />
 
     <div class="panel" style="background-color:black">
-      <div class="col-sm-12" style="padding:0,0;min-height:inherit;">
+      <div class="col-sm-12" style="padding:0,0;min-height:inherit;"  onclick="openFullscreen();">
         <div>
           <!-- TradingView Widget BEGIN -->
           <div class="tradingview-widget-container" style="padding:0 0;min-height:540px;">
@@ -92,6 +92,9 @@
     $(window).load(function () {
       //  setTimeout(doResizeWidget, 1500);
       $('#mainmenu').html(PrintMainMenu('BigCryptoChart.html','Mattei\'s BTC Watch'));
+    });
+    $(document).ready(function () {
+          $("ytp-large-play-button").click();
     });
     var ppd = new Date();
     function pu(s) {
