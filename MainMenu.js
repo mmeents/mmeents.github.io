@@ -8,7 +8,7 @@
     '</div>' +
     '<div id="navbar1" class="navbar-collapse collapse">' +
       '<ul class="nav navbar-nav navbar-right">' +
-        '<li><a href="javascript:pu(\'MatthewMeents.docx\');">mattmeents@gmail.com</a></li>' +
+        '<li><a href="mailto:mattmeents@gmail.com?subject=From+Website">mattmeents@gmail.com</a></li>' +
         '<li class="dropdown">' +
           '<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Links <span class="caret"></span></a>' +
           '<ul class="dropdown-menu" role="menu">' +
@@ -26,4 +26,6 @@
     '</div>' +
   '</div>'; 
   return sOut;
+
+  // <a href=mailto:<nowiki>agentavery@sample.com?subject="HTML link">Click here to send us an email!!!</a>
 };
