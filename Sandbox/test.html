@@ -49,7 +49,7 @@
             const salt = textEncoder.encode('7B381455F3BF4F7A');
             const iterations = 100000;
 
-            const keyBytes = CryptoJS.PBKDF2(secret, salt, { keySize: 32, iterations });
+            const keyBytes = CryptoJS.PBKDF2(secret, salt, { iterations });
             const key = new CryptoJS.lib.WordArray.init(keyBytes.words, 32);
             const iv = new CryptoJS.lib.WordArray.init(keyBytes.words, 16);
 
