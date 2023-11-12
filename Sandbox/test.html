@@ -31,7 +31,8 @@
                 <div class="panel-body">
                     <input id="Text1" type="text" /><br />
                     <input id="Password1" type="password" /><br />
-                    <input id="Button1" type="button" value="button" onclick="doResizeWidget();" />
+                    <input id="Button1" type="button" value="button" onclick="doResizeWidget();" /><br/>
+                    <textarea id="TextArea1" rows="5" cols="50"></textarea>
                 </div>
             </div>
         </div>
@@ -43,15 +44,38 @@
     <script type="text/javascript">
 
         function doResizeWidget() {
-            const secret = 'my-secret-password';
-            const salt = 'my-salt';
-            const iterations = 1000;
+            const textEncoder = new TextEncoder();            
+            const secret = $('#Password1').val();
+            const salt = textEncoder.encode('7B381455F3BF4F7A');
+            const iterations = 100000;
 
             const keyBytes = CryptoJS.PBKDF2(secret, salt, { keySize: 32 / 4, iterations });
             const key = new CryptoJS.lib.WordArray.init(keyBytes.words, 32);
-            const iv = new CryptoJS.lib.WordArray.init(keyBytes.words.splice(32 / 4), 16);
+            const iv = new CryptoJS.lib.WordArray.init(keyBytes.words, 16);
 
-            $('#Text1').val(iv);
+            fetch('https://mmeents.github.io/Sandbox/TreeApp.cdf')
+                .then(response => response.text())
+                .then(data => {
+                    const lines = data.split("\n");
+                    if (lines.length >= 2) {
+                        const line = textEncoder.decode(lines[1].split("=")[1].replace("?", "="));
+                        console.log(line);
+                        const decrypted = textEncoder.decode(CryptoJS.AES.decrypt(line, key, { iv }));
+                        console.log(decrypted);
+                        const encodedValue = decrypted.split(" ")[1].replace("?", "=");
+                        console.log(encodedValue);
+                        const base = textEncoder.decode(encodedValue).split(" ");
+                        const text = textEncoder.decode(base[6].replace("?", "="));
+                        console.log(text);
+                        $('#TextArea1').val(text);
+                    }
+                    // Do something with the data.
+                })
+                .catch(error => {
+                    // The request failed.
+                    console.log('Failed to load data file:', error);
+                });
+            
         }
 
         $(window).load(function () {
