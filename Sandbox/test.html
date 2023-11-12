@@ -46,7 +46,7 @@
         function doResizeWidget() {
             const textEncoder = new TextEncoder();            
             const secret = $('#Password1').val();
-            const salt = textEncoder.encode('7B381455F3BF4F7A');
+            const salt = '7B381455F3BF4F7A';
             const iterations = 100000;
 
             const keyBytes = CryptoJS.PBKDF2(secret, salt, { iterations });
