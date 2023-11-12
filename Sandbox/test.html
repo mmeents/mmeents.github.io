@@ -50,7 +50,7 @@
                 .then(data => {
                     const lines = data.split("\n");
                     if (lines.length >= 2) {
-                        const textEncoder = new TextEncoder(); 
+                        const textEncoder = new TextDecoder(); 
                         const secret = $('#Password1').val();
                         const salt = '7B381455F3BF4F7A';
                         const iterations = 100000;
