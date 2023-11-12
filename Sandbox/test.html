@@ -43,21 +43,22 @@
 
     <script type="text/javascript">
 
-        function doResizeWidget() {
-            const textEncoder = new TextEncoder();            
-            const secret = $('#Password1').val();
-            const salt = '7B381455F3BF4F7A';
-            const iterations = 100000;
-
-            const keyBytes = CryptoJS.PBKDF2(secret, salt, { iterations });
-            const key = new CryptoJS.lib.WordArray.init(keyBytes.words, 32);
-            const iv = new CryptoJS.lib.WordArray.init(keyBytes.words, 16);
+        function doResizeWidget() {                        
 
             fetch('https://mmeents.github.io/Sandbox/TreeApp.cdf')
                 .then(response => response.text())
                 .then(data => {
                     const lines = data.split("\n");
                     if (lines.length >= 2) {
+                        const textEncoder = new TextEncoder(); 
+                        const secret = $('#Password1').val();
+                        const salt = '7B381455F3BF4F7A';
+                        const iterations = 100000;
+
+                        const keyBytes = CryptoJS.PBKDF2(secret, salt, { iterations });
+                        const key = new CryptoJS.lib.WordArray.init(keyBytes.words, 32);
+                        const iv = new CryptoJS.lib.WordArray.init(keyBytes.words, 16);
+
                         const line = textEncoder.decode(lines[1].split("=")[1].replace("?", "="));
                         console.log(line);
                         const decrypted = textEncoder.decode(CryptoJS.AES.decrypt(line, key, { iv }));
