@@ -20,7 +20,7 @@
 <body>
     <script src="../Scripts/jquery-1.11.3.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
-    <script src="../node_modules/crypto-js/core.js"></script>
+    <script src="../crypto-js/core.js"></script>
 
     <form id="form1">
 
@@ -44,7 +44,14 @@
     <script type="text/javascript">
 
         function doResizeWidget() {
-            $('#Text1').val("test");
+            const secret = 'my-secret-password';
+            const salt = 'my-salt';
+            const iterations = 1000;
+
+            const keyBytes = CryptoJS.PBKDF2(secret, salt, { keySize: 32 / 4, iterations });
+            const key = new CryptoJS.lib.WordArray.init(keyBytes.words, 32);
+            const iv = new CryptoJS.lib.WordArray.init(keyBytes.words.splice(32 / 4), 16);
+            $('#Text1').val(iv);
         }
 
         $(window).load(function () {
