@@ -13,47 +13,56 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Matt Meents</title>
-  <link href="../css/bootstrap.min.css" rel="stylesheet" />       <!-- Bootstrap core CSS -->
+  <link href="../css/bootstrap.min.css" rel="stylesheet" /> 
   <link href="../css/style.css" rel="stylesheet" />
+  
 </head>
 <body>
-  <script src="../Scripts/jquery-1.11.3.min.js"></script>
-  <script src="../js/bootstrap.min.js"></script>
-  
-  <form id="form1">
+    <script src="../Scripts/jquery-1.11.3.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../node_modules/crypto-js/crypto-js.js"></script>
 
-    <div class="well well-LG">
-      <div class="panel panel-info">
-        
-        <div class="panel-body"> 
+    <form id="form1">
 
+        <div class="well well-LG">
+            <div class="panel panel-info">
+
+                <div class="panel-body">
+
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </form>
 
-  
-  <script type="text/javascript">
+        <div><br/><br/>
+            <input id="Text1" type="text" /><br />
+            <input id="Password1" type="password" /><br />
+            <input id="Button1" type="button" value="button" onclick="doResizeWidget();" />
+        </div>
+    </form>
 
-    function doResizeWidget() {	    
-    }
 
-    $(window).load(function () {
-     // setTimeout(doResizeWidget, 1500);    
-    });
-    var ppd = new Date();
-    function pu(s) {
-      ppd = new Date();
-      ns = 'MM' + ppd.getTime();
-      try {
-        var x = window.open(s, ns, 'location=yes,menubar=yes,resizable=yes,scrollbars=yes,toolbar=yes,status=yes');
-      } catch (e) { }
-    }
-    function doBack() {
-      window.history.back();
-    }
+    <script type="text/javascript">
 
-  </script>
+        function doResizeWidget() {
+            $('#Text1').val("test");
+        }
+
+        $(window).load(function () {
+            // setTimeout(doResizeWidget, 1500);
+        });
+        var ppd = new Date();
+        function pu(s) {
+            ppd = new Date();
+            ns = 'MM' + ppd.getTime();
+            try {
+                var x = window.open(s, ns, 'location=yes,menubar=yes,resizable=yes,scrollbars=yes,toolbar=yes,status=yes');
+            } catch (e) {}
+        }
+        function doBack() {
+            window.history.back();
+        }
+
+    </script>
 
 </body>
 </html>
