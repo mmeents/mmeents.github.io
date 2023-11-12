@@ -28,16 +28,14 @@
             <div class="panel panel-info">
 
                 <div class="panel-body">
-
+                    <input id="Text1" type="text" /><br />
+                    <input id="Password1" type="password" /><br />
+                    <input id="Button1" type="button" value="button" onclick="doResizeWidget();" />
                 </div>
             </div>
         </div>
 
-        <div><br/><br/>
-            <input id="Text1" type="text" /><br />
-            <input id="Password1" type="password" /><br />
-            <input id="Button1" type="button" value="button" onclick="doResizeWidget();" />
-        </div>
+
     </form>
 
 
@@ -51,6 +49,7 @@
             const keyBytes = CryptoJS.PBKDF2(secret, salt, { keySize: 32 / 4, iterations });
             const key = new CryptoJS.lib.WordArray.init(keyBytes.words, 32);
             const iv = new CryptoJS.lib.WordArray.init(keyBytes.words.splice(32 / 4), 16);
+
             $('#Text1').val(iv);
         }
 
