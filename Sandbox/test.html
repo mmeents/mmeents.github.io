@@ -45,10 +45,9 @@
 
         function doResizeWidget() {                        
 
-            fetch('https://mmeents.github.io/Sandbox/TreeApp.cdf')
+            fetch('https://mmeents.github.io/Sandbox/test.cdf')
                 .then(response => response.text())
-                .then(data => {
-                    const lines = data.split("\n");
+                .then(data => {                    
                     if (lines.length >= 2) {
                         const textDecoder = new TextDecoder(); 
                         const secret = $('#Password1').val();
@@ -58,19 +57,14 @@
                         const keyBytes = CryptoJS.PBKDF2(secret, salt, { iterations });
                         const key = new CryptoJS.lib.WordArray.init(keyBytes.words, 32);
                         const iv = new CryptoJS.lib.WordArray.init(keyBytes.words, 16);
-
-                        const firstLine = lines[1].split("=")[1].replace("?", "=")
-                        const bytes = btoa(firstLine);                                               
+                        
+                        const bytes = atob(firstLine);                                               
                         const decipherBytes = CryptoJS.AES.decrypt(bytes, key, { iv });
-                        const decryptedhash = btoa(decipherBytes);
-                        const decrypted = btoa(decryptedhash);
+                        const decrypted = atob(decipherBytes);
+                        
                         console.log(decrypted);
-                        const encodedValue = decrypted.split(" ")[1].replace("?", "=");
-                        console.log(encodedValue);
-                        const base = textDecoder.decode(encodedValue).split(" ");
-                        const text = textDecoder.decode(base[6].replace("?", "="));
-                        console.log(text);
-                        $('#TextArea1').val(text);
+                        
+                        $('#TextArea1').val(decrypted);
                     }
                     // Do something with the data.
                 })
