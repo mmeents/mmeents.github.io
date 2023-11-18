@@ -47,7 +47,8 @@
 
             fetch('https://mmeents.github.io/Sandbox/test.cdf')
                 .then(response => response.text())
-                .then(data => {                    
+                .then(data => { 
+                    const lines = data;
                     if (lines.length >= 2) {
                         const textDecoder = new TextDecoder(); 
                         const secret = $('#Password1').val();
