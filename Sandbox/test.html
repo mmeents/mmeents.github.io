@@ -62,7 +62,8 @@
                         const firstLine = lines[1].split("=")[1].replace("?", "=")
                         const bytes = btoa(firstLine);                                               
                         const decipherBytes = CryptoJS.AES.decrypt(bytes, key, { iv });
-                        const decrypted = btoa(decipherBytes);
+                        const decryptedhash = btoa(decipherBytes);
+                        const decrypted = btoa(decryptedhash);
                         console.log(decrypted);
                         const encodedValue = decrypted.split(" ")[1].replace("?", "=");
                         console.log(encodedValue);
