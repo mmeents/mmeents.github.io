@@ -60,7 +60,7 @@
                         const iv = new CryptoJS.lib.WordArray.init(keyBytes.words, 16);
 
                         const firstLine = lines[1].split("=")[1].replace("?", "=")
-                        const bytes = btoa(firstline);                                               
+                        const bytes = btoa(firstLine);                                               
                         const decipherBytes = CryptoJS.AES.decrypt(bytes, key, { iv });
                         const decrypted = btoa(decipherBytes);
                         console.log(decrypted);
