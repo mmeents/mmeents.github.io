@@ -50,7 +50,7 @@
                 .then(data => {
                     const lines = data.split("\n");
                     if (lines.length >= 2) {
-                        const textEncoder = new TextDecoder(); 
+                        const textDecoder = new TextDecoder(); 
                         const secret = $('#Password1').val();
                         const salt = '7B381455F3BF4F7A';
                         const iterations = 100000;
@@ -59,14 +59,15 @@
                         const key = new CryptoJS.lib.WordArray.init(keyBytes.words, 32);
                         const iv = new CryptoJS.lib.WordArray.init(keyBytes.words, 16);
 
-                        const line = textEncoder.decode(btoa( lines[1].split("=")[1].replace("?", "=")));
-                        console.log(line);
-                        const decrypted = textEncoder.decode(CryptoJS.AES.decrypt(line, key, { iv }));
+                        const firstLine = lines[1].split("=")[1].replace("?", "=")
+                        const bytes = btoa(firstline);                                               
+                        const decipherBytes = CryptoJS.AES.decrypt(bytes, key, { iv });
+                        const decrypted = btoa(decipherBytes);
                         console.log(decrypted);
                         const encodedValue = decrypted.split(" ")[1].replace("?", "=");
                         console.log(encodedValue);
-                        const base = textEncoder.decode(encodedValue).split(" ");
-                        const text = textEncoder.decode(base[6].replace("?", "="));
+                        const base = textDecoder.decode(encodedValue).split(" ");
+                        const text = textDecoder.decode(base[6].replace("?", "="));
                         console.log(text);
                         $('#TextArea1').val(text);
                     }
