@@ -59,7 +59,7 @@
                         const key = new CryptoJS.lib.WordArray.init(keyBytes.words, 32);
                         const iv = new CryptoJS.lib.WordArray.init(keyBytes.words, 16);
                                                 
-                        const string = textDecoder.decode(atob(lines));
+                        const string = textDecoder.decode(lines);
                         const uint8Array = new Uint8Array(string.length);
 
                         for (let i = 0; i < string.length; i++) {
