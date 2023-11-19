@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head runat="server">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125039435-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-125039435-1');
+  </script>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Matt Meents</title>
+  <link href="../css/bootstrap.min.css" rel="stylesheet" /> 
+  <link href="../css/style.css" rel="stylesheet" />
+  
+</head>
+<body>
+    <script src="../Scripts/jquery-1.11.3.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../crypto-js/core.js"></script>
+    <script src="../crypto-js/hmac.js"></script>
+    <script src="../crypto-js/sha1.js"></script>
+    <script src="../crypto-js/sha256.js"></script>
+    <script src="../crypto-js/enc-base64.js"></script>
+    <script src="../crypto-js/md5.js"></script>
+    <script src="../crypto-js/evpkdf.js"></script>
+    <script src="../crypto-js/cipher-core.js"></script>
+    <script src="../crypto-js/aes.js"></script>
+    <script src="../crypto-js/crypto-js.js"></script>
+
+    <form id="form1">
+
+        <div class="well well-LG">
+            <div class="panel panel-info">
+
+                <div class="panel-body">
+                    Password: <input id="Password1" type="password" /><br />
+                    Input: <textarea id="InputText" rows="5" cols="50"></textarea>
+                    <input id="btnEncrypt" type="button" value="Encrypt" onclick="doEncryptInput();" /><br />
+                    Output: <textarea id="CipherText" rows="5" cols="50"></textarea>
+                    <input id="btnDecrypt" type="button" value="Decrypt" onclick="doDecryptCipher();" /><br />
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+
+
+    <script type="text/javascript">
+        function toWordArray(str) {
+            return CryptoJS.enc.Utf8.parse(str);
+        }
+
+        function toString(words) {
+            return CryptoJS.enc.Utf8.stringify(words);
+        }
+
+        function toBase64String(words) {
+            return CryptoJS.enc.Base64.stringify(words);
+        }
+
+        function doEncryptInput() {
+            const PROTOCOL_AES256 = 2;
+            const secretchars = $('#Password1').val();
+
+            const salt = '7B381455F3BF4F7A';
+            const iterations = 1000;
+            const keyBytes = CryptoJS.PBKDF2(secretchars, salt, { iterations });
+            const secret = new CryptoJS.lib.WordArray.init(keyBytes.words, 32);
+            const iv = new CryptoJS.lib.WordArray.init(keyBytes.words, 16);
+
+            const lines = $('#InputText').val();
+            var header = toWordArray("");
+            var body = CryptoJS.AES.encrypt(lines, secret, { iv: iv });            
+            header.concat(body.ciphertext);
+            const cipher = toBase64String(header);
+            $('#CipherText').val(cipher);
+        }
+
+
+        function doDecryptCipher() {
+            const PROTOCOL_AES256 = 2;
+            const secretchars = $('#Password1').val();
+
+            const salt = '7B381455F3BF4F7A';
+            const iterations = 1000;
+            const keyBytes = CryptoJS.PBKDF2(secretchars, salt, { iterations });
+            const secret = new CryptoJS.lib.WordArray.init(keyBytes.words, 32);
+            const iv = new CryptoJS.lib.WordArray.init(keyBytes.words, 16);
+
+            const encoded = $('#CipherText').val();
+            var packet = CryptoJS.enc.Base64.parse(encoded);
+            //var header = toWordArray("AES" + String.fromCharCode(PROTOCOL_AES256));
+            var cipherText = CryptoJS.lib.WordArray.create(packet.words.slice(0, packet.words.length));
+            cipherText = toBase64String(cipherText);            
+            var decrypted = CryptoJS.AES.decrypt(cipherText, secret, { iv: iv });            
+            const lines = toString(decrypted);
+            $('#InputText').val(lines);
+        }       
+
+        $(window).load(function () {
+            // setTimeout(doResizeWidget, 1500);
+        });
+        var ppd = new Date();
+        function pu(s) {
+            ppd = new Date();
+            ns = 'MM' + ppd.getTime();
+            try {
+                var x = window.open(s, ns, 'location=yes,menubar=yes,resizable=yes,scrollbars=yes,toolbar=yes,status=yes');
+            } catch (e) {}
+        }
+        function doBack() {
+            window.history.back();
+        }
+
+    </script>
+
+</body>
+</html>
+
+

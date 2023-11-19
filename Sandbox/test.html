@@ -57,26 +57,14 @@
 
                         const keyBytes = CryptoJS.PBKDF2(secret, salt, { iterations });
                         const key = new CryptoJS.lib.WordArray.init(keyBytes.words, 32);
-                        const iv = new CryptoJS.lib.WordArray.init(keyBytes.words, 16);
-                                                
-                        const string = textDecoder.decode(lines);
-                        const uint8Array = new Uint8Array(string.length);
-
-                        for (let i = 0; i < string.length; i++) {
-                            uint8Array[i] = string.charCodeAt(i);
-                        }
-
-                        const arrayBuffer = new ArrayBuffer(uint8Array.length);
-                        const uint8View = new Uint8Array(arrayBuffer);
-
-                        uint8View.set(uint8Array);
+                        const iv = new CryptoJS.lib.WordArray.init(keyBytes.words, 16);                                              
                         
-                        const decipherBytes = CryptoJS.AES.decrypt(uint8View, key, { iv });
-                        const decrypted = textDecoder.decode(decipherBytes.replace("?", "="));
                         
-                        console.log(decrypted);
+                        const decrypted = CryptoJS.AES.decrypt(lines, key, { iv });                        
+                        const message = atob(decrypted);
+                        console.log(message);
                         
-                        $('#TextArea1').val(decrypted);
+                        $('#TextArea1').val(message);
                     }
                     // Do something with the data.
                 })
