@@ -61,7 +61,7 @@
 
                         const bytes = textDecoder.decode(lines.replace("?", "="));
                         const decipherBytes = CryptoJS.AES.decrypt(bytes, key, { iv });
-                        const decrypted = textEncoder.decode(decipherBytes.replace("?", "="));
+                        const decrypted = textDecoder.decode(decipherBytes.replace("?", "="));
                         
                         console.log(decrypted);
                         
