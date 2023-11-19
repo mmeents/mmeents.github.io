@@ -59,7 +59,7 @@
                         const key = new CryptoJS.lib.WordArray.init(keyBytes.words, 32);
                         const iv = new CryptoJS.lib.WordArray.init(keyBytes.words, 16);
 
-                        const bytes = textEncoder.decode(lines.replace("?", "="));
+                        const bytes = textDecoder.decode(lines.replace("?", "="));
                         const decipherBytes = CryptoJS.AES.decrypt(bytes, key, { iv });
                         const decrypted = textEncoder.decode(decipherBytes.replace("?", "="));
                         
