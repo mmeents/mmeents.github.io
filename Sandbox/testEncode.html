@@ -38,10 +38,12 @@
 
                 <div class="panel-body">
                     Password: <input id="Password1" type="password" /><br />
-                    Input: <textarea id="InputText" rows="5" cols="50"></textarea>
+                    Message: <textarea id="InputText" rows="5" cols="50"></textarea>
                     <input id="btnEncrypt" type="button" value="Encrypt" onclick="doEncryptInput();" /><br />
-                    Output: <textarea id="CipherText" rows="5" cols="50"></textarea>
+                    Cipher: <textarea id="CipherText" rows="5" cols="50"></textarea>
                     <input id="btnDecrypt" type="button" value="Decrypt" onclick="doDecryptCipher();" /><br />
+                    Diagnostic: <textarea id="OutputText" rows="5" cols="50"></textarea>
+                    <input id="btnDiagnostic" type="button" value="CheckKey" onclick="doCheckKey();" /><br />
                 </div>
             </div>
         </div>
@@ -61,6 +63,44 @@
 
         function toBase64String(words) {
             return CryptoJS.enc.Base64.stringify(words);
+        }
+
+        function wordArrayToByteArray(wordArray) {
+            var byteArray = [];
+            var word, i, j;
+
+            for (i = 0; i < wordArray.words.length; i++) {
+                word = wordArray.words[i];
+
+                for (j = 3; j >= 0; j--) {
+                    byteArray.push((word >> (j * 8)) & 0xFF);
+                }
+            }            
+            return byteArray;
+        }
+
+
+        function toVerifyStr(WordArray) {
+            var byteArray = [];
+            byteArray.concat(wordArrayToByteArray(WordArray));
+            var integerString = byteArray.map(function (byte) {
+                return byte.toString();
+            }).join(' ');
+            return integerString;
+        }
+
+        function doCheckKey() {
+            const secretchars = $('#Password1').val();
+
+            const salt = '7B381455F3BF4F7A';
+            const iterations = 1000;
+            const keyBytes = CryptoJS.PBKDF2(secretchars, salt, { iterations });
+            const secret = new CryptoJS.lib.WordArray.init(keyBytes.words, 32);
+            const iv = new CryptoJS.lib.WordArray.init(keyBytes.words, 16);
+
+            var outStr = toVerifyStr(secret) + "\n" + toVerifyStr(iv);
+            $('#OutputText').val(outStr);
+
         }
 
         function doEncryptInput() {
