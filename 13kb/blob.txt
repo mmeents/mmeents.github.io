@@ -1,0 +1,11 @@
+
+
+   <script src="jquery-1.11.3.min.js"></script>
+
+
+   $(window).load(function () {
+      document.getElementsByTagName("BODY")[0].onresize = function () { doResize(); };
+      setTimeout(doResize, 50);
+      gc.start();
+      vr.start();
+    });
