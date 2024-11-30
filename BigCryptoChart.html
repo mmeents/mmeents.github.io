@@ -23,7 +23,78 @@
 
     <form id="form1">
         <nav class="navbar navbar-fixed-top navbar-logo navbar" id="mainmenu"></nav>
-        <br /><br />
+        <br /><br /><br />
+        <!-- TradingView Widget BEGIN -->
+        <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+            {
+               "symbols": [
+                {
+                  "proName":"CRYPTO:SNEKUSD",
+                  "title":"SNEK USD Tv"
+                },
+                 {
+                   "proName": "COINBASE:BTCUSD",
+                   "title": "BTC on Coinbase"
+                 },
+                 {
+                   "proName": "COINBASE:ADAUSD",
+                   "title": "ADA on Coinbase"
+                 },
+                 {
+                   "proName": "AMEX:ARKB",
+                   "title": "Ark B"
+                 },
+                 {
+                   "proName": "NASDAQ:MSFT",
+                   "title": "Microsoft"
+                 },
+                 {
+                   "proName": "NASDAQ:TSLA",
+                   "title": "Tesla"
+                 },{
+                  "proName": "NASDAQ:COIN",
+                    "title": "Coinbase"
+                  },{
+                    "proName": "NASDAQ:NVDA",
+                    "title": "Nvidia"
+                  },{
+                    "proName": "NASDAQ:GOOG",
+                    "title": "Google"
+                  },{
+                    "proName": "NASDAQ:AMD",
+                    "title": "AMD"
+                  },{
+                    "proName": "NASDAQ:INTC",
+                    "title": "Intel"
+                 },{
+                   "proName": "COINBASE:DOGEUSD",
+                   "title": "DOGE on Coinbase"
+                 },{
+                   "proName": "COINBASE:ETHUSD",
+                   "title": "ETH on Coinbase"
+                 },{
+                   "proName": "NASDAQ:AAPL",
+                   "title": "Apple"
+                 },{
+                   "proName": "NYSE:DELL",
+                   "title": "Dell"
+                 },{
+                   "proName": "NASDAQ:MSTR",
+                   "title": "MicroStrategy"
+                }
+               ],
+               "showSymbolLogo": true,
+               "isTransparent": true,
+               "displayMode": "adaptive",
+               "largeChartUrl": "https://mmeents.github.io/BigCryptoChart.html",
+               "colorTheme": "dark",
+               "locale": "en"
+            }
+            </script>
+        </div>
+        <!-- TradingView Widget END -->
 
         <div class="panel" style="background-color:black">
             <div class="col-sm-12" style="padding:0,0;min-height:inherit;" onclick="openFullscreen();">
@@ -44,20 +115,26 @@
                                 "allow_symbol_change": true,
                                 "watchlist": [
                                     "COINBASE:BTCUSD",
-                                    "COINBASE:ADAUSD",
-                                    "COINBASE:DOGEUSD",
-                                    "COINBASE:ETHUSD",
-                                    "AMEX:ARKB",
-                                    "NASDAQ:MSFT",
-                                    "NASDAQ:AAPL",
-                                    "NYSE:DELL",
                                     "NASDAQ:MSTR",
+                                    "AMEX:ARKB",
+
+                                    "COINBASE:ADAUSD",
+
+
+                                    "NASDAQ:MSFT",
+                                    "NASDAQ:INTC",
+                                    "NASDAQ:NVDA",
+
                                     "NASDAQ:TSLA",
                                     "NASDAQ:COIN",
-                                    "NASDAQ:NVDA",
                                     "NASDAQ:GOOG",
                                     "NASDAQ:AMD",
-                                    "NASDAQ:INTC"
+                                    "NASDAQ:AAPL",
+                                    "NYSE:DELL",
+                                    "CRYPTO:SNEKUSD",
+                                    "COINBASE:DOGEUSD",
+                                    "COINBASE:ETHUSD"
+
                                 ],
                                 "details": false,
                                 "studies": [
@@ -91,9 +168,6 @@
                 src="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAFTKukXz-k&#x2F;view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
         </iframe>
     </div>
-
-
-
 
     <div class="container-fluid">
         <div class="panel center-block" style="background-color:black;">

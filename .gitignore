@@ -34,4 +34,5 @@ bld/
 #wwwroot/
 
 # Visual Studio 2019
-.vs/
+.vs
+.vs/*.*
