@@ -1,28 +1,29 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head runat="server">
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125039435-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-125039435-1');
-  </script>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Crypto Watch</title>
-  <link href="css/bootstrap.min.css" rel="stylesheet" />       <!-- Bootstrap core CSS -->
-  <link href="css/style.css" rel="stylesheet" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125039435-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-125039435-1');
+    </script>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Crypto Watch</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />       <!-- Bootstrap core CSS -->
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/dark.css" rel="stylesheet" />
 </head>
 <body style="background-color:black;">
     <script src="Scripts/jquery-1.11.3.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="MainMenu.js"></script>
+    <script src="MainMenu-dark.js"></script>
 
     <form id="form1">
-        <nav class="navbar navbar-fixed-top navbar-logo navbar" id="mainmenu"></nav>
+        <nav class="navbar navbar-fixed-top navbar-logo navbar navbar-dark" id="mainmenu"></nav>
         <br /><br /><br />
         <!-- TradingView Widget BEGIN -->
         <div class="tradingview-widget-container">
@@ -117,14 +118,10 @@
                                     "COINBASE:BTCUSD",
                                     "NASDAQ:MSTR",
                                     "AMEX:ARKB",
-
                                     "COINBASE:ADAUSD",
-
-
                                     "NASDAQ:MSFT",
                                     "NASDAQ:INTC",
                                     "NASDAQ:NVDA",
-
                                     "NASDAQ:TSLA",
                                     "NASDAQ:COIN",
                                     "NASDAQ:GOOG",
@@ -160,13 +157,35 @@
 
     <br /><br />
 
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/WsDyRAPFBC8?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    <div style="position: relative; width: 40%; height: 0; padding-top: 100.0000%;
-        padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
-        border-radius: 8px; will-change: transform;">
-        <iframe loading="lazy" style="position: relative; width: 40%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
-                src="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAFTKukXz-k&#x2F;view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
-        </iframe>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="panel panel-dark">
+                    <div class="panel-body">
+                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/WsDyRAPFBC8?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-dark">
+                    <div class="panel-body">
+                        <!-- TradingView Widget BEGIN -->
+                        <div class="tradingview-widget-container" width="100%">
+                            <div class="tradingview-widget-container__widget" width="100%"></div>
+                            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>{ "feedMode": "market",  "market": "crypto", "isTransparent": false, "displayMode": "regular", "width":"100%", "height": 450, "colorTheme": "dark", "locale": "en"}</script>
+                        </div>
+                        <!-- TradingView Widget END -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="panel panel-dark" style="padding:0 0;min-height:420px;">
+                    <div class="panel-body" style="padding:0 0;min-height:420px;">
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="container-fluid">

@@ -1,0 +1,56 @@
+.panel-dark {
+  background-color: #131722;
+  color: #fff;
+  border-color: ##2B2F39;
+}
+
+  .panel-dark .panel-heading {
+    background-color: #131722;
+    color: #fff;
+    border-color: #2B2F39;
+  }
+
+  .panel-dark .panel-body {
+    background-color: #131722;
+    color: #fff;
+  }
+
+.navbar-dark {
+  background-color: #131722;
+  color: #fff;
+  border-color: #2B2F39;
+}
+
+  .navbar-dark .navbar-brand, .navbar-dark .navbar-nav > li > a {
+    background-color: #131722;
+    color: #fff;
+  }
+
+  .navbar-dark .dropdown-menu {
+    background-color: #131722;
+    color: #fff;
+  }
+
+  .navbar-dark .dropdown-menu > li > a {
+    color: #fff;
+  }
+
+  .navbar-dark .dropdown-menu > li > a:hover {
+      background-color: #2B2F39;
+  }
+
+  .navbar-dark .dropdown-toggle {
+    color: #fff;
+    background-color: #131722;
+  }
+
+  .navbar-dark .dropdown-toggle:focus,
+  .navbar-dark .dropdown-toggle:hover,
+  .navbar-dark .dropdown-toggle:active,
+  .navbar-dark .dropdown-toggle[aria-expanded="true"],
+  .navbar-dark .dropdown-toggle[aria-expanded="true"]:hover,
+  .navbar-dark .dropdown-toggle[aria-expanded="true"]:focus,
+  .navbar-dark .dropdown-toggle[aria-expanded="true"]:active {
+    color: #fff;
+    background-color: #2B2F39;
+  }
