@@ -15,6 +15,7 @@
     <title>Matt Meents</title>
     <link href="css/bootstrap.min.css" rel="stylesheet" />       <!-- Bootstrap core CSS -->
     <link href="css/style.css" rel="stylesheet" />
+    <link href="css/dark.css" rel="stylesheet" />
     <style>
         html, body {
             width: 100%;
@@ -27,18 +28,18 @@
         }
     </style>
 </head>
-<body>
+<body style="background-color:black;">
     <script src="Scripts/jquery-1.11.3.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="MainMenu.js"></script>
+    <script src="MainMenu-dark.js"></script>
 
     <form id="form1">
-        <nav class="navbar navbar-fixed-top navbar-logo navbar" id="mainmenu"></nav>
+        <nav class="navbar navbar-fixed-top navbar-logo navbar navbar-dark" id="mainmenu"></nav>
         <br /><br />
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="panel panel-info">
+                    <div class="panel panel-dark">
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-sm-4">
@@ -65,11 +66,16 @@
                                             <li>
                                                 Additional works of Matt Meents
                                                 <ul>
-                                                    <li><a href="javascript:pu('https://mmeents.github.io/files/PrompterV104.msi');">Prompter V1.0.4</a> Outline Promp builder tool</li>
                                                     <li><a href="javascript:pu('https://mmeents.github.io/BigCryptoChart.html');">Chart and Tunes</a></li>
-                                                    <li><a href="javascript:pu('https://mmeents.github.io/gravity/Space.html');">Canvas Drive Demo</a></li>
+
+                                                    <li><a href="javascript:pu('https://github.com/mmeents/AppSmith');">AppSmith</a> Represent UML and code generation from tree view models</li>
+                                                    <li><a href="javascript:pu('https://github.com/mmeents/DBWorkshop');">DBWorkshop</a>C# Code generation from db objects </li>
+                                                    <li><a href="javascript:pu('https://github.com/mmeents/Prompter');">Prompter</a> Outline Promp builder tool</li>
+                                                    <li><a href="javascript:pu('https://github.com/mmeents/SlideSketch');">Slide Sketch</a> Outline of drawing items and sliders to move them</li>
                                                     <li><a href="javascript:pu('https://github.com/mmeents/DataMattei');">Data Mattei</a> My C# Core library of extensions and data objects</li>
-                                                    <li><a href="javascript:pu('https://github.com/mmeents/CryptoAdvisor');">Crypto Advisor</a> Traders, Poloniex and Bitrex platforms to get ya started on coding up your very own trading algos.</li>
+                                                    <li><a href="javascript:pu('https://github.com/mmeents/Apiary');">Apiary</a> A Follow the followers solution to Github followers API.</li>                                                    
+                                                    <li><a href="javascript:pu('https://github.com/mmeents/CryptoAdvisor');">Crypto Advisor</a> exchanges are gone but the ideas live on, Poloniex and Bitrex platforms to get ya started on coding up your very own trading algos.</li>
+                                                    <li><a href="javascript:pu('https://mmeents.github.io/gravity/Space.html');">Canvas Drive Demo</a></li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -102,9 +108,11 @@
                                                         </ul>
                                                     </li>
                                                     <li>
-                                                        Staking Links:
+                                                        Staking Links:   
                                                         <ul>
                                                             <li><a href="javascript:pu('https://bankerlabs.io/');">Banker Labs</a> BANK stake</li>
+                                                            <li><a href="javascript:pu('https://www.chainsofwar.io/');"> Chains of War</a></li>
+                                                            <li><a href="javascript:pu('https://store.epicgames.com/en-US/p/chains-of-war-bd5b0b');"> Chains of War on Epic Games</a></li>
                                                             <li><a href="javascript:pu('https://degenerats.staking.zip/');">Degenerats Staking</a> BLUE stake</li>
                                                             <li><a href="javascript:pu('https://pangolin.ada-anvil.io/en/');">Pangolin Vault</a></li>
                                                             <li><a href="javascript:pu('https://nftportal.art/risk/rewards');">Risk Rewards</a> Risk stake</li>
@@ -150,7 +158,7 @@
                                             <a href="https://www.tradingview.com" rel="noopener" target="_blank"><span class="blue-text">A Tract</span></a> by TradingView
                                         </div>
                                         <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>{
-                        "colorTheme": "light",
+                        "colorTheme": "dark",
                         "dateRange": "1D",
                         "showChart": false,
                         "locale": "en",
@@ -215,9 +223,14 @@
                                 <div class="col-sm-4">
                                     <a class="twitter-timeline" href="https://twitter.com/mattei420" data-widget-id="663250791675752448">Tweets by @Mattei420</a>
                                     <script>
-    !function (d, s, id) {
+                                        !function (d, s, id) {
                                             var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
-                                            if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); }
+                                            if (!d.getElementById(id)) { 
+                                              js = d.createElement(s); 
+                                              js.id = id; 
+                                              js.src = p + "://platform.twitter.com/widgets.js"; 
+                                              fjs.parentNode.insertBefore(js, fjs); 
+                                            }
                                         }(document, "script", "twitter-wjs");</script>
                                 </div>
                             </div>
@@ -230,7 +243,7 @@
 
     <br /><br />
     <div class="container-fluid">
-        <div class="panel center-block">
+        <div class="panel center-block panel-dark">
             <p class="text-center">
                 MattMeents@gmail.com<br />
                 2022 <span class="glyphicon glyphicon-copyright-mark"></span> Matthew Meents

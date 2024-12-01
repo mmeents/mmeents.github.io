@@ -181,7 +181,36 @@
             <div class="col-md-5">
                 <div class="panel panel-dark" style="padding:0 0;min-height:420px;">
                     <div class="panel-body" style="padding:0 0;min-height:420px;">
-                       
+                        <!-- TradingView Symbol Info Widget BEGIN -->
+                        <div class="tradingview-widget-container">
+                            <iframe id="tradingview-widget-container__widget" style="height:315px; width:100%; border:none;">
+                            </iframe>
+                            <div class="tradingview-widget-copyright">
+                                <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">
+                                    Powered by TradingView
+                                </a>
+                            </div>
+                        </div>
+                        <!-- TradingView Symbol Info Widget END -->
+
+                        <script type="text/javascript">
+                            // Function to get URL parameter
+                            function getUrlParameter(name, def) {
+                                name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+                                var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+                                var results = regex.exec(location.search);
+                                return results === null ? def : decodeURIComponent(results[1].replace(/\+/g, ' '));
+                            }
+
+                            // Get the 'tvwidgetsymbol' parameter from the URL or default to 'COINBASE:BTCUSD'
+                            var tvWidgetSymbol = getUrlParameter('tvwidgetsymbol', 'COINBASE:BTCUSD');
+
+                            // Construct the iframe URL for the Symbol Info Widget
+                            var iframeUrl = `https://s.tradingview.com/embed-widget/symbol-info/?symbol=${encodeURIComponent(tvWidgetSymbol)}&locale=en&colorTheme=dark`;
+
+                            // Set the iframe's src to the constructed URL
+                            document.getElementById('tradingview-widget-container__widget').src = iframeUrl;
+                        </script>
                     </div>
                 </div>
             </div>
