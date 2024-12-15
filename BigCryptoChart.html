@@ -97,7 +97,10 @@
         </div>
         <!-- TradingView Widget END -->
 
+        <script src="js/gecko-coin-price-marquee-widget.js"></script>
+        <gecko-coin-price-marquee-widget locale="en" dark-mode="true" outlined="true" coin-ids="bitcoin,cardano,singularitynet,fluidtokens,dexhunter,minswap,hosky,nunet,snek,ada-peepos,bankercoin,cornucopias,iagon,jpg-store,tokeo,orcfax,cardanogpt,cardano-crocs-club,binance-peg-cardano" initial-currency="usd"></gecko-coin-price-marquee-widget>
         <div class="panel" style="background-color:black">
+
             <div class="col-sm-12" style="padding:0,0;min-height:inherit;" onclick="openFullscreen();">
                 <div>
                     <!-- TradingView Widget BEGIN -->
@@ -116,9 +119,10 @@
                                 "allow_symbol_change": true,
                                 "watchlist": [
                                     "COINBASE:BTCUSD",
-                                    "NASDAQ:MSTR",
-                                    "AMEX:ARKB",
                                     "COINBASE:ADAUSD",
+                                    "NASDAQ:QQQ",                                    
+                                    "AMEX:ARKB",                                       
+                                    "NASDAQ:MSTR",
                                     "NASDAQ:MSFT",
                                     "NASDAQ:INTC",
                                     "NASDAQ:NVDA",
@@ -130,8 +134,8 @@
                                     "NYSE:DELL",
                                     "CRYPTO:SNEKUSD",
                                     "COINBASE:DOGEUSD",
-                                    "COINBASE:ETHUSD"
-
+                                    "COINBASE:ETHUSD",
+                                    "AMEX:UMAC"
                                 ],
                                 "details": false,
                                 "studies": [
@@ -229,12 +233,13 @@
     <script type="text/javascript">
 
         function doResizeWidget() {
-            openFullscreen();
+
+            
+
         }
         $(window).load(function () {
             setTimeout(doResizeWidget, 750);
             $('#mainmenu').html(PrintMainMenu('BigCryptoChart.html', 'Mattei\'s BTC Watch'));
-
         });
         var ppd = new Date();
         function pu(s) {
@@ -262,7 +267,6 @@
         }
 
     </script>
-
 
 </body>
 </html>	

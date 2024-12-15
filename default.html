@@ -118,7 +118,7 @@
                                                             <li><a href="javascript:pu('https://nftportal.art/risk/rewards');">Risk Rewards</a> Risk stake</li>
                                                             <li><a href="javascript:pu('https://map.smart-places.io/explorer');">Smart Places Map</a></li>
                                                             <li><a href="javascript:pu('https://platypuscyberpunks.com/terminal');">Platypus Cyberpunks Terminal</a></li>
-                                                            <li><a href="javascript:pu('https://cardanocasino.ada-anvil.io/en/');">Cardano Casino Staking on Anvil</a></li>
+                                                            <li><a href="javascript:pu('https://stake.cardanocasino.vip/staking');">Cardano Casino Staking</a></li>
                                                             <li><a href="javascript:pu('https://beta-app.cardanocasino.vip/');">Cardano Casino Site</a></li>
                                                             <li><a href="javascript:pu('https://bossplanet.games/dashboard/');">Boss Planet Games</a></li>
                                                             <li><a href="javascript:pu('https://shankpad.io/');">Shankpad</a></li>
@@ -173,8 +173,14 @@
                             "s": "COINBASE:BTCUSD",
                             "d": "COINBASE"
                           },{
+                            "s": "COINBASE:ADAUSD",
+                            "d": "COINBASE"
+                          },{
                             "s": "AMEX:ARKB",
                             "d": "ARKB"
+                          },{
+                            "s":"NASDAQ:QQQ",
+                            "d":"QQQ"
                           },{
                             "s": "NASDAQ:MSFT",
                             "d": "Microsoft"
@@ -206,32 +212,21 @@
                             "s": "NASDAQ:INTC",
                             "d": "Intel"
                           },{
-                            "s": "COINBASE:ADAUSD",
-                            "d": "COINBASE"
-                          },{
                             "s": "COINBASE:DOGEUSD",
                             "d": "COINBASE"
                           },{
                             "s": "COINBASE:ETHUSD",
                             "d": "COINBASE"
                           }]
-                        }]
                       }</script>
                                     </div>
                                     <!-- TradingView Widget END -->
                                 </div>
                                 <div class="col-sm-4">
-                                    <a class="twitter-timeline" href="https://twitter.com/mattei420" data-widget-id="663250791675752448">Tweets by @Mattei420</a>
-                                    <script>
-                                        !function (d, s, id) {
-                                            var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
-                                            if (!d.getElementById(id)) { 
-                                              js = d.createElement(s); 
-                                              js.id = id; 
-                                              js.src = p + "://platform.twitter.com/widgets.js"; 
-                                              fjs.parentNode.insertBefore(js, fjs); 
-                                            }
-                                        }(document, "script", "twitter-wjs");</script>
+
+                                    <script src="https://widgets.coingecko.com/gecko-coin-list-widget.js"></script>
+                                    <gecko-coin-list-widget locale="en" dark-mode="true" outlined="true" coin-ids="bitcoin,cardano,singularitynet,fluidtokens,dexhunter,minswap,hosky,nunet,snek,ada-peepos,bankercoin,cornucopias,iagon,tokeo" initial-currency="usd"></gecko-coin-list-widget>
+
                                 </div>
                             </div>
                         </div>
