@@ -12,10 +12,10 @@
 mono_crash.*
 
 # User-specific files (VSCode)
-.vscode/*
+.vscode\*
 
 # User-specific files (Visual Studio)
-.vs/*
+.vs\*
 
 # Build results
 [Dd]ebug/
