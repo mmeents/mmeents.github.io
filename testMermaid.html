@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<title></title>
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+</script>
+<style>
+  .text2 { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14.2pt; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 12.2pt; }
+  .mermaid-container { display: flex; justify-content: center; }
+</style>
+</head>
+<body>
+    <div class="mermaid-container">
+      <pre class="mermaid" id="mermaid-graph">flowchart LR
+      A[Start]-->B[Do you have coffee beans?]
+      B-->|Yes|C[Grind the coffee beans]
+      B-->|No|D[Buy ground coffee beans]
+      C-->E[Add coffee grounds to filter]
+      D-->E
+      E-->F[Add hot water to filter]
+      F-->G[Enjoy!]      </pre>
+    </div>  </body>
+</html>
