@@ -1,273 +1,706 @@
 ﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-<head runat="server">
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125039435-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'UA-125039435-1');
-    </script>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Matt Meents</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet" />       <!-- Bootstrap core CSS -->
-    <link href="css/style.css" rel="stylesheet" />
-    <link href="css/dark.css" rel="stylesheet" />
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Matt Meents — Senior Software Engineer</title>
+    <meta name="description" content="Senior software engineer. Thirty years shipping production systems in C#/.NET, Azure and SQL Server. Currently building multi-agent AI orchestration infrastructure.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Matt Meents — Senior Software Engineer">
+    <meta property="og:description" content="Thirty years shipping production systems in C#/.NET, Azure and SQL Server. Currently building multi-agent AI orchestration infrastructure.">
+    <meta property="og:url" content="https://mmeents.github.io/">
+    <meta name="twitter:card" content="summary">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400;9..144,600;9..144,700&family=Karla:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
     <style>
-        html, body {
-            width: 100%;
-            margin: 0;
-            padding: 0;
+        :root {
+            --ground: #141B2D;
+            --ground-deep: #0E1422;
+            --ground-raised: #1A2237;
+            --linen: #EAE3D5;
+            --linen-dim: #938C7D;
+            --linen-faint: #6B6558;
+            --madder: #C0463B;
+            --weld: #D2A24C;
+            --warp: rgba(234,227,213,0.07);
+            --warp-lit: rgba(234,227,213,0.14);
+            --display: "Fraunces", Georgia, serif;
+            --body: "Karla", system-ui, sans-serif;
+            --mono: "JetBrains Mono", ui-monospace, monospace;
+            --measure: 68rem;
+            --gutter: clamp(1.25rem, 5vw, 4rem);
         }
 
-        .container {
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            margin: 0;
+            background: var(--ground);
+            color: var(--linen);
+            font-family: var(--body);
+            font-size: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ---- warp threads: fixed vertical rules behind everything ---- */
+        .warpfield {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background-image: repeating-linear-gradient( to right, var(--warp) 0, var(--warp) 1px, transparent 1px, transparent 5.5rem );
+            mask-image: linear-gradient(to bottom, transparent 0, #000 12rem, #000 calc(100% - 6rem), transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 12rem, #000 calc(100% - 6rem), transparent 100%);
+        }
+
+        .shell {
+            position: relative;
+            z-index: 1;
+            max-width: var(--measure);
+            margin: 0 auto;
+            padding: 0 var(--gutter);
+        }
+
+        a {
+            color: inherit;
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--weld);
+            outline-offset: 3px;
+            border-radius: 2px;
+        }
+
+        .skip {
+            position: absolute;
+            left: -9999px;
+            background: var(--weld);
+            color: var(--ground-deep);
+            padding: .6rem 1rem;
+            font-family: var(--mono);
+            font-size: .8rem;
+        }
+
+            .skip:focus {
+                left: var(--gutter);
+                top: .75rem;
+                z-index: 50;
+            }
+
+        /* ================= HEADER ================= */
+
+        .masthead {
+            padding: clamp(3.5rem,9vw,7rem) 0 0;
+        }
+
+        .eyebrow {
+            font-family: var(--mono);
+            font-size: .7rem;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            color: var(--linen-faint);
+            margin: 0 0 1.5rem;
+        }
+
+        .wordmark {
+            font-family: var(--display);
+            font-variation-settings: "SOFT" 20, "WONK" 1, "opsz" 120;
+            font-weight: 700;
+            font-size: clamp(2.9rem, 10vw, 6rem);
+            line-height: .94;
+            letter-spacing: -.025em;
+            margin: 0;
+        }
+
+        .standfirst {
+            font-family: var(--display);
+            font-variation-settings: "SOFT" 30, "WONK" 0, "opsz" 24;
+            font-weight: 400;
+            font-size: clamp(1.2rem, 3.1vw, 1.7rem);
+            line-height: 1.4;
+            color: var(--linen);
+            max-width: 34ch;
+            margin: 1.6rem 0 0;
+        }
+
+            .standfirst em {
+                font-style: normal;
+                color: var(--weld);
+            }
+
+        .bio {
+            max-width: 52ch;
+            color: var(--linen-dim);
+            margin: 1.5rem 0 0;
+        }
+
+        /* ---- the woven strip: signature element ---- */
+        .weave {
+            display: block;
             width: 100%;
+            height: 56px;
+            margin: clamp(2.5rem,6vw,3.75rem) 0 0;
+            overflow: visible;
+        }
+
+            .weave .warp-thread {
+                stroke: var(--warp-lit);
+                stroke-width: 1;
+            }
+
+            .weave .weft-thread {
+                stroke-width: 2.5;
+                stroke-linecap: square;
+                stroke-dasharray: 1200;
+                stroke-dashoffset: 1200;
+                animation: draw 1.5s cubic-bezier(.22,.61,.36,1) forwards;
+            }
+
+        @keyframes draw {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        /* ---- actions ---- */
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .75rem;
+            margin: 2.25rem 0 0;
+        }
+
+        .btn {
+            font-family: var(--mono);
+            font-size: .8rem;
+            letter-spacing: .04em;
+            text-decoration: none;
+            padding: .75rem 1.35rem;
+            border: 1px solid var(--linen-faint);
+            color: var(--linen);
+            transition: background .18s ease, border-color .18s ease, color .18s ease;
+        }
+
+            .btn:hover {
+                border-color: var(--linen);
+                background: rgba(234,227,213,.06);
+            }
+
+        .btn--lead {
+            background: var(--madder);
+            border-color: var(--madder);
+            color: #FBF6EC;
+        }
+
+            .btn--lead:hover {
+                background: #D24F42;
+                border-color: #D24F42;
+            }
+
+        /* ================= SECTIONS ================= */
+
+        .band {
+            padding: clamp(4rem,10vw,7rem) 0 0;
+        }
+
+        .band__head {
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+            border-top: 1px solid var(--warp-lit);
+            padding-top: 1.1rem;
+            margin-bottom: clamp(2rem,5vw,3rem);
+        }
+
+        .band__title {
+            font-family: var(--mono);
+            font-size: .7rem;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            color: var(--linen-dim);
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .band__note {
+            font-family: var(--mono);
+            font-size: .7rem;
+            letter-spacing: .06em;
+            color: var(--linen-faint);
+            margin: 0 0 0 auto;
+        }
+
+        /* ---- project entries ---- */
+        .work {
+            display: grid;
+            gap: clamp(2.5rem,6vw,4rem);
+        }
+
+        .entry {
+            position: relative;
+        }
+
+        .entry__status {
+            font-family: var(--mono);
+            font-size: .68rem;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--weld);
+            margin: 0 0 .55rem;
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+        }
+
+            .entry__status::before {
+                content: "";
+                width: 1.75rem;
+                height: 1px;
+                background: var(--weld);
+                opacity: .55;
+            }
+
+        .entry__name {
+            font-family: var(--display);
+            font-variation-settings: "SOFT" 20, "WONK" 1, "opsz" 72;
+            font-weight: 600;
+            font-size: clamp(1.75rem, 5vw, 2.6rem);
+            line-height: 1.05;
+            letter-spacing: -.02em;
+            margin: 0;
+        }
+
+            .entry__name a {
+                text-decoration: none;
+                background-image: linear-gradient(var(--madder),var(--madder));
+                background-size: 0% 2px;
+                background-repeat: no-repeat;
+                background-position: 0 100%;
+                transition: background-size .3s cubic-bezier(.22,.61,.36,1);
+            }
+
+                .entry__name a:hover {
+                    background-size: 100% 2px;
+                }
+
+        .entry__body {
+            max-width: 56ch;
+            color: var(--linen-dim);
+            margin: .9rem 0 0;
+        }
+
+            .entry__body strong {
+                color: var(--linen);
+                font-weight: 500;
+            }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .4rem;
+            list-style: none;
+            padding: 0;
+            margin: 1.1rem 0 0;
+        }
+
+            .tags li {
+                font-family: var(--mono);
+                font-size: .68rem;
+                letter-spacing: .03em;
+                color: var(--linen-faint);
+                border: 1px solid var(--warp-lit);
+                padding: .3rem .6rem;
+            }
+
+        /* ---- secondary index ---- */
+        .index {
+            columns: 2;
+            column-gap: 2.5rem;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        @media (max-width:34rem) {
+            .index {
+                columns: 1;
+            }
+        }
+
+        .index li {
+            break-inside: avoid;
+            border-bottom: 1px solid var(--warp);
+            padding: .55rem 0;
+        }
+
+        .index a {
+            font-family: var(--mono);
+            font-size: .82rem;
+            text-decoration: none;
+            display: flex;
+            gap: .75rem;
+            align-items: baseline;
+            transition: color .18s ease;
+        }
+
+            .index a:hover {
+                color: var(--weld);
+            }
+
+        .index .desc {
+            color: var(--linen-faint);
+            font-family: var(--body);
+            font-size: .82rem;
+            margin-left: auto;
+            text-align: right;
+        }
+
+        /* ---- contact ---- */
+        .contact {
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(13rem,1fr));
+            gap: 1.75rem;
+        }
+
+            .contact dt {
+                font-family: var(--mono);
+                font-size: .68rem;
+                letter-spacing: .18em;
+                text-transform: uppercase;
+                color: var(--linen-faint);
+                margin: 0 0 .4rem;
+            }
+
+            .contact dd {
+                margin: 0;
+            }
+
+                .contact dd a {
+                    text-decoration: none;
+                    border-bottom: 1px solid var(--warp-lit);
+                    padding-bottom: 1px;
+                    transition: border-color .18s ease, color .18s ease;
+                }
+
+                    .contact dd a:hover {
+                        color: var(--weld);
+                        border-color: var(--weld);
+                    }
+
+        /* ---- footer ---- */
+        .colophon {
+            margin-top: clamp(4rem,10vw,7rem);
+            border-top: 1px solid var(--warp-lit);
+            padding: 1.5rem 0 3.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem 2rem;
+            align-items: baseline;
+            font-family: var(--mono);
+            font-size: .72rem;
+            color: var(--linen-faint);
+        }
+
+            .colophon a {
+                text-decoration: none;
+                border-bottom: 1px solid var(--warp-lit);
+            }
+
+                .colophon a:hover {
+                    color: var(--weld);
+                    border-color: var(--weld);
+                }
+
+            .colophon .spacer {
+                margin-left: auto;
+            }
+
+        /* ---- scroll reveal ---- */
+        .rise {
+            opacity: 0;
+            transform: translateY(14px);
+            transition: opacity .6s ease, transform .6s cubic-bezier(.22,.61,.36,1);
+        }
+
+            .rise.seen {
+                opacity: 1;
+                transform: none;
+            }
+
+        @media (prefers-reduced-motion:reduce) {
+            .weave .weft-thread {
+                animation: none;
+                stroke-dashoffset: 0;
+            }
+
+            .rise {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+
+            * {
+                scroll-behavior: auto !important;
+            }
         }
     </style>
 </head>
-<body style="background-color:black;">
-    <script src="Scripts/jquery-1.11.3.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="MainMenu-dark.js"></script>
+<body>
 
-    <form id="form1">
-        <nav class="navbar navbar-fixed-top navbar-logo navbar navbar-dark" id="mainmenu"></nav>
-        <br /><br />
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-dark">
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <div>
-                                        <ul>
-                                            <li>
-                                                Rental Application Package
-                                                <ul>
-                                                    <li><a href="https://mmeents.github.io/Apply.html">Click to download</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                        <ul>
-                                            <li>
-                                                Resume of Matt Meents
-                                                <ul>
-                                                    <li><a href="javascript:pu('https://github.com/mmeents');">Github Profile</a> (this website)</li>
-                                                    <li><a href="javascript:pu('https://docs.google.com/document/d/1KzrCWNRnpBykFB8h3PYdLHyDhtUDPx7nKa3OnD1VE7c/edit?usp=sharing');">Google Docs version</a></li>
-                                                    <li><a href="javascript:pu('MattMeents.pdf');">PDF Format</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                        <ul>
-                                            <li>
-                                                Additional works of Matt Meents
-                                                <ul>
-                                                    <li><a href="javascript:pu('https://mmeents.github.io/BigCryptoChart.html');">Chart and Tunes</a></li>
-													<li><a href="javascript:pu('https://github.com/mmeents/WeaversGuild');">WeaversGuild</a> -- structured agent workflow producting EF Core Sql server databases...(so far)</li>
-													<li><a href="javascript:pu('https://github.com/mmeents/Storytime');">Storytime</a> -- structured agent workflows producing stories.</li>
-                                                    <li><a href="javascript:pu('https://github.com/mmeents/DaemonsMCP');">DaemonsMCP</a> -- Mcp tool an interface to inspect and manipulate files.</li>
-                                                    <li><a href="javascript:pu('https://github.com/mmeents/PackedTables.NET');">PackedTables.NET</a>NextGen FileTable decendent Set of Tables component.</li>
-                                                    <li><a href="javascript:pu('https://github.com/mmeents/Algos');">Algos</a> Make Mermaid.JS models, tool to make diagrams.</li>
-                                                    <li><a href="javascript:pu('https://github.com/mmeents/AppSmith');">AppSmith</a> Represent UML and code generation from tree view models</li>
-                                                    <li><a href="javascript:pu('https://github.com/mmeents/DBWorkshop');">DBWorkshop</a>C# Code generation from db objects </li>
-                                                    <li><a href="javascript:pu('https://github.com/mmeents/Prompter');">Prompter</a> Outline Promp builder tool</li>
-                                                    <li><a href="javascript:pu('https://github.com/mmeents/SlideSketch');">Slide Sketch</a> Outline of drawing items and sliders to move them</li>
-                                                    <li><a href="javascript:pu('https://github.com/mmeents/FileTable');">FileTable</a> Component uses MessagePack is a Table saves to file.</li>
-                                                    <li><a href="javascript:pu('https://github.com/mmeents/DataMattei');">Data Mattei</a> My C# Core library of extensions and data objects</li>
-                                                    <li><a href="javascript:pu('https://github.com/mmeents/Apiary');">Apiary</a> A Follow the followers solution to Github followers API.</li>
-                                                    <li><a href="javascript:pu('https://github.com/mmeents/CryptoAdvisor');">Crypto Advisor</a> exchanges are gone but the ideas live on, Poloniex and Bitrex platforms to get ya started on coding up your very own trading algos.</li>
-                                                    <li><a href="javascript:pu('https://mmeents.github.io/gravity/Space.html');">Canvas Drive Demo</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                        <ul>
-                                            <li>
-                                                Develop links
-                                                <ul>
-                                                    <li><a href="javascript:pu('https://github.com/cjbarber/ToolsOfTheTrade');">Tools of the Trade</a></li>
-                                                    <li><a href="javascript:pa('https://console.developers.google.com/');">Google Console</a></li>
-                                                    <li><a href="javascript:pq('https://material.angular.io');">Angular materials</a></li>
-                                                    <li><a href="javascript:pu('https://www.tradingview.com/widget/');">Trading View Widgets</a></li>
-                                                    <li><a href="javascript:pu('https://docs.blockfrost.io/');">Blockfrost docs</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                        <ul>
-                                            <li>
-                                                Links
-                                                <ul>
-                                                    <li><a href="javascript:pu('https://pool.pm/$mattei420');">$mattei420</a> <a href="javascript:pu('https://www.taptools.io/pro/profiler?address=stake1u84927n8d5wmun0h7c368dxm3k3kvtym62qke4scvx2lnns0kpfw9&tab=Portfolio');">on Tap Tools</a></li>
-                                                    <li><a href="javascript:pu('https://pool.pm/$dankdungeon');">$dankdungeon</a> <a href="javascript:pu('https://www.taptools.io/pro/profiler?address=stake1ux64fs7r9fwjemnmh4jmu0434cc2garj8k5mjzsn3zzsjdsyr2f9k&tab=Portfolio');">on Tap Tools</a></li>
-                                                    <li>
-                                                        Trading Sites:
-                                                        <ul>
-                                                            <li><a href="javascript:pu('https://app.minswap.org/');">Minswap</a></li>
-                                                            <li><a href="javascript:pu('https://app.dexhunter.io/trends');">DexHunter</a></li>
-                                                            <li><a href="javascript:pu('https://app.splash.trade/')">Splash trade</a></li>
-                                                            <li><a href="javascript:pu('https://app.vyfi.io/');">VYFI.IO</a></li>
-                                                            <li><a href="javascript:pu('https://www.jpg.store/');">JPG Store</a></li>
-                                                            <li><a href="javascript:pu('https://cnft.tools/');">CNFT Tools</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li>
-                                                        Staking Links:   
-                                                        <ul>
-                                                            <li><a href="javascript:pu('https://beta.bodegamarket.io/');">Bodega Perdictions</a> Stake and more</li>
-                                                            <li><a href="javascript:pu('https://bankerlabs.io/');">Banker Labs</a> BANK stake</li>
-                                                            <li><a href="javascript:pu('https://www.chainsofwar.io/');"> Chains of War</a></li>
-                                                            <li><a href="javascript:pu('https://store.epicgames.com/en-US/p/chains-of-war-bd5b0b');"> Chains of War on Epic Games</a></li>                                                            
-                                                            <li><a href="javascript:pu('https://pangolin.ada-anvil.io/en/');">Pangolin Vault</a></li>
-                                                            <li><a href="javascript:pu('https://nftportal.art/risk/rewards');">Risk Rewards</a> Risk stake</li>
-                                                            <li><a href="javascript:pu('https://map.smart-places.io/explorer');">Smart Places Map</a></li>
-                                                            <li><a href="javascript:pu('https://platypuscyberpunks.com/terminal');">Platypus Cyberpunks Terminal</a></li>
-                                                            <li><a href="javascript:pu('https://cardanocryptocasino.com/landingpage');">Cardano Casino Staking</a></li>
-                                                            <li><a href="javascript:pu('https://beta-app.cardanocasino.vip/');">Cardano Casino Site</a></li>
-                                                            <li><a href="javascript:pu('https://bossplanet.games/dashboard/');">Boss Planet Games</a></li>
-                                                            <li><a href="javascript:pu('https://shankpad.io/');">Shankpad</a></li>
-                                                            <li><a href="javascript:pu('https://spacerace.thenebula.xyz/')">The Nebula Slot Machine</a></li>
-                                                            <li><a href="javascript:pu('https://cardania.com/')">Cardania World</a></li>
-                                                            <li><a href="javascript:pu('https://staking.yepple.io/evolutions')">Evolutions Statking</a></li>
-                                                            <li><a href="javascript:pu('https://aleaxes.com/');">Ale and Axes, Tavern Squad</a></li>
-                                                            <li>
-                                                                <a href="javascript:pu('https://labs.mutant-nft.com/staking');">Mutant Labs Staking</a>
-                                                                <ul>
-                                                                    <li>Ape Nation</li>
-                                                                    <li>Chains of War</li>
-                                                                    <li>Turtle</li>
-                                                                    <li>Unbothered Wolves</li>
-                                                                    <li>What the Duck</li>
-                                                                </ul>
-                                                            </li>
-                                                            <li><a href="javascript:pu('https://goldrush.derpbirds.io/');">Derpbirds Gold Rush</a></li>
-                                                            <li><a href="https://chibidangoheroes.com/">Chibidango Heros</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="javascript:pu('https://app.tosidrop.io/cardano/claim');">Tosi Drop</a></li>
-                                                    <li><a href="javascript:pu('https://dripdropz.io/');">Drip Dropz</a></li>
-                                                    <li><a href="javascript:pu('https://pooltool.io/pools');">Pool Tools</a></li>
-                                                    <li><a href="javascript:pu('https://www.cardastation.com/me');">Carda Station Moon</a></li>
-                                                    <li><a href="javascript:pu('https://www.campusdoor.com/nelnetbank/sparrow/parent/undergraduate/Login.aspx');">Nelnet Bank login link</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4" style="padding:4px;">
-                                    <!-- TradingView Widget BEGIN -->
-                                    <div class="tradingview-widget-container">
-                                        <div class="tradingview-widget-container__widget"></div>
-                                        <div class="tradingview-widget-copyright">
-                                            <a href="https://www.tradingview.com" rel="noopener" target="_blank"><span class="blue-text">A Tract</span></a> by TradingView
-                                        </div>
-                                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>{
-                        "colorTheme": "dark",
-                        "dateRange": "1D",
-                        "showChart": false,
-                        "locale": "en",
-                        "largeChartUrl": "https://mmeents.github.io/BigCryptoChart.html",
-                        "isTransparent": false,
-                        "showSymbolLogo": true,
-                        "width": "100%",
-                        "height": "980",
-                        "tabs": [{
-                          "title": "USD",
-                          "symbols": [{
-                            "s": "COINBASE:BTCUSD",
-                            "d": "COINBASE"
-                          },{
-                            "s": "COINBASE:ADAUSD",
-                            "d": "COINBASE"
-                          },{
-                            "s": "AMEX:ARKB",
-                            "d": "ARKB"
-                          },{
-                            "s":"AMEX:CHAT",
-                            "d":"CHAT"
-                          },{
-                            "s": "NASDAQ:AIQ",
-                            "d": "AIQ"
-                          },{
-                            "s": "NASDAQ:TSLA",
-                            "d": "Tesla"
-                          },{
-                            "s": "NASDAQ:MSFT",
-                            "d": "Microsoft"
-                          },{
-                            "s": "NYSE:DELL",
-                            "d": "Dell"
-                          },{
-                            "s": "NASDAQ:MSTR",
-                            "d": "MicroStrategy"
-                          },{
-                            "s": "NASDAQ:NVDA",
-                            "d": "NVDA"
-                          },{
-                            "s": "NASDAQ:QUBT",
-                            "d": "Quantum Computing"
-                          },{
-                            "s": "NASDAQ:AMD",
-                            "d": "Advanced Micro Devices"
-                          },{
-                            "s": "NASDAQ:INTC",
-                            "d": "Intel"
-                          },{"s":"AMEX:UMAC", "d":"UMAC"
-                                     }]
-                        }]
-                      }</script>
-                                    </div>
-                                    <!-- TradingView Widget END -->
-                                </div>
-                                <div class="col-sm-4">
+    <div class="warpfield" aria-hidden="true"></div>
 
-                                    <script src="https://widgets.coingecko.com/gecko-coin-list-widget.js"></script>
-                                    <gecko-coin-list-widget locale="en" dark-mode="true" outlined="true" coin-ids="bitcoin,cardano,bodega,flow,minswap,bankercoin,cornucopias,iagon,tokeo,fluidtokens,dexhunter,hosky,nunet,snek,ada-peepos" initial-currency="usd"></gecko-coin-list-widget>
+    <a class="skip" href="#work">Skip to work</a>
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
+    <div class="shell">
 
-    <br /><br />
-    <div class="container-fluid">
-        <div class="panel center-block panel-dark">
-            <p class="text-center">
-                MattMeents@gmail.com<br />
-                2022 <span class="glyphicon glyphicon-copyright-mark"></span> Matthew Meents
+        <header class="masthead">
+            <p class="eyebrow">Millburn&nbsp;NJ&nbsp; · Software engineering since 1996</p>
+
+            <h1 class="wordmark">Matthew&nbsp;Meents</h1>
+
+            <p class="standfirst">
+                I build systems that keep working after everyone goes home &mdash;
+                lately, <em>the ones that do the work themselves</em>.
             </p>
-        </div>
+
+            <p class="bio">
+                Thirty years shipping production software in C#/.NET, Azure and SQL Server.
+                The current project is agent orchestration infrastructure: a graph database
+                where autonomous agents claim work off a queue, do it, and hand it to another
+                agent for review.
+            </p>
+
+            <!-- signature: a strip of cloth weaving itself -->
+            <svg class="weave" viewBox="0 0 1200 56" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                <g>
+                    <!-- warp (vertical) -->
+                    <line class="warp-thread" x1="0" y1="0" x2="0" y2="56" />
+                    <line class="warp-thread" x1="88" y1="0" x2="88" y2="56" />
+                    <line class="warp-thread" x1="176" y1="0" x2="176" y2="56" />
+                    <line class="warp-thread" x1="264" y1="0" x2="264" y2="56" />
+                    <line class="warp-thread" x1="352" y1="0" x2="352" y2="56" />
+                    <line class="warp-thread" x1="440" y1="0" x2="440" y2="56" />
+                    <line class="warp-thread" x1="528" y1="0" x2="528" y2="56" />
+                    <line class="warp-thread" x1="616" y1="0" x2="616" y2="56" />
+                    <line class="warp-thread" x1="704" y1="0" x2="704" y2="56" />
+                    <line class="warp-thread" x1="792" y1="0" x2="792" y2="56" />
+                    <line class="warp-thread" x1="880" y1="0" x2="880" y2="56" />
+                    <line class="warp-thread" x1="968" y1="0" x2="968" y2="56" />
+                    <line class="warp-thread" x1="1056" y1="0" x2="1056" y2="56" />
+                    <line class="warp-thread" x1="1144" y1="0" x2="1144" y2="56" />
+                    <line class="warp-thread" x1="1200" y1="0" x2="1200" y2="56" />
+                    <!-- weft (horizontal, drawn on load) -->
+                    <line class="weft-thread" style="stroke:#938C7D; animation-delay:.05s" x1="0" y1="8" x2="1200" y2="8" />
+                    <line class="weft-thread" style="stroke:#C0463B; animation-delay:.18s" x1="0" y1="20" x2="1200" y2="20" />
+                    <line class="weft-thread" style="stroke:#938C7D; animation-delay:.31s" x1="0" y1="32" x2="1200" y2="32" />
+                    <line class="weft-thread" style="stroke:#D2A24C; animation-delay:.44s" x1="0" y1="44" x2="1200" y2="44" />
+                </g>
+            </svg>
+
+            <nav class="actions" aria-label="Primary">
+                <a class="btn btn--lead" href="MattMeents.pdf">Resume, PDF</a>
+                <a class="btn" href="https://docs.google.com/document/d/1KzrCWNRnpBykFB8h3PYdLHyDhtUDPx7nKa3OnD1VE7c/edit?usp=sharing" target="_blank" rel="noopener">Resume, Google Doc</a>
+                <a class="btn" href="https://github.com/mmeents" target="_blank" rel="noopener">GitHub</a>
+            </nav>
+        </header>
+
+        <main>
+
+            <!-- ============ WORK ============ -->
+            <section class="band" id="work">
+                <div class="band__head">
+                    <h2 class="band__title">Selected work</h2>
+                    <p class="band__note">Source on GitHub</p>
+                </div>
+
+                <div class="work">
+
+                    <article class="entry rise">
+                        <p class="entry__status">In development</p>
+                        <h3 class="entry__name">
+                            <a href="https://github.com/mmeents/WeaversGuild" target="_blank" rel="noopener">WeaversGuild</a>
+                        </h3>
+                        <p class="entry__body">
+                            An Agent First platform for <strong>autonomous agent-driven development</strong>. Work is modelled
+                            as a virtual organization: desks, roles and todos held in a graph database. The
+                            scheduler opens a desk, hands its next todo to the agent manning it, governs retries
+                            and depth, then routes the outcome onward &mdash; <strong>
+                                every desk points at three
+                                others, for pass, pushback and error
+                            </strong>, so no result is ever left without
+                            somewhere to go. Agents reach the graph through a custom MCP server, and the whole
+                            loop runs against local or hosted models without changing the pipeline.
+
+                        </p>
+                        <ul class="tags">
+                            <li>C# / .NET</li>
+                            <li>MediatR</li>
+                            <li>EF Core</li>
+                            <li>SQL Server</li>
+                            <li>MCP</li>
+                            <li>LM Studio</li>
+                            <li>Claude Code</li>
+                        </ul>
+                        <ul class="tags">
+                            <li>Markup.JS</li>
+                            <li>Highligh.JS</li>
+                            <li>LibGit2Sharp</li>
+                            <li>SQL Server</li>
+                            <li>Scriban</li>
+                            <li>RSS</li>                            
+                            <li>Claude Coworker</li>
+                        </ul>
+                    </article>
+
+                    <article class="entry rise">
+                        <p class="entry__status">Running end to end</p>
+                        <h3 class="entry__name">
+                            <a href="https://github.com/mmeents/Storytime" target="_blank" rel="noopener">Storytime</a>
+                        </h3>
+                        <p class="entry__body">
+                            A multi-agent creative pipeline. Separate writer, editor, continuity and observer
+                            agents pass a manuscript between them until it holds together, then publish the
+                            finished piece. <strong>Proof that the orchestration model produces real output</strong>,
+                            not just plausible-looking intermediate steps.
+                        </p>
+                        <ul class="tags">
+                            <li>C# / .NET</li>
+                            <li>Multi-agent</li>
+                            <li>Pipeline orchestration</li>
+                            <li>LM Studio</li>
+                            <li>Claude Code</li>
+                            <li>Medium</li>                            
+                        </ul>
+                    </article>
+
+                    <article class="entry rise">
+                        <p class="entry__status">In daily use</p>
+                        <h3 class="entry__name">
+                            <a href="https://github.com/mmeents/DaemonsMCP" target="_blank" rel="noopener">DaemonsMCP</a>
+                        </h3>
+                        <p class="entry__body">
+                            An MCP server that gives a coding agent structured access to a codebase &mdash;
+                            a Roslyn-built index of namespaces, classes and methods alongside file read and
+                            write tools, so the agent can navigate by symbol instead of grepping.
+                            <strong>Built it to use it</strong>; it has been my primary tooling on every project since.
+                        </p>
+                        <ul class="tags">
+                            <li>C# / .NET</li>
+                            <li>Roslyn</li>
+                            <li>MCP</li>
+                            <li>Code indexing</li>
+                            <li>LM Studio</li>
+                            <li>Claude</li>                            
+                            <li>Copilot</li>
+                        </ul>
+                    </article>
+
+                    <article class="entry rise">
+                        <p class="entry__status">Stable</p>
+                        <h3 class="entry__name">
+                            <a href="https://github.com/mmeents/FileTable" target="_blank" rel="noopener">FileTables</a>
+                        </h3>
+                        <p class="entry__body">
+                            A file-backed tables serialised with MessagePack &mdash; schema,
+                            rows and change tracking in a single portable file. <strong>
+                           The storage layer underneath the Prompter, Algos and SlideSketch projects, and the basis for a NuGet package
+                           </strong>, written because nothing off the shelf fit the shape.
+                        </p>
+                        <ul class="tags">
+                            <li>C# / .NET</li>
+                            <li>MessagePack</li>
+                            <li>NuGet package</li>
+                        </ul>
+                    </article>
+
+                </div>
+            </section>
+
+            <!-- ============ INDEX ============ -->
+            <section class="band">
+                <div class="band__head">
+                    <h2 class="band__title">Also on the shelf</h2>
+                </div>
+
+                <ul class="index rise">
+                    <li><a href="https://github.com/mmeents/Algos" target="_blank" rel="noopener">Algos <span class="desc">Mermaid.js diagram builder</span></a></li>
+                    <li><a href="https://github.com/mmeents/AppSmith" target="_blank" rel="noopener">AppSmith <span class="desc">UML &amp; code generation</span></a></li>
+                    <li><a href="https://github.com/mmeents/DBWorkshop" target="_blank" rel="noopener">DBWorkshop <span class="desc">C# from database objects</span></a></li>
+                    <li><a href="https://github.com/mmeents/Prompter" target="_blank" rel="noopener">Prompter <span class="desc">Outline-based prompt builder</span></a></li>
+                    <li><a href="https://github.com/mmeents/SlideSketch" target="_blank" rel="noopener">SlideSketch <span class="desc">Hierarchical drawing tool</span></a></li>
+                    <li><a href="https://github.com/mmeents/PackedTables.NET" target="_blank" rel="noopener">PackedTables.NET <span class="desc">MessagePack table component holds a set of tables.</span></a></li>
+                    <li><a href="https://github.com/mmeents/DataMattei" target="_blank" rel="noopener">DataMattei <span class="desc">C# extensions library</span></a></li>
+                    <li><a href="https://github.com/mmeents/Apiary" target="_blank" rel="noopener">Apiary <span class="desc">GitHub followers API crawler</span></a></li>
+                    <li><a href="https://github.com/mmeents/CryptoAdvisor" target="_blank" rel="noopener">CryptoAdvisor <span class="desc">Trading algorithm scaffolding</span></a></li>
+                    <li><a href="BigCryptoChart.html">Chart and Tunes <span class="desc">Market dashboard</span></a></li>
+                    <li><a href="gravity/Space.html">Canvas Drive <span class="desc">Gravity simulation</span></a></li>
+                </ul>
+            </section>
+
+            <!-- ============ CONTACT ============ -->
+            <section class="band">
+                <div class="band__head">
+                    <h2 class="band__title">Get in touch</h2>
+                    <p class="band__note">Open to senior .NET &amp; AI infrastructure roles</p>
+                </div>
+
+                <dl class="contact rise">
+                    <div>
+                        <dt>Email</dt>
+                        <dd><a href="mailto:MattMeents@gmail.com">MattMeents@gmail.com</a></dd>
+                    </div>
+                    <div>
+                        <dt>GitHub</dt>
+                        <dd><a href="https://github.com/mmeents" target="_blank" rel="noopener">github.com/mmeents</a></dd>
+                    </div>
+                    <div>
+                        <dt>LinkedIn</dt>
+                        <dd><a href="https://www.linkedin.com/in/mmeents/" target="_blank" rel="noopener">linkedin.com/in/&hellip;</a></dd>
+                    </div>
+                    <div>
+                        <dt>Writing</dt>
+                        <dd><a href="https://medium.com/@MattMeents" target="_blank" rel="noopener">medium.com/@MattMeents</a></dd>
+                    </div>
+                </dl>
+            </section>
+
+        </main>
+
+        <footer class="colophon">
+            <span>&copy; 2026 Matthew Meents</span>
+            <a href="Links.html">Link vault</a>
+            <span class="spacer">Built by hand. No framework.</span>
+        </footer>
+
     </div>
 
-    <script type="text/javascript">
-        function doResizeWidget() {
-            $('#twitter-widget-0').height(1669);
-            var aHeight = $('#twitter-widget-0').height();
-            if (aHeight < 1668) {
-                setTimeout(doResizeWidget, 2000);
+    <script>
+        (function () {
+            var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            var targets = document.querySelectorAll('.rise');
+            if (reduce || !('IntersectionObserver' in window)) {
+                targets.forEach(function (el) { el.classList.add('seen'); });
+                return;
             }
-        }
-        $(window).load(function () {
-            setTimeout(doResizeWidget, 1500);
-            $('#mainmenu').html(PrintMainMenu('default.html', 'Mattei\'s Blog'));
-        });
-        var ppd = new Date();
-        function pu(s) {
-            ppd = new Date();
-            ns = 'MM' + ppd.getTime();
-            try {
-                var x = window.open(s, ns, 'location=yes,menubar=yes,resizable=yes,scrollbars=yes,toolbar=yes,status=yes');
-            } catch (e) {}
-        }
-        function doBack() {
-            window.history.back();
-        }
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) {
+                    if (e.isIntersecting) { e.target.classList.add('seen'); io.unobserve(e.target); }
+                });
+            }, { rootMargin: '0px 0px -12% 0px' });
+            targets.forEach(function (el) { io.observe(el); });
+        })();
     </script>
+
 </body>
 </html>
