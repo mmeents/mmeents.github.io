@@ -8,7 +8,7 @@ function createNavbarHeader(sPageName, sTitle) {
         <span class="icon-bar"></span>
       </button>
       <ul id="navbar" class="nav navbar-nav">
-        <li><a href="${sPageName === 'default.html' ? 'https://github.com/mmeents' : 'default.html'}">${sTitle}</a></li>
+        <li><a href="https://mmeents.github.io/default.html">${sTitle}</a></li>
       </ul>
     </div>
   `;
