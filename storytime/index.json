@@ -1,0 +1,29 @@
+{
+  "generated": "2026-08-19T18:31:24.074281Z",
+  "stories": [
+    {
+      "slug": "Threadspace/TheFold",
+      "name": "The Fold",
+      "realm": "Threadspace",
+      "published": "2026-08-14",
+      "blurb": "The counting house at Selvage Reach kept two ledgers, and Oren had been trusted with the wrong one for eleven years.",
+      "words": 279,
+      "scenes": 0,
+      "machines": [
+        "floorcore",
+        "slam0",
+        "spark"
+      ]
+    },
+    {
+      "slug": "Threadspace/TheSecondBolt",
+      "name": "The Second Bolt",
+      "realm": "Threadspace",
+      "published": "2026-08-02",
+      "blurb": "Nobody in the guildhall could say when the second bolt had been added to the standard, only that it had, and that arguing about it was considered a young person's hobby.",
+      "words": 62,
+      "scenes": 0,
+      "machines": []
+    }
+  ]
+}

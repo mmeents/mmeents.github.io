@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Loom</title>
+<link rel="stylesheet" href="loom.css">
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="progress-bar">
+    <a class="mono" href="index.html">&larr; Shelf</a>
+    <span id="progress"></span>
+    <button class="theme-toggle" id="theme" type="button"></button>
+  </div>
+
+  <main id="main">
+    <p class="note mono">Loading…</p>
+  </main>
+
+</div>
+
+<script src="loom.js"></script>
+<script>
+mountThemeToggle(document.getElementById("theme"));
+
+var PROGRESS_CELLS = 24;
+var main = document.getElementById("main");
+var progressHost = document.getElementById("progress");
+
+var slug = new URLSearchParams(location.search).get("s") || "";
+if (!/^[\w.\-]+(\/[\w.\-]+)*$/.test(slug)) slug = "";
+
+if (!slug) {
+  main.innerHTML = '<div class="note"><strong>No story named.</strong><br>' +
+    'Use <code>story.html?s=Realm/StoryName</code>, or head back to the ' +
+    '<a href="index.html">shelf</a>.</div>';
+} else {
+  loadJSON("stories/" + slug + ".json").then(renderStory).catch(function (err) {
+    main.innerHTML = '<div class="note"><strong>Could not open that story.</strong><br>' +
+      'Looked for <code>stories/' + escapeHtml(slug) + '.json</code>.' +
+      '<br><br><span class="mono">' + escapeHtml(err.message) + '</span></div>';
+  });
+}
+
+function renderStory(s) {
+  document.title = s.name + " · " + (s.realmName || "Threadspace");
+
+  var bodyHtml, words = 0;  
+  words = wordCount(s.content);
+  bodyHtml = renderProse(s.content);
+
+
+  var meta = [];
+  if (s.realmName) meta.push(s.realmName);
+  if (s.published) meta.push(formatDate(s.published));
+  if (words) meta.push(readMinutes(words) + " min");
+
+  var head = document.createElement("header");
+  head.className = "story-head";
+  head.innerHTML =
+    '<p class="mono">' + escapeHtml(meta.join(" · ")) + '</p>' +
+    '<h1></h1>';
+  head.querySelector("h1").textContent = s.name;
+  head.appendChild(draftEl(s.slug || slug, 16, "draft--lg"));
+  main.innerHTML = "";
+  main.appendChild(head);
+
+  var article = document.createElement("article");
+  article.className = "prose";
+  article.innerHTML = bodyHtml;
+  main.appendChild(article);
+
+  if (s.realmNote) {
+    var add = document.createElement("section");
+    add.className = "addendum";
+    add.innerHTML =
+      '<p class="mono">Addendum · ' + escapeHtml(s.realmName || "Realm") + '</p>' +
+      '<div class="prose">' + renderProse(s.realmNote) + '</div>';
+    main.appendChild(add);
+  }
+
+  main.appendChild(colophon(s, words));
+
+  progressHost.appendChild(draftEl(s.slug || slug, PROGRESS_CELLS));
+  trackProgress();
+}
+
+function colophon(s, words) {
+  var sec = document.createElement("section");
+  sec.className = "colophon";
+  sec.innerHTML = "<h2>Colophon</h2>";
+
+  var credits = s.credits;
+
+  if (Array.isArray(credits) && credits.length) {
+    var dl = document.createElement("dl");
+    dl.className = "credit-grid";
+    credits.forEach(function (c) {
+      var dt = document.createElement("dt");
+      dt.textContent = c.role || "Contributor";
+      var dd = document.createElement("dd");
+      dd.textContent = c.model || c.name || "";
+      if (c.host) {
+        var host = document.createElement("span");
+        host.className = "host";
+        host.textContent = " @ " + c.host;
+        dd.appendChild(host);
+      }
+      dl.appendChild(dt);
+      dl.appendChild(dd);
+    });
+    sec.appendChild(dl);
+  } else if (typeof credits === "string" && credits.trim()) {
+    var pre = document.createElement("p");
+    pre.className = "credit-raw";
+    pre.textContent = normalizeText(credits);
+    sec.appendChild(pre);
+  }
+
+  var foot = document.createElement("dl");
+  foot.className = "credit-grid";
+  foot.style.marginTop = credits ? "1.25rem" : "0";
+  if (s.addedBy) {
+    foot.innerHTML += "<dt>Added by</dt><dd>" + escapeHtml(s.addedBy) + "</dd>";
+  }
+  if (words) {
+    foot.innerHTML += "<dt>Length</dt><dd>" + words.toLocaleString() + " words</dd>";
+  }
+  if (foot.children.length) sec.appendChild(foot);
+
+  return sec;
+}
+
+/* The draft band in the header doubles as the reading progress:
+   cells light up in madder as the story is read through. */
+function trackProgress() {
+  var cells = progressHost.querySelectorAll("i");
+  if (!cells.length) return;
+
+  var tick = function () {
+    var h = document.documentElement;
+    var span = h.scrollHeight - h.clientHeight;
+    var pct = span > 0 ? h.scrollTop / span : 1;
+    var lit = Math.round(pct * cells.length);
+    for (var i = 0; i < cells.length; i++) {
+      cells[i].classList.toggle("lit", i < lit);
+    }
+  };
+
+  var queued = false;
+  addEventListener("scroll", function () {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(function () { queued = false; tick(); });
+  }, { passive: true });
+
+  tick();
+}
+</script>
+</body>
+</html>

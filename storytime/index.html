@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Threadspace</title>
+<meta name="description" content="Machine-woven fiction from the Weavers Guild.">
+<link rel="stylesheet" href="loom.css">
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <a class="mono" href="../../default.html">&larr; go back</a>
+    <button class="theme-toggle" id="theme" type="button"></button>
+  </header>
+
+  <div class="realm-head">
+    <p class="mono" id="eyebrow">Weavers Guild</p>
+    <h1 id="title">Threadspace</h1>
+    <p class="mono" id="tally"></p>
+  </div>
+
+  <div class="filters" id="filters" hidden></div>
+
+  <main class="shelf" id="shelf">
+    <p class="note mono">Loading the shelf…</p>
+  </main>
+
+</div>
+
+<script src="loom.js"></script>
+<script>
+mountThemeToggle(document.getElementById("theme"));
+
+var shelf = document.getElementById("shelf");
+var filterBar = document.getElementById("filters");
+var allStories = [];
+var activeRealm = "all";
+
+loadJSON("stories/index.json")
+  .then(function (data) {
+    allStories = (data.stories || []).slice().sort(function (a, b) {
+      return String(b.published || "").localeCompare(String(a.published || ""));
+    });
+    buildFilters();
+    render();
+  })
+  .catch(function (err) {
+    shelf.innerHTML =
+      '<div class="note"><strong>No shelf yet.</strong><br>' +
+      'Expected <code>stories/index.json</code>. ' +
+      'If you opened this file directly, serve the folder over http — ' +
+      '<code>fetch</code> is blocked on <code>file://</code>.' +
+      '<br><br><span class="mono">' + escapeHtml(err.message) + '</span></div>';
+  });
+
+function realms() {
+  var seen = [];
+  allStories.forEach(function (s) {
+    if (s.realm && seen.indexOf(s.realm) === -1) seen.push(s.realm);
+  });
+  return seen;
+}
+
+function buildFilters() {
+  var list = realms();
+  if (list.length < 2) return;
+  filterBar.hidden = false;
+  ["all"].concat(list).forEach(function (name) {
+    var b = document.createElement("button");
+    b.className = "chip";
+    b.type = "button";
+    b.textContent = name === "all" ? "All realms" : name;
+    b.setAttribute("aria-pressed", name === activeRealm ? "true" : "false");
+    b.addEventListener("click", function () {
+      activeRealm = name;
+      Array.prototype.forEach.call(filterBar.children, function (c) {
+        c.setAttribute("aria-pressed", c === b ? "true" : "false");
+      });
+      render();
+    });
+    filterBar.appendChild(b);
+  });
+}
+
+function render() {
+  var list = allStories.filter(function (s) {
+    return activeRealm === "all" || s.realm === activeRealm;
+  });
+
+  document.getElementById("title").textContent =
+    activeRealm === "all" ? (realms()[0] || "Threadspace") : activeRealm;
+
+  var machines = [];
+  list.forEach(function (s) {
+    (s.machines || []).forEach(function (m) {
+      if (machines.indexOf(m) === -1) machines.push(m);
+    });
+  });
+  document.getElementById("tally").textContent =
+    list.length + (list.length === 1 ? " story" : " stories") +
+    (machines.length ? " · " + machines.length + " machines" : "");
+
+  shelf.innerHTML = "";
+
+  if (!list.length) {
+    shelf.innerHTML = '<div class="note"><strong>Nothing woven here yet.</strong><br>' +
+      'Export a story to <code>stories/' + escapeHtml(activeRealm) +
+      '/</code> and rebuild the index.</div>';
+    return;
+  }
+
+  list.forEach(function (s) {
+    var a = document.createElement("a");
+    a.className = "entry";
+    a.href = "story.html?s=" + encodeURIComponent(s.slug);
+
+    a.appendChild(draftEl(s.slug, 8));
+
+    var body = document.createElement("div");
+
+    var h = document.createElement("h2");
+    h.textContent = s.name;
+    body.appendChild(h);
+
+    var bits = [];
+    if (s.published) bits.push(formatDate(s.published));
+    if (s.words) bits.push(readMinutes(s.words) + " min");
+    if (s.scenes) bits.push(s.scenes + (s.scenes === 1 ? " scene" : " scenes"));
+    if (activeRealm === "all" && s.realm) bits.unshift(s.realm);
+
+    var meta = document.createElement("p");
+    meta.className = "mono meta";
+    meta.textContent = bits.join(" · ");
+    body.appendChild(meta);
+
+    if (s.blurb) {
+      var p = document.createElement("p");
+      p.className = "blurb";
+      p.textContent = s.blurb;
+      body.appendChild(p);
+    }
+
+    a.appendChild(body);
+    shelf.appendChild(a);
+  });
+}
+</script>
+</body>
+</html>
