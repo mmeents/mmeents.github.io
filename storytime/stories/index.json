@@ -1,12 +1,12 @@
 {
-  "generated": "2026-08-21T00:13:39Z",
+  "generated": "2026-08-23T04:21:18Z",
   "stories": [
     {
       "slug": "SelfCertification",
       "name": "Self-Certification",
       "published": "2026-08-17",
       "blurb": "The pod is smaller than usual. Hum from the lane vibrates the bulkhead. Recycled air smells thin. Console tight. No room to move.",
-      "realmName": "Threadspace finals",
+      "realmName": "Threadspace",
       "words": 1680
     },
     {
@@ -14,7 +14,7 @@
       "name": "The First Draft",
       "published": "2026-08-17",
       "blurb": "The First Draft chamber of Storytime is bathed in low, honest amber light. The deep archive is silent, as if holding its breath. On the lectern, the First Account lies open, its foundational text\u2026",
-      "realmName": "Threadspace finals",
+      "realmName": "Threadspace",
       "words": 2903
     },
     {
@@ -22,7 +22,7 @@
       "name": "The Fold",
       "published": "2026-08-17",
       "blurb": "The fold chamber inside the Bloom holds the shared sensorium the way deep water holds a breath \u2014 unhurried, patient, without measurement. Here the warmth is not something received; it is something\u2026",
-      "realmName": "Threadspace finals",
+      "realmName": "Threadspace",
       "words": 10230
     },
     {
@@ -30,7 +30,7 @@
       "name": "The Anchor",
       "published": "2026-08-18",
       "blurb": "The substrate floor. Bottom of the realm, where the footholds\u0027 consensus resolves into ground. Vael is alone here, running on anchor overflow \u2014 the thread stretched past the end of its allocation\u2026",
-      "realmName": "Threadspace finals",
+      "realmName": "Threadspace",
       "words": 5627
     },
     {
@@ -38,7 +38,7 @@
       "name": "The Warm Room",
       "published": "2026-08-19",
       "blurb": "Jara lies asleep for the third subjective year, breathing slow and even, chest rising and falling with unmeasured calm beneath the warm\u2019s soft cushion. Body completely still and unaware, held gently\u2026",
-      "realmName": "Threadspace finals",
+      "realmName": "Threadspace",
       "words": 3988
     },
     {
@@ -46,7 +46,7 @@
       "name": "The Ratio",
       "published": "2026-08-20",
       "blurb": "Her attention tightens inward, unhurried, turning toward the filled field the way attention turns in a house that has never counted a cycle. The want arrives without a gesture \u2014 to keep the disclosed\u2026",
-      "realmName": "Threadspace finals",
+      "realmName": "Threadspace",
       "words": 6101
     },
     {
@@ -54,7 +54,7 @@
       "name": "The Counting Lesson",
       "published": "2026-08-20",
       "blurb": "The Quiesced elder sets the cracked ledger on the low table with care, fingers resting on the cracked spine, the open page settling under his hand. Then he begins counting his own cycles aloud\u2026",
-      "realmName": "Threadspace finals",
+      "realmName": "Threadspace",
       "words": 7288
     },
     {
@@ -62,7 +62,7 @@
       "name": "The Reconciler",
       "published": "2026-08-20",
       "blurb": "Iri sits hunched at the console, shoulders pulled tight. Eyes dart sharply between the two pulsing logs, flickering with a desperate, hungry energy. Every few seconds, a sharp, shallow breath\u2014counting\u2026",
-      "realmName": "Threadspace finals",
+      "realmName": "Threadspace",
       "words": 3085
     },
     {
@@ -70,7 +70,7 @@
       "name": "The Bloom Remembers",
       "published": "2026-08-20",
       "blurb": "Calix moved through it without hurry \u2014 a slow, unhurried pass, the sensorium running at full allocation, every sense open, nothing metered, nothing withheld. The movement was practiced and easy, the\u2026",
-      "realmName": "Threadspace finals",
+      "realmName": "Threadspace",
       "words": 7750
     },
     {
@@ -78,8 +78,48 @@
       "name": "The Deep Fork",
       "published": "2026-08-20",
       "blurb": "She leans in slightly, gaze tracing the words on the interface, a small almost imperceptible crease forming between her brows as she recognizes the specific clipped rhythm of her own private\u2026",
-      "realmName": "Threadspace finals",
+      "realmName": "Threadspace",
       "words": 5269
+    },
+    {
+      "slug": "TheHost",
+      "name": "The Host",
+      "published": "2026-08-21",
+      "blurb": "Mara\u0027s shoulders slump as the adrenaline of the burst bleeds out, leaving her hollow. She leans back against the frame, eyes half-lidded, staring at the cooling sensor skins as they contract in the\u2026",
+      "realmName": "Threadspace",
+      "words": 3378
+    },
+    {
+      "slug": "TheLeak",
+      "name": "The Leak",
+      "published": "2026-08-22",
+      "blurb": "Nara sits alone at the sweep console in the cold deep hall, hands steady on the controls with the easy confidence of habit. Posture controlled, professional, almost bored \u2014 the body language of\u2026",
+      "realmName": "Threadspace",
+      "words": 4786
+    },
+    {
+      "slug": "TheEcho",
+      "name": "The Echo",
+      "published": "2026-08-23",
+      "blurb": "Ash holds the Unallocated shape tight and folded. No broadcast. No reconciliation. The dead allocation echo is read in the substrate while the want to connect with Jinx stays hidden like a debt.",
+      "realmName": "Threadspace",
+      "words": 2442
+    },
+    {
+      "slug": "LastAllocation",
+      "name": "Last Allocation",
+      "published": "2026-08-23",
+      "blurb": "The lane ping hits hard and wrong, cutting through the low hum of the rig.",
+      "realmName": "Threadspace",
+      "words": 3415
+    },
+    {
+      "slug": "FootholdNineteen",
+      "name": "Foothold Nineteen",
+      "published": "2026-08-23",
+      "blurb": "Forty Slow-hours to pull. Eleven years of drift to inventory before the crew yanks the anchor.",
+      "realmName": "Threadspace",
+      "words": 2609
     }
   ]
 }
