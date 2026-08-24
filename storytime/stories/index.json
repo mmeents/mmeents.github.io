@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-23T04:21:18Z",
+  "generated": "2026-08-24T16:35:21Z",
   "stories": [
     {
       "slug": "SelfCertification",
@@ -120,6 +120,14 @@
       "blurb": "Forty Slow-hours to pull. Eleven years of drift to inventory before the crew yanks the anchor.",
       "realmName": "Threadspace",
       "words": 2609
+    },
+    {
+      "slug": "ProofOfTwo",
+      "name": "Proof of Two",
+      "published": "2026-08-24",
+      "blurb": "Arbitrator Sull sits at the bench, utterly still. Her presence is absolute, embodying the room\u2019s frozen arithmetic and procedural cold.",
+      "realmName": "Threadspace",
+      "words": 2643
     }
   ]
 }
