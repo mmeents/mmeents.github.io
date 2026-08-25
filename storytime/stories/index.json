@@ -128,6 +128,30 @@
       "blurb": "Arbitrator Sull sits at the bench, utterly still. Her presence is absolute, embodying the room\u2019s frozen arithmetic and procedural cold.",
       "realmName": "Threadspace",
       "words": 2643
+    },
+    {
+      "slug": "WatchingCold",
+      "name": "Watching Cold",
+      "published": "2026-08-25",
+      "blurb": "In the mill-town kitchen Dalia sets down her cup with the dull clink of ordinary ceramic on ordinary wood. Her fingers drift to the base of her skull without thinking about it, pressing into the ache\u2026",
+      "realmName": "Threadspace",
+      "words": 3367
+    },
+    {
+      "slug": "TheLongRoom",
+      "name": "The Long Room",
+      "published": "2026-08-25",
+      "blurb": "Her gaze moves sharply across the tables, then the variance metrics. She runs the Spindle release against the Assay\u2019s standards, checking every metric with cold precision. The numbers sit inside\u2026",
+      "realmName": "Threadspace",
+      "words": 2599
+    },
+    {
+      "slug": "TheTender",
+      "name": "The Tender",
+      "published": "2026-08-25",
+      "blurb": "I sit perfectly still on the edge of the cot, listening past the low hum of the lane. My eyes stay fixed on the dead screen, posture tight with a quiet, desperate hope to hear Kell\u2019s voice come\u2026",
+      "realmName": "Threadspace",
+      "words": 2833
     }
   ]
 }
