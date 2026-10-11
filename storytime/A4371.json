@@ -10,7 +10,7 @@
   "credits": "",
   "realmName": "Era 7 Threadspace",
   "realmFile": "R4420.json",
-  "cover": "https://mmeents.github.io/storytime/stories/TheFold.jpg",
+  "cover": "media/m4459.jpg",
   "media": [],
   "links": [],
   "tracks": [
@@ -23,7 +23,7 @@
         {
           "id": 4377,
           "kind": "image",
-          "src": "https://mmeents.github.io/storytime/stories/TheFold.jpg"
+          "src": "media/m4459.jpg"
         },
         {
           "id": 4378,
