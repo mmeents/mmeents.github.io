@@ -1,0 +1,45 @@
+{
+  "id": 4371,
+  "slug": "A4371",
+  "name": "Threadspace",
+  "kind": "album",
+  "file": "A4371.json",
+  "published": "2026-08-08",
+  "blurb": "still need to bring over.",
+  "content": "still need to bring over.",
+  "credits": "",
+  "realmName": "Era 7 Threadspace",
+  "realmFile": "R4420.json",
+  "cover": "https://mmeents.github.io/storytime/stories/TheFold.jpg",
+  "media": [],
+  "links": [],
+  "tracks": [
+    {
+      "id": 4372,
+      "name": "Warmth Without Edges",
+      "credits": "",
+      "content": "",
+      "media": [
+        {
+          "id": 4377,
+          "kind": "image",
+          "src": "https://mmeents.github.io/storytime/stories/TheFold.jpg"
+        },
+        {
+          "id": 4378,
+          "kind": "audio",
+          "src": "https://on.soundcloud.com/hCBXuKEhYG0lBUYaMS"
+        }
+      ],
+      "links": [
+        {
+          "id": 4452,
+          "name": "Warm Without Edges",
+          "url": "https://on.soundcloud.com/ajuOoPU6N52pWaEKsj",
+          "iconUrl": "",
+          "embed": "\u003Ciframe width=\u0022100%\u0022 height=\u0022166\u0022 scrolling=\u0022no\u0022 frameborder=\u0022no\u0022 allow=\u0022autoplay; encrypted-media\u0022 src=\u0022https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A2410860324\u0026color=%23202817\u0026auto_play=false\u0026hide_related=false\u0026show_comments=true\u0026show_user=true\u0026show_reposts=false\u0026show_teaser=true\u0022\u003E\u003C/iframe\u003E\u003Cdiv style=\u0022font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;\u0022\u003E\u003Ca href=\u0022https://soundcloud.com/matt-meents-1\u0022 title=\u0022Matt Meents\u0022 target=\u0022_blank\u0022 style=\u0022color: #cccccc; text-decoration: none;\u0022\u003EMatt Meents\u003C/a\u003E \u00B7 \u003Ca href=\u0022https://soundcloud.com/matt-meents-1/warm-without-edges\u0022 title=\u0022Warm Without Edges\u0022 target=\u0022_blank\u0022 style=\u0022color: #cccccc; text-decoration: none;\u0022\u003EWarm Without Edges\u003C/a\u003E\u003C/div\u003E"
+        }
+      ]
+    }
+  ]
+}

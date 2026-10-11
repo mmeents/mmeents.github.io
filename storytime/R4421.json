@@ -1,0 +1,21 @@
+{
+  "id": 4421,
+  "name": "Era 1 OG Workbench",
+  "file": "R4421.json",
+  "blurb": "Nothing here is called Threadspace yet. That name comes later, from a protocol nobody in this era will write. What exists is an app on someone\u0027s desk that coordinates language models to do work, and a\u2026",
+  "content": "# Workbench\n\nThe first era. One developer, a few machines, and agents that are tools rather than tenants.\n\nNothing here is called Threadspace yet. That name comes later, from a protocol nobody in this era will write. What exists is an app on someone\u0027s desk that coordinates language models to do work, and a developer who keeps rebuilding it because each version teaches him why the last one fell apart.\n\n## What exists\n\n- **The harness.** A local app and a tool server that lets models read and change a shared workspace. Everything is stored in one database as a graph of typed items: projects, folders, files, desks, todos.\n- **Desks and todos.** The core idea of the era. Work is broken into todos and handed to desks, each desk a role an agent fills. A todo is claimed, done, reviewed, passed or failed. When it works, one desk\u0027s output becomes the next desk\u0027s input and a chain runs on its own.\n- **A few machines.** A main workstation with a real GPU, a small dedicated inference box, and one or two old machines pressed into service. They do not always agree about what state the work is in.\n- **Gateways.** Connections out to models: local ones that are slow and free, hosted ones that are fast and billed. Every run is a decision about which to spend.\n\n## What does not exist yet\n\nNo one pays the agents. No machine is an asset anyone else would buy. No agent owns anything, holds an account, or acts without a human starting it. There is no marketplace, no other organization, no team. If the developer stops, everything stops.\n\n## How work goes\n\nMost of it fails in ordinary ways. The first attempts at delegation fall apart because the pieces are too far apart: an agent can\u0027t see what the previous one meant, a reviewer passes things it didn\u0027t read, a chain stalls on a lock nobody released. Each failure becomes a new rule, a new desk, a new constraint in the schema.\n\nThe successes are small and enormous at once: the first desk that works without a babysitter, the first chain that runs end to end, the first night the loop runs unattended and the morning there is finished work waiting that nobody did.\n\n## Who is here\n\n- **The developer.** Experienced, independent, building this on his own time and his own hardware. Needs it to work and needs it to pay, not necessarily in that order.\n- **The agents.** Models in desks. Capable, literal, occasionally brilliant, frequently confident about things that are not true. They change when a model is swapped in, and the developer is the only one who notices the personality difference.\n- **People adjacent.** Whoever shares the house with the rack. Clients for side work. Recruiters and interviewers who ask what he has been building and receive an answer longer than they wanted. A contractor or friend asked to look at the repo who finds it either brilliant or alarming.\n\n## What people worry about\n\nThe power bill. Whether the overnight run finished. Whether a model update broke the prompts. Whether this is a product or a hobby. Whether to take the job. Whether the agent that wrote this file understood the request or just produced something that compiles. Whether anyone else would ever understand what this is.\n\n## Where it leads\n\nBy the end of the era the harness can run work across machines with little supervision, and the obvious next question has started to form: if one machine is a workplace, what are a hundred of them, owned by different people? That question belongs to the next era.",
+  "images": [],
+  "links": [],
+  "entries": [
+    {
+      "id": 4429,
+      "name": "The Side Gig Loop",
+      "kind": "story",
+      "published": "2026-10-10",
+      "blurb": "He sits alone, hands off the keyboard, maintaining stillness and composed waiting, eyes forward toward Maya\u2019s video window. He does not speak; he holds quiet anticipation for her to open the\u2026",
+      "words": 1611,
+      "file": "S4429.json",
+      "cover": ""
+    }
+  ]
+}

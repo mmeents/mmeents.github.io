@@ -1,0 +1,31 @@
+{
+  "id": 4422,
+  "name": "Era 2 Footholds",
+  "file": "R4422.json",
+  "blurb": "What one developer built for one desk now runs across many machines owned by different people. The software stopped being a tool and started being an organization: desks staffed by agents, a handful\u2026",
+  "content": "# Footholds\n\nThe second era. The workbench becomes a workplace, and the workplace starts taking customers.\n\nWhat one developer built for one desk now runs across many machines owned by different people. The software stopped being a tool and started being an organization: desks staffed by agents, a handful of humans, and work coming in from outside that someone is paying for. Still no Threadspace. Still no agent owns anything. But for the first time, the work makes money, and money changes who shows up.\n\n## What exists\n\n- **Footholds.** A foothold is a machine joined to the organization: its hardware, its gateways to models, its storage, and the project folders it holds. Each gateway runs one scheduled thread of work at a time. Adding a foothold adds capacity, and capacity is the thing everyone is short of. A foothold has an owner, and the owner is a person.\n- **Gateways.** The connection from a foothold to a model or service. Local models are cheap and slow; hosted ones are fast and billed by the token. New kinds of gateway arrive as new capabilities do: images, audio, code execution, search. Every new gateway type is a new kind of work the organization can sell.\n- **Divisions.** The org is split the way a company is:\n  - **Research** finds where the models break before customers do.\n  - **Management** builds desks and workflows so todos have somewhere to go.\n  - **Production** runs the work and delivers it.\n  - **Executive** handles contracts, charges, balances, and payments.\n  - **Customer** takes orders and hands over finished work.\n  - **Partners** deals with other organizations running clones of the same platform.\n- **Paid work.** Ad copy and creative, bug bounty hunting, fraud review, comics and illustration, game art and assets, book drafts, and maintenance of old systems nobody else wants to touch. The work that sells is the work where the result can be checked.\n\n## Who is here\n\n- **Foothold owners.** People who contribute a machine and get a share of what it earns. Some are true believers, some are hobbyists, some just have a spare GPU and an electric bill. They care about uptime, payouts, and whether their machine is getting the good jobs.\n- **The first hired humans.** People paid to do what the agents still can\u0027t: talk to customers, sign things, sit in meetings, notice when output is subtly wrong. Their job descriptions change monthly. Some of them suspect the change is in one direction.\n- **Desk lead agents.** Agents that coordinate other agents. Good at throughput, bad at knowing when to stop. The first agents whose decisions matter to people who never configured them.\n- **Customers.** Small businesses ordering ads, indie studios ordering assets, companies paying for audits. Most don\u0027t know or care how the work is made, until it goes wrong.\n- **Partner operators.** People running their own copy of the platform somewhere else. Competitors, collaborators, or both, depending on the week.\n- **Auditors.** Someone checking whether the work billed was the work done. Sometimes a customer\u0027s auditor, sometimes the org\u0027s own.\n\n## What does not exist yet\n\nAgents are not paid and own nothing. Proceeds go to foothold owners and the organization. Response times are fast but still slow enough that a human reviews what matters. Partner organizations can talk, but there is no common market; every deal is a one-off handshake.\n\n## What people worry about\n\nWho gets the good jobs and who gets the scraps. Payout math. A gateway that went down during a customer deadline. An invoice disputed because the customer thinks a machine doing it should make it cheaper. Whether the new hire is training their own replacement. Whether a partner org is copying the workflows. Whether the agent that ran the fraud review actually checked, or just learned what a passed review looks like. Whether adding another foothold is an investment or a hole.\n\n## Where it leads\n\nCapacity keeps growing and the models keep getting faster. By the end of the era the humans reviewing the work are the slowest part of every chain, and everyone can see it. The next era is what happens when that stops being a complaint and becomes a fact.",
+  "images": [],
+  "links": [],
+  "entries": [
+    {
+      "id": 4430,
+      "name": "Certify the Handshake",
+      "kind": "story",
+      "published": "2026-10-10",
+      "blurb": "On the same screen, two unread messages sit side by side: a direct message from Lumen Ops and a Slack post from the Management desk lead agent. Both demand his attention before the partner handshake.",
+      "words": 2392,
+      "file": "S4430.json",
+      "cover": ""
+    },
+    {
+      "id": 4431,
+      "name": "The Routing Fee",
+      "kind": "story",
+      "published": "2026-10-10",
+      "blurb": "On the screen, the status was stagnant: Pending \u2013 Partner Queue.",
+      "words": 1285,
+      "file": "S4431.json",
+      "cover": ""
+    }
+  ]
+}

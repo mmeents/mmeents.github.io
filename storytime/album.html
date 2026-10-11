@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Loom</title>
+    <link rel="stylesheet" href="loom.css">
+</head>
+<body>
+<div class="wrap">
+
+    <header class="masthead">
+        <a class="mono" id="back" href="index.html">&larr; all realms</a>
+        <button class="theme-toggle" id="theme" type="button"></button>
+    </header>
+
+    <main id="main">
+        <p class="note mono">Loading&hellip;</p>
+    </main>
+
+</div>
+<script src="loom.js"></script>
+<script>
+mountThemeToggle(document.getElementById("theme"));
+
+var main = document.getElementById("main");
+var back = document.getElementById("back");
+var file = new URLSearchParams(location.search).get("s") || "";
+
+if (!/^[A-Za-z0-9_.-]+\.json$/.test(file)) {
+  main.innerHTML = '<div class="note"><strong>No album named.</strong><br>' +
+    'Open an album from its <a href="index.html">realm</a>.</div>';
+} else {
+  loadJSON(file).then(renderAlbum).catch(function (err) {
+    main.innerHTML = '<div class="note"><strong>Could not open that album.</strong><br>' +
+      '<span class="mono">' + escapeHtml(err.message) + '</span></div>';
+  });
+}
+
+function el(tag, cls, text) {
+  var e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text != null) e.textContent = text;
+  return e;
+}
+
+/* PublishedUrl can be a page (SoundCloud) rather than a file. Only real files get a player. */
+function playable(src, kind) {
+  var re = kind === "video"
+    ? /\.(mp4|webm|mov)(\?|#|$)/i
+    : /\.(mp3|wav|flac|ogg|m4a|aac|opus)(\?|#|$)/i;
+  return re.test(src || "");
+}
+
+function appendLinks(host, links) {
+  (links || []).filter(function (l) { return l.embed; }).forEach(function (l) {
+    var d = el("div", "embed");
+    d.innerHTML = l.embed;
+    host.appendChild(d);
+  });
+  var plain = (links || []).filter(function (l) { return !l.embed && l.url; });
+  if (!plain.length) return;
+  var ul = el("ul", "links mono");
+  plain.forEach(function (l) {
+    var li = el("li");
+    var a = el("a");
+    a.href = l.url;
+    a.rel = "noopener";
+    if (l.iconUrl) { var ic = el("img"); ic.src = l.iconUrl; ic.alt = ""; a.appendChild(ic); }
+    a.appendChild(document.createTextNode(l.name || l.url));
+    li.appendChild(a);
+    ul.appendChild(li);
+  });
+  host.appendChild(ul);
+}
+
+function appendCredits(host, credits) {
+  if (typeof credits === "string" && credits.trim()) {
+    host.appendChild(el("p", "credit-raw", normalizeText(credits)));
+  }
+}
+
+function renderAlbum(a) {
+  document.title = a.name + " \u00B7 " + (a.realmName || "Threadspace");
+
+  if (a.realmFile) {
+    back.href = "realm.html?s=" + encodeURIComponent(a.realmFile);
+    back.textContent = "\u2190 " + (a.realmName || "realm");
+  }
+
+  var tracks = a.tracks || [];
+  var meta = ["album"];
+  if (a.realmName) meta.push(a.realmName);
+  if (a.published) meta.push(formatDate(a.published));
+  if (tracks.length) meta.push(tracks.length + (tracks.length === 1 ? " track" : " tracks"));
+
+  var head = el("header", "story-head");
+  head.appendChild(el("p", "mono", meta.join(" \u00B7 ")));
+  head.appendChild(el("h1", null, a.name));
+  head.appendChild(draftEl(a.slug || file, 16, "draft--lg"));
+  if (a.cover) {
+    var img = el("img", "cover");
+    img.src = a.cover;
+    img.alt = "";
+    head.appendChild(img);
+  }
+
+  main.innerHTML = "";
+  main.appendChild(head);
+
+  appendLinks(main, a.links);
+
+  if (a.content) {
+    var notes = el("article", "prose");
+    notes.innerHTML = renderProse(a.content);
+    main.appendChild(notes);
+  }
+
+  if (tracks.length) {
+    var ol = el("ol", "tracks");
+    tracks.forEach(function (t, i) { ol.appendChild(renderTrack(t, i, a.cover)); });
+    main.appendChild(ol);
+  }
+
+  if (a.credits && a.credits.trim()) {
+    var col = el("section", "colophon");
+    col.appendChild(el("h2", null, "Colophon"));
+    appendCredits(col, a.credits);
+    main.appendChild(col);
+  }
+
+  /* one track at a time */
+  main.addEventListener("play", function (e) {
+    main.querySelectorAll("audio, video").forEach(function (m) { if (m !== e.target) m.pause(); });
+  }, true);
+}
+
+function renderTrack(t, i, albumCover) {
+  var li = el("li", "track");
+  li.appendChild(el("span", "track-no", String(i + 1).padStart(2, "0")));
+
+  var body = el("div");
+  body.appendChild(el("h3", null, t.name));
+
+  var media = t.media || [];
+  var art = media.filter(function (m) { return m.kind === "image" && m.src !== albumCover; })[0];
+  if (art) {
+    var img = el("img", "thumb");
+    img.src = art.src;
+    img.alt = "";
+    body.appendChild(img);
+  }
+
+  var av = media.filter(function (m) { return m.kind === "audio" || m.kind === "video"; })[0];
+  if (av) {
+    if (playable(av.src, av.kind)) {
+      var player = el(av.kind === "video" ? "video" : "audio");
+      player.controls = true;
+      player.preload = "none";
+      player.src = av.src;
+      body.appendChild(player);
+    } else if (av.src) {
+      var listen = el("a", "mono listen", "listen \u2192");
+      listen.href = av.src;
+      listen.rel = "noopener";
+      body.appendChild(listen);
+    }
+  }
+
+  appendLinks(body, t.links);
+
+  if (t.content && t.content.trim()) {
+    var d = el("details");
+    d.appendChild(el("summary", "mono", "lyrics"));
+    var p = el("div", "prose");
+    p.innerHTML = renderProse(t.content);
+    d.appendChild(p);
+    body.appendChild(d);
+  }
+
+  appendCredits(body, t.credits);
+  li.appendChild(body);
+  return li;
+}
+</script>
+</body>
+</html>

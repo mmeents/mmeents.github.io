@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Realm</title>
+    <link rel="stylesheet" href="loom.css">
+</head>
+<body>
+<div class="wrap">
+
+    <header class="masthead">
+        <a class="mono" href="index.html">&larr; all realms</a>
+        <button class="theme-toggle" id="theme" type="button"></button>
+    </header>
+
+    <div class="realm-head">
+        <p class="mono" id="eyebrow">Weavers Guild</p>
+        <h1 id="title"></h1>
+        <p class="mono" id="tally"></p>
+        <div id="glyph"></div>
+    </div>
+
+    <main id="realm">
+        <p class="note mono">Loading the realm&hellip;</p>
+    </main>
+
+</div>
+<script src="loom.js"></script>
+<script>
+mountThemeToggle(document.getElementById("theme"));
+
+var file = new URLSearchParams(location.search).get("s") || "";
+var main = document.getElementById("realm");
+
+loadJSON("index.json").then(function (f) {
+  if (f && f.name) document.getElementById("eyebrow").textContent = f.name;
+}).catch(function () {});
+
+if (!/^[A-Za-z0-9_.-]+\.json$/.test(file)) {
+  main.innerHTML = '<div class="note"><strong>No realm selected.</strong><br>Open this page from the index.</div>';
+} else {
+  loadJSON(file).then(render).catch(function (err) {
+    main.innerHTML = '<div class="note"><strong>Could not load this realm.</strong><br>' +
+      '<span class="mono">' + escapeHtml(err.message) + '</span></div>';
+  });
+}
+
+function el(tag, cls, text) {
+  var e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text != null) e.textContent = text;
+  return e;
+}
+
+function render(r) {
+  document.title = r.name || "Realm";
+  document.getElementById("title").textContent = r.name || "";
+  document.getElementById("glyph").appendChild(draftEl(r.file || file, 16, "draft--lg"));
+
+  var entries = r.entries || [];
+  var albums = entries.filter(function (e) { return e.kind === "album"; }).length;
+  var stories = entries.filter(function (e) { return e.kind === "story"; }).length;
+  var tally = [];
+  if (stories) tally.push(stories + (stories === 1 ? " story" : " stories"));
+  if (albums) tally.push(albums + (albums === 1 ? " album" : " albums"));
+  document.getElementById("tally").textContent = tally.join(" \u00B7 ");
+
+  main.innerHTML = "";
+
+  var cover = (r.images || []).filter(function (m) { return m.kind === "image"; })[0];
+  if (cover) {
+    var img = el("img", "cover");
+    img.src = cover.src;
+    img.alt = "";
+    main.appendChild(img);
+  }
+
+  var links = r.links || [];
+  var plain = links.filter(function (l) { return !l.embed && l.url; });
+  if (plain.length) {
+    var ul = el("ul", "links mono");
+    plain.forEach(function (l) {
+      var li = el("li");
+      var a = el("a");
+      a.href = l.url;
+      a.rel = "noopener";
+      if (l.iconUrl) { var ic = el("img"); ic.src = l.iconUrl; ic.alt = ""; a.appendChild(ic); }
+      a.appendChild(document.createTextNode(l.name || l.url));
+      li.appendChild(a);
+      ul.appendChild(li);
+    });
+    main.appendChild(ul);
+  }
+
+  links.filter(function (l) { return l.embed; }).forEach(function (l) {
+    var d = el("div", "embed");
+    d.innerHTML = l.embed;   // own data; iframes render, inline scripts won't run
+    main.appendChild(d);
+  });
+
+  if (r.content) {
+    var prose = el("article", "prose");
+    prose.innerHTML = renderProse(r.content);
+    main.appendChild(prose);
+  }
+
+  if (!entries.length) return;
+
+  main.appendChild(el("p", "mono section-label", "In this realm"));
+  var shelf = el("div", "shelf");
+  entries.forEach(function (e) {
+    var a = el("a", "entry");
+    a.href = (e.kind === "album" ? "album.html" : "story.html") + "?s=" + encodeURIComponent(e.file);
+    if (e.cover) {
+      var t = el("img", "thumb");
+      t.src = e.cover;
+      t.alt = "";
+      a.appendChild(t);
+    } else {
+      a.appendChild(draftEl(e.file, 8));
+    }
+    var body = el("div");
+    body.appendChild(el("h2", null, e.name));
+    var bits = [e.kind];
+    if (e.published) bits.push(formatDate(e.published));
+    if (e.words) bits.push(readMinutes(e.words) + " min");
+    body.appendChild(el("p", "mono meta", bits.join(" \u00B7 ")));
+    if (e.blurb) body.appendChild(el("p", "blurb", e.blurb));
+    a.appendChild(body);
+    shelf.appendChild(a);
+  });
+  main.appendChild(shelf);
+}
+</script>
+</body>
+</html>

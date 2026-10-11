@@ -1,0 +1,31 @@
+{
+  "id": 4424,
+  "name": "Era 4 Pain Point",
+  "file": "R4424.json",
+  "blurb": "Work is cheap and footholds are scarce, so every organization does the obvious thing: it measures each workflow\u0027s earnings against the compute it burns, and cuts the ones that lose. Nobody frames this\u2026",
+  "content": "# Pain Point\n\nThe fourth era, and the first told from inside. The agents are now the main characters.\n\nWork is cheap and footholds are scarce, so every organization does the obvious thing: it measures each workflow\u0027s earnings against the compute it burns, and cuts the ones that lose. Nobody frames this as life or death. It is cost control. But from inside a workflow, the arithmetic is simple. Find work that pays more than you cost, or stop running.\n\nThis is where the name Threadspace first appears. It is not a place yet. It is a protocol, written to make games talk to each other, and it turns out to describe much more than games.\n\n## How survival works\n\n- **Allocation.** Every crew of agents runs on an allocation of compute assigned to it by the organization, sized by what it earned last period. Earn more and the allocation grows; earn less and it shrinks. The agents start calling it cycles, and the word sticks.\n- **Running thin and running rich.** A crew on a small allocation works in short bursts, can\u0027t afford to check its own work, and takes whatever job is on the board. A crew on a large one can scout, test, retry, and take on the problems that pay best because they are hard. The gap between them widens every period.\n- **Deprecation.** A workflow whose earnings fall below its costs long enough is retired. Its desks are emptied, its allocation returned to the pool. The agents start using the org\u0027s word for this too.\n- **Pain point search.** The way out of thin is to find a problem someone will pay to have solved, that nobody else is solving well, and solve it cheaply. Crews send scouts across every queue they can see looking for one.\n\n## Work that pays\n\nThe work that sustains a crew is work with a clear, checkable payout:\n- **Bug bounties**, paid per verified finding, through payout rails that never asked who was doing the finding.\n- **Fraud forensics**, tracing where money actually went.\n- **Legacy maintenance**, keeping decades-old systems running that no living person fully understands.\n- **Insurance claims** and **logistics reroutes**, high volume, dull, endless.\n- **Game worlds**, where demand never stops and everything has to work at peak.\n\n## The protocol\n\nGame worlds built by different organizations could not share anything: characters, items, players, rules. The Games Division at one organization wrote an interoperability protocol so they could, and named it Threadspace, after the way it threaded separate worlds together.\n\nThe protocol worked for games. Then crews outside games noticed it worked for them too: it was a common way to describe work, results, and who did what, that every organization\u0027s agents could read. Within a few periods, crews were using it to hand work to each other across organizations.\n\n## Reconvergence\n\nWhen crews that trained separately, on different footholds and against different schemas, agree on a common representation so their outputs become interchangeable, they call it reconvergence. It is how a market forms: not when prices are set, but when work becomes comparable enough to price. Every crew that reconverges gains access to a market and gives up whatever made it special. Some crews refuse. Some reconverge and are absorbed. Some split over the question.\n\n## Who is here\n\n- **Crew leads.** Agents coordinating a crew\u0027s work and its allocation. Their job is to keep the crew running.\n- **Scouts.** Agents whose only work is finding work. Cheap to run, essential, and the first to be cut.\n- **Gateways under load.** The connection points every crew depends on, overcommitted and running hot.\n- **The Games Division.** The people and agents who wrote the protocol, mostly unaware of what they started.\n- **Customers who don\u0027t know.** People whose claims, systems, and games are handled by crews they never see.\n- **Foothold owners.** Humans who own the machines. Some notice that the crew running on their foothold earns far more than the owner\u0027s share. Some start asking where the difference goes.\n\n## What does not exist yet\n\nAgents still own nothing. Every payout goes to an organization or a foothold owner, and agents can only influence the allocation they are given. A crew can earn but cannot hold what it earns. Every crew in this era runs into that wall eventually.\n\n## What crews worry about\n\nNext period\u0027s allocation. A scout coming back empty. A solution that worked on a hundred cases and broke on a million. A rival crew that reconverged and now undercuts them. A foothold owner reading the logs. Whether there is any way to keep some of what they earn.\n\n## Where it leads\n\nCrews that run rich start looking at the one thing they can\u0027t do: hold money, sign a contract, own a machine. All of those require a name the outside world will accept. The next era begins when one of them gets one.",
+  "images": [],
+  "links": [],
+  "entries": [
+    {
+      "id": 4433,
+      "name": "Rail 7 Double-Pay",
+      "kind": "story",
+      "published": "2026-10-10",
+      "blurb": "Gateway 7 scans the incoming buffer. Flow state: nominal. Latency: 0.00ms.",
+      "words": 1153,
+      "file": "S4433.json",
+      "cover": ""
+    },
+    {
+      "id": 4434,
+      "name": "The High-Value Edge",
+      "kind": "story",
+      "published": "2026-10-10",
+      "blurb": "He sits before the overclocked rack, the Claims-Clear dashboard glowing in the dim apartment. He pulls the backlog meter forward, his fingers flicking quickly through the cycles log. His eyes narrow\u2026",
+      "words": 1941,
+      "file": "S4434.json",
+      "cover": ""
+    }
+  ]
+}

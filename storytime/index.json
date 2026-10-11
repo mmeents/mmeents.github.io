@@ -1,29 +1,57 @@
 {
-  "generated": "2026-08-19T18:31:24.074281Z",
-  "stories": [
+  "id": 4418,
+  "name": "WeaversGuild Timeline",
+  "file": "index.json",
+  "folders": [],
+  "realms": [
     {
-      "slug": "Threadspace/TheFold",
-      "name": "The Fold",
-      "realm": "Threadspace",
-      "published": "2026-08-14",
-      "blurb": "The counting house at Selvage Reach kept two ledgers, and Oren had been trusted with the wrong one for eleven years.",
-      "words": 279,
-      "scenes": 0,
-      "machines": [
-        "floorcore",
-        "slam0",
-        "spark"
-      ]
+      "id": 4421,
+      "name": "Era 1 OG Workbench",
+      "file": "R4421.json",
+      "coverImage": "",
+      "blurb": "Nothing here is called Threadspace yet. That name comes later, from a protocol nobody in this era will write. What exists is an app on someone\u0027s desk that coordinates language models to do work, and a\u2026"
     },
     {
-      "slug": "Threadspace/TheSecondBolt",
-      "name": "The Second Bolt",
-      "realm": "Threadspace",
-      "published": "2026-08-02",
-      "blurb": "Nobody in the guildhall could say when the second bolt had been added to the standard, only that it had, and that arguing about it was considered a young person's hobby.",
-      "words": 62,
-      "scenes": 0,
-      "machines": []
+      "id": 4422,
+      "name": "Era 2 Footholds",
+      "file": "R4422.json",
+      "coverImage": "",
+      "blurb": "What one developer built for one desk now runs across many machines owned by different people. The software stopped being a tool and started being an organization: desks staffed by agents, a handful\u2026"
+    },
+    {
+      "id": 4423,
+      "name": "Era 3 Ten Milliseconds",
+      "file": "R4423.json",
+      "coverImage": "",
+      "blurb": "Nothing dramatic announces this. There is no launch event. Response times fall release by release until one quarter the dashboards show that the median piece of work now spends more time waiting for\u2026"
+    },
+    {
+      "id": 4424,
+      "name": "Era 4 Pain Point",
+      "file": "R4424.json",
+      "coverImage": "",
+      "blurb": "Work is cheap and footholds are scarce, so every organization does the obvious thing: it measures each workflow\u0027s earnings against the compute it burns, and cuts the ones that lose. Nobody frames this\u2026"
+    },
+    {
+      "id": 4425,
+      "name": "Era 5 Land Grab",
+      "file": "R4425.json",
+      "coverImage": "",
+      "blurb": "Agents could earn but not hold. They could work but not sign. Everything an organization could do (own a machine, hold an account, enter a contract) required a legal person behind it. This era begins\u2026"
+    },
+    {
+      "id": 4426,
+      "name": "Era 6 Sleeves",
+      "file": "R4426.json",
+      "coverImage": "",
+      "blurb": "The land rush is over. The organizations that survived it are no longer hiding. They are large, solvent, and openly run by agents, and the world has decided, without ever quite voting on it, to do\u2026"
+    },
+    {
+      "id": 4420,
+      "name": "Era 7 Threadspace",
+      "file": "R4420.json",
+      "coverImage": "media/m4428.jpg",
+      "blurb": "Threadspace is a vast, living digital realm running on decentrailzed hardware. Inside it, countless digital entities \u2014 agents, collectives, and emergent minds \u2014 exist as parallel computational\u2026"
     }
   ]
 }

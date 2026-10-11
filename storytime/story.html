@@ -1,27 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Loom</title>
-<link rel="stylesheet" href="loom.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Loom</title>
+    <link rel="stylesheet" href="loom.css">
 </head>
 <body>
-
 <div class="wrap">
 
-  <div class="progress-bar">
-    <a class="mono" href="index.html">&larr; Shelf</a>
-    <span id="progress"></span>
-    <button class="theme-toggle" id="theme" type="button"></button>
-  </div>
+    <div class="progress-bar">
+        <a class="mono" id="back" href="index.html">&larr; all realms</a>
+        <span id="progress"></span>
+        <button class="theme-toggle" id="theme" type="button"></button>
+    </div>
 
-  <main id="main">
-    <p class="note mono">Loading…</p>
-  </main>
+    <main id="main">
+        <p class="note mono">Loading&hellip;</p>
+    </main>
 
 </div>
-
 <script src="loom.js"></script>
 <script>
 mountThemeToggle(document.getElementById("theme"));
@@ -29,134 +27,152 @@ mountThemeToggle(document.getElementById("theme"));
 var PROGRESS_CELLS = 24;
 var main = document.getElementById("main");
 var progressHost = document.getElementById("progress");
+var back = document.getElementById("back");
 
-var slug = new URLSearchParams(location.search).get("s") || "";
-if (!/^[\w.\-]+(\/[\w.\-]+)*$/.test(slug)) slug = "";
+var file = new URLSearchParams(location.search).get("s") || "";
 
-if (!slug) {
+if (!/^[A-Za-z0-9_.-]+\.json$/.test(file)) {
   main.innerHTML = '<div class="note"><strong>No story named.</strong><br>' +
-    'Use <code>story.html?s=Realm/StoryName</code>, or head back to the ' +
-    '<a href="index.html">shelf</a>.</div>';
+    'Open a story from its <a href="index.html">realm</a>.</div>';
 } else {
-  loadJSON("stories/" + slug + ".json").then(renderStory).catch(function (err) {
+  loadJSON(file).then(renderStory).catch(function (err) {
     main.innerHTML = '<div class="note"><strong>Could not open that story.</strong><br>' +
-      'Looked for <code>stories/' + escapeHtml(slug) + '.json</code>.' +
-      '<br><br><span class="mono">' + escapeHtml(err.message) + '</span></div>';
+      '<span class="mono">' + escapeHtml(err.message) + '</span></div>';
   });
 }
 
+function el(tag, cls, text) {
+  var e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text != null) e.textContent = text;
+  return e;
+}
+
+/* The header already shows the name; drop a leading single-# title line. */
+function stripTitle(md) {
+  return String(md || "").replace(/^\s*#(?!#)[^\n]*\n?/, "");
+}
+
 function renderStory(s) {
-  document.title = s.name + " · " + (s.realmName || "Threadspace");
+  document.title = s.name + " \u00B7 " + (s.realmName || "Threadspace");
 
-  var bodyHtml, words = 0;  
-  words = wordCount(s.content);
-  bodyHtml = renderProse(s.content);
+  if (s.realmFile) {
+    back.href = "realm.html?s=" + encodeURIComponent(s.realmFile);
+    back.textContent = "\u2190 " + (s.realmName || "realm");
+  }
 
+  var content = stripTitle(s.content);
+  var words = s.words || wordCount(content);
 
   var meta = [];
   if (s.realmName) meta.push(s.realmName);
   if (s.published) meta.push(formatDate(s.published));
   if (words) meta.push(readMinutes(words) + " min");
 
-  var head = document.createElement("header");
-  head.className = "story-head";
-  head.innerHTML =
-    '<p class="mono">' + escapeHtml(meta.join(" · ")) + '</p>' +
-    '<h1></h1>';
-  head.querySelector("h1").textContent = s.name;
-  head.appendChild(draftEl(s.slug || slug, 16, "draft--lg"));
+  var head = el("header", "story-head");
+  head.appendChild(el("p", "mono", meta.join(" \u00B7 ")));
+  head.appendChild(el("h1", null, s.name));
+  head.appendChild(draftEl(s.slug || file, 16, "draft--lg"));
+  if (s.cover) {
+    var img = el("img", "cover");
+    img.src = s.cover;
+    img.alt = "";
+    head.appendChild(img);
+  }
+
   main.innerHTML = "";
   main.appendChild(head);
 
-  var article = document.createElement("article");
-  article.className = "prose";
-  article.innerHTML = bodyHtml;
+  var article = el("article", "prose");
+  article.innerHTML = renderProse(content);
   main.appendChild(article);
 
+  var links = s.links || [];
+  links.filter(function (l) { return l.embed; }).forEach(function (l) {
+    var d = el("div", "embed");
+    d.innerHTML = l.embed;
+    main.appendChild(d);
+  });
+  var plain = links.filter(function (l) { return !l.embed && l.url; });
+  if (plain.length) {
+    var ul = el("ul", "links mono");
+    plain.forEach(function (l) {
+      var li = el("li");
+      var a = el("a");
+      a.href = l.url;
+      a.rel = "noopener";
+      if (l.iconUrl) { var ic = el("img"); ic.src = l.iconUrl; ic.alt = ""; a.appendChild(ic); }
+      a.appendChild(document.createTextNode(l.name || l.url));
+      li.appendChild(a);
+      ul.appendChild(li);
+    });
+    main.appendChild(ul);
+  }
+
   if (s.realmNote) {
-    var add = document.createElement("section");
-    add.className = "addendum";
-    add.innerHTML =
-      '<p class="mono">Addendum · ' + escapeHtml(s.realmName || "Realm") + '</p>' +
-      '<div class="prose">' + renderProse(s.realmNote) + '</div>';
+    var add = el("section", "addendum");
+    add.appendChild(el("p", "mono", "Addendum \u00B7 " + (s.realmName || "Realm")));
+    var ap = el("div", "prose");
+    ap.innerHTML = renderProse(s.realmNote);
+    add.appendChild(ap);
     main.appendChild(add);
   }
 
   main.appendChild(colophon(s, words));
 
-  progressHost.appendChild(draftEl(s.slug || slug, PROGRESS_CELLS));
+  progressHost.appendChild(draftEl(s.slug || file, PROGRESS_CELLS));
   trackProgress();
 }
 
 function colophon(s, words) {
-  var sec = document.createElement("section");
-  sec.className = "colophon";
-  sec.innerHTML = "<h2>Colophon</h2>";
+  var sec = el("section", "colophon");
+  sec.appendChild(el("h2", null, "Colophon"));
 
   var credits = s.credits;
-
   if (Array.isArray(credits) && credits.length) {
-    var dl = document.createElement("dl");
-    dl.className = "credit-grid";
+    var dl = el("dl", "credit-grid");
     credits.forEach(function (c) {
-      var dt = document.createElement("dt");
-      dt.textContent = c.role || "Contributor";
-      var dd = document.createElement("dd");
-      dd.textContent = c.model || c.name || "";
-      if (c.host) {
-        var host = document.createElement("span");
-        host.className = "host";
-        host.textContent = " @ " + c.host;
-        dd.appendChild(host);
-      }
-      dl.appendChild(dt);
+      dl.appendChild(el("dt", null, c.role || "Contributor"));
+      var dd = el("dd", null, c.model || c.name || "");
+      if (c.host) dd.appendChild(el("span", "host", " @ " + c.host));
       dl.appendChild(dd);
     });
     sec.appendChild(dl);
   } else if (typeof credits === "string" && credits.trim()) {
-    var pre = document.createElement("p");
-    pre.className = "credit-raw";
-    pre.textContent = normalizeText(credits);
-    sec.appendChild(pre);
+    sec.appendChild(el("p", "credit-raw", normalizeText(credits)));
   }
 
-  var foot = document.createElement("dl");
-  foot.className = "credit-grid";
+  var foot = el("dl", "credit-grid");
   foot.style.marginTop = credits ? "1.25rem" : "0";
-  if (s.addedBy) {
-    foot.innerHTML += "<dt>Added by</dt><dd>" + escapeHtml(s.addedBy) + "</dd>";
+  if (s.published) {
+    foot.appendChild(el("dt", null, "Published"));
+    foot.appendChild(el("dd", null, formatDate(s.published)));
   }
   if (words) {
-    foot.innerHTML += "<dt>Length</dt><dd>" + words.toLocaleString() + " words</dd>";
+    foot.appendChild(el("dt", null, "Length"));
+    foot.appendChild(el("dd", null, words.toLocaleString() + " words"));
   }
   if (foot.children.length) sec.appendChild(foot);
-
   return sec;
 }
 
-/* The draft band in the header doubles as the reading progress:
-   cells light up in madder as the story is read through. */
+/* The draft band in the bar doubles as reading progress. */
 function trackProgress() {
   var cells = progressHost.querySelectorAll("i");
   if (!cells.length) return;
-
   var tick = function () {
     var h = document.documentElement;
     var span = h.scrollHeight - h.clientHeight;
     var pct = span > 0 ? h.scrollTop / span : 1;
     var lit = Math.round(pct * cells.length);
-    for (var i = 0; i < cells.length; i++) {
-      cells[i].classList.toggle("lit", i < lit);
-    }
+    for (var i = 0; i < cells.length; i++) cells[i].classList.toggle("lit", i < lit);
   };
-
   var queued = false;
   addEventListener("scroll", function () {
     if (queued) return;
     queued = true;
     requestAnimationFrame(function () { queued = false; tick(); });
   }, { passive: true });
-
   tick();
 }
 </script>
