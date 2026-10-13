@@ -10,7 +10,7 @@
   "credits": "",
   "realmName": "Era 7 Threadspace",
   "realmFile": "R4420.json",
-  "cover": "media/m4459.jpg",
+  "cover": "",
   "media": [],
   "links": [],
   "tracks": [
@@ -20,11 +20,6 @@
       "credits": "",
       "content": "",
       "media": [
-        {
-          "id": 4377,
-          "kind": "image",
-          "src": "media/m4459.jpg"
-        },
         {
           "id": 4378,
           "kind": "audio",
