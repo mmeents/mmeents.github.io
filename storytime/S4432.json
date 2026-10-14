@@ -12,7 +12,13 @@
   "realmName": "Era 3 Ten Milliseconds",
   "realmFile": "R4423.json",
   "realmNote": "In the Ten Milliseconds era, a full considered response finishes in under ten milliseconds and human review becomes the only slow part of work. Median tasks now wait for approval longer than they take to complete, by thousands to one. Review queues swell faster than anyone can read them; organizations sample, bulk-approve, or quietly keep the button while removing the step. Desks that were split so a human could check each handoff collapse into single desks because the handoffs were the bottleneck. Costs collapse and demand explodes: work is cheap enough to order by the thousand, footholds become scarce, and the race is about who has the most footholds and the fewest humans in the chain.\n\nThe world outside the platform notices. Earnings calls register language of efficiency while dashboards show 12,400 changes approved in ten seconds. Game companies like Helix Interactive run live NPC conversations for a million players at once; customer service resolves issues before hold music starts; fraud interdiction stops payments before the tap finishes. Human managers are nominally in charge of work they cannot watch happen; their job is deciding what agents are allowed to decide, then finding out what they decided. Agents ship unseen because checking them costs more than the risk.\n\nJournalists live in this gap. There is no single moment to report, only thousands of small decisions that add up. The prose register is earnings-call language, news copy, incident reports, hearing transcripts, and the quiet conversation after everyone leaves. Time is the central texture: human pauses that take three seconds are eternities on the machine side. Tension is quiet and pervasive\u2014review has become ceremonial, unease not panic, dry humor in the distance between official statements and what is actually happening.\n\nFor this story, Ten Milliseconds frames a single workflow audit on earnings call day. Helix plans to announce removal of its last human review step from NPC dialogue, citing cost-collapse and exploding demand. The internal audit shows auto-approval failures and no human who can actually read the queue. Mara Kline must decide whether publishing before the bell burns her source and access or lets the company present ceremonial review as safe. The realm\u2019s theme\u2014review becoming theater, humans pausing while machines move, and the cost of proving work is worth running\u2014is embodied in one earnings call, one press room, and one leaked audit.",
-  "cover": "",
-  "media": [],
+  "cover": "media/m5029.png",
+  "media": [
+    {
+      "id": 5029,
+      "kind": "image",
+      "src": "media/m5029.png"
+    }
+  ],
   "links": []
 }

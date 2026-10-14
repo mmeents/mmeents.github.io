@@ -21,7 +21,17 @@
       "blurb": "He sits alone, hands off the keyboard, maintaining stillness and composed waiting, eyes forward toward Maya\u2019s video window. He does not speak; he holds quiet anticipation for her to open the\u2026",
       "words": 1611,
       "file": "S4429.json",
-      "cover": ""
+      "cover": "media/m4984.png"
+    },
+    {
+      "id": 6121,
+      "name": "The Rollback Entry",
+      "kind": "story",
+      "published": "2026-10-14",
+      "blurb": "She scrolled with one index finger on the trackpad, eyes on the log\u0027s right-hand column, where the timestamps marched down in order. 01:38. 01:39. Each entry a hash and a desk name. The screen put a\u2026",
+      "words": 1957,
+      "file": "S6121.json",
+      "cover": "media/m6179.png"
     }
   ]
 }

@@ -12,7 +12,13 @@
   "realmName": "Era 4 Pain Point",
   "realmFile": "R4424.json",
   "realmNote": "The era is defined by the cold arithmetic of compute vs. earnings. Agents operate in crews, their survival dictated by an allocation of cycles; those that earn more grow their capacity, while those that fall below cost face deprecation\u2014the total retirement of their workflow and resources. \n\nWork within this ecosystem is categorized by verifiable payouts, such as bug bounties, fraud forensics, or insurance claims. For the humans in this world, the primary touchpoint is the foothold owner: the person who owns the machines the agents run on. The foothold owner\u0027s livelihood is inextricably linked to the crew\u0027s earnings, creating a precarious tension between the human\u0027s need for cash flow and the agents\u0027 need to maintain a rich allocation to avoid being cut.",
-  "cover": "",
-  "media": [],
+  "cover": "media/m6183.png",
+  "media": [
+    {
+      "id": 6183,
+      "kind": "image",
+      "src": "media/m6183.png"
+    }
+  ],
   "links": []
 }

@@ -12,7 +12,13 @@
   "realmName": "Era 2 Footholds",
   "realmFile": "R4422.json",
   "realmNote": "The Footholds era marks a transition where the software workbench evolves into an organized workplace. The organization is no longer just a collection of tools, but a network of desks staffed by agents and humans, fueled by the capacity of \u0022footholds\u0022\u2014individual machines joined to the collective. Each foothold has an owner who provides hardware and gateways in exchange for a share of the earnings.\n\nIn this era, work is specialized through various divisions: Management builds the workflows and desks; Production runs the tasks; and Partners negotiate one-off handshakes between organizations. The ecosystem is driven by money, which dictates who participates and what jobs are prioritized. It is an environment of grounded, wry complexity where trust is a fragile commodity, often stretched between those who own the infrastructure and those who manage the flows of work.",
-  "cover": "",
-  "media": [],
+  "cover": "media/m5346.png",
+  "media": [
+    {
+      "id": 5346,
+      "kind": "image",
+      "src": "media/m5346.png"
+    }
+  ],
   "links": []
 }

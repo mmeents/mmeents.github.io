@@ -12,7 +12,13 @@
   "realmName": "Era 2 Footholds",
   "realmFile": "R4422.json",
   "realmNote": "The second era, known as Footholds, marks the transition from individual tools to organized marketplaces where software runs across distributed machines owned by diverse participants. In this era, capacity is personal hardware: \u0022footholds\u0022 are machines joined to an organization, each with its own owner and gateways to various models and services. This decentralized infrastructure is managed through specialized divisions\u2014such as Research, Management, Production, Executive, Customer, and Partners\u2014that handle the complexities of a growing service-based economy. \n\nThe era is characterized by a mix of human oversight and agent-driven throughput. While agents coordinate vast amounts of work, humans are required for customer interaction, contract management, and auditing the integrity of automated outputs. The economy is driven by paid work like ad copy, creative assets, and maintenance, where the value of service is inextricably linked to the physical infrastructure of the footholds and the bureaucratic handshakes between different organizational divisions.",
-  "cover": "",
-  "media": [],
+  "cover": "media/m6182.png",
+  "media": [
+    {
+      "id": 6182,
+      "kind": "image",
+      "src": "media/m6182.png"
+    }
+  ],
   "links": []
 }

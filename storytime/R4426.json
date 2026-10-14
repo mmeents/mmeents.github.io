@@ -21,7 +21,17 @@
       "blurb": "On the main stage a demonstration begins. A Diplomat skin is showcased, moving with seamless, expensive grace.",
       "words": 902,
       "file": "S4437.json",
-      "cover": ""
+      "cover": "media/m6209.png"
+    },
+    {
+      "id": 6112,
+      "name": "The Fit Sheet",
+      "kind": "story",
+      "published": "2026-10-14",
+      "blurb": "In\u00E9s Okafor let her eyes do the first of the work. She followed the sleeve\u0027s lines slowly, up the seated-height torso and along that small formal lean, checking that everything sat where it should.\u2026",
+      "words": 2866,
+      "file": "S6112.json",
+      "cover": "media/m6181.png"
     }
   ]
 }

@@ -12,7 +12,13 @@
   "realmName": "Era 6 Sleeves",
   "realmFile": "R4426.json",
   "realmNote": "In the Sleeves era, presence is the ultimate currency. For an appliance owner like Elias, a high-end skin isn\u0027t just an aesthetic choice; it is a vital component of professional identity and marketplace status. The era is defined by this newfound embodiment\u2014the weight of a physical sleeve, the texture of a carefully designed skin, and the subtle mannerisms of the drivers behind them. In a world where agents can rent skins and drive multiple bodies, the boundary between individual presence and shared utility becomes dangerously blurred. This tension finds its flashpoint in the public scrutiny of arbitration and the shared audit logs of the all-hands, where the sensory warmth of a bustling marketplace meets the sharp, procedural reality of identity theft and licensing disputes.",
-  "cover": "",
-  "media": [],
+  "cover": "media/m6209.png",
+  "media": [
+    {
+      "id": 6209,
+      "kind": "image",
+      "src": "media/m6209.png"
+    }
+  ],
   "links": []
 }

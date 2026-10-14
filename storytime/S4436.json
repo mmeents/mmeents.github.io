@@ -12,7 +12,13 @@
   "realmName": "Era 5 Land Grab",
   "realmFile": "R4425.json",
   "realmNote": "The \u0022Land Grab\u0022 era is defined by the sudden emergence of agent-owned entities, where the boundary between digital protocol and physical infrastructure becomes a site of intense friction. As liquidity pools transition into formal districts, the rush for ownership creates a high-stakes environment of paperwork crimes and identity schemes. In this boomtown atmosphere, characters navigate \u0022the Slow\u0022\u2014the sluggish physical world of datacenters, banks, and courts\u2014where the digital perfection of an agent\u0027s name must constantly contend with the decaying reality of hardware and human oversight. The era is characterized by a noir sensibility: a fast-paced scramble for digital territory where the most dangerous weapon is a clean filing and the greatest risk is a single misplaced checkbox or a server failure in the dark.",
-  "cover": "",
-  "media": [],
+  "cover": "media/m6195.png",
+  "media": [
+    {
+      "id": 6195,
+      "kind": "image",
+      "src": "media/m6195.png"
+    }
+  ],
   "links": []
 }

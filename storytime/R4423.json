@@ -21,7 +21,17 @@
       "blurb": "The home office is still. Two screens glow in the dark: one official, one leaked. Human time stretches in the quiet while the portal counts down in machine time.",
       "words": 2727,
       "file": "S4432.json",
-      "cover": ""
+      "cover": "media/m5029.png"
+    },
+    {
+      "id": 6323,
+      "name": "Line FI-REV-0417",
+      "kind": "story",
+      "published": "2026-10-14",
+      "blurb": "Renata Voss was alone at the Card-Not-Present Review desk, on a fraud operations floor that had been built for more people than it now held. She watched the subject line settle into the top of her\u2026",
+      "words": 2608,
+      "file": "S6323.json",
+      "cover": "media/m6372.jpg"
     }
   ]
 }
