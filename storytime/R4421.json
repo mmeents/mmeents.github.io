@@ -32,6 +32,16 @@
       "words": 1957,
       "file": "S6121.json",
       "cover": "media/m6179.png"
+    },
+    {
+      "id": 6880,
+      "name": "The Reviewer Passed Everything",
+      "kind": "story",
+      "published": "2026-10-14",
+      "blurb": "Priya pulled up the overnight run log for the Marlow Press batch: forty story cards, due on a call at nine. She had the mug in her other hand, more to hold something than to drink. The job was simple\u2026",
+      "words": 2369,
+      "file": "S6880.json",
+      "cover": "media/m6888.jpg"
     }
   ]
 }

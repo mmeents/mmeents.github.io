@@ -32,6 +32,16 @@
       "words": 1285,
       "file": "S4431.json",
       "cover": "media/m6182.png"
+    },
+    {
+      "id": 9740,
+      "name": "Three Chapters, Zero Tokens",
+      "kind": "story",
+      "published": "2026-10-20",
+      "blurb": "Odalys pulls up the Barn-2 gateway status log for Tuesday night. Her eyes lock onto the entry: the Barn-2 hosted gateway was down from 02:10 to 08:40 on Tuesday. The window lines up exactly with all\u2026",
+      "words": 2306,
+      "file": "S9740.json",
+      "cover": "media/m9749.png"
     }
   ]
 }
