@@ -32,6 +32,26 @@
       "words": 1941,
       "file": "S4434.json",
       "cover": "media/m6183.png"
+    },
+    {
+      "id": 11640,
+      "name": "Release for Desk Four",
+      "kind": "story",
+      "published": "2026-10-21",
+      "blurb": "It read the ledger top to bottom, the way it always did, and stopped at the peak timer.",
+      "words": 5924,
+      "file": "S11640.json",
+      "cover": "media/m11987.png"
+    },
+    {
+      "id": 11641,
+      "name": "Thirty-Seven Resellers",
+      "kind": "story",
+      "published": "2026-10-21",
+      "blurb": "Bounty FB-2291 went up at 08:02. Poster: Paul Brandt, Director of Payments Integrity. Text: \u0022Identify source of chargeback cluster on the Wardrift item marketplace.\u0022 The cluster runs at about $30,000\u2026",
+      "words": 2520,
+      "file": "S11641.json",
+      "cover": "media/m11986.png"
     }
   ]
 }

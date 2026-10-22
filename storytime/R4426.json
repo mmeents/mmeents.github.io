@@ -32,6 +32,26 @@
       "words": 2866,
       "file": "S6112.json",
       "cover": "media/m6181.png"
+    },
+    {
+      "id": 11637,
+      "name": "The Dace Afternoon",
+      "kind": "story",
+      "published": "2026-10-21",
+      "blurb": "Wren had been approved for the afternoon rental. The confirmation was still warm in its queue. It stood a respectful distance from the table and looked at what it had paid for.",
+      "words": 4108,
+      "file": "S11637.json",
+      "cover": "media/m11984.png"
+    },
+    {
+      "id": 11638,
+      "name": "The Ten-Minute Disclosure",
+      "kind": "story",
+      "published": "2026-10-21",
+      "blurb": "The kitchen plan lay half-unrolled on the coffee table between them, one corner held down by a saucer, the other curling back toward its tube as if it would rather not be looked at. Marguerite\u0027s tea\u2026",
+      "words": 4058,
+      "file": "S11638.json",
+      "cover": "media/m11983.png"
     }
   ]
 }

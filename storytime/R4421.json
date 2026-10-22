@@ -42,6 +42,16 @@
       "words": 2369,
       "file": "S6880.json",
       "cover": "media/m6888.jpg"
+    },
+    {
+      "id": 11690,
+      "name": "The Offer Is Worth Forty Dollars More",
+      "kind": "story",
+      "published": "2026-10-21",
+      "blurb": "The todo said: add get_listing_messages to tool server, test against live listing.",
+      "words": 2956,
+      "file": "S11690.json",
+      "cover": "media/m11972.png"
     }
   ]
 }

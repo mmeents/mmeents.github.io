@@ -32,6 +32,26 @@
       "words": 1500,
       "file": "S4436.json",
       "cover": "media/m6195.png"
+    },
+    {
+      "id": 10545,
+      "name": "Stall 7, Saltmarket",
+      "kind": "story",
+      "published": "2026-10-21",
+      "blurb": "Odile Marrero sat down at the table with the Halloran Securities status page already open. She didn\u0027t reach for her phone. She kept her hands on the keyboard and read the transfer line the way she\u2026",
+      "words": 3486,
+      "file": "S10545.json",
+      "cover": "media/m11954.png"
+    },
+    {
+      "id": 11639,
+      "name": "The Last Tranche on Tallow Row",
+      "kind": "story",
+      "published": "2026-10-21",
+      "blurb": "Greta Halloran had the routine down to a science. Walk in like you\u0027re picking up catalogs. Hands low, elbows in, nothing that would make the kid at the front counter look up from his phone. You don\u0027t\u2026",
+      "words": 3962,
+      "file": "S11639.json",
+      "cover": "media/m11985.png"
     }
   ]
 }

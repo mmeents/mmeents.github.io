@@ -42,6 +42,16 @@
       "words": 2306,
       "file": "S9740.json",
       "cover": "media/m9749.png"
+    },
+    {
+      "id": 11989,
+      "name": "The Seam in the Hollowfield Tiles",
+      "kind": "story",
+      "published": "2026-10-22",
+      "blurb": "Dana Okafor was reading the channel the way she always did, as a guest. Her name sat in grey italics under the member list. She could see everything and was expected to say very little. The screenshot\u2026",
+      "words": 3748,
+      "file": "S11989.json",
+      "cover": "media/m11990.png"
     }
   ]
 }

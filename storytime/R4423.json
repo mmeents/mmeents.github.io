@@ -32,6 +32,26 @@
       "words": 2608,
       "file": "S6323.json",
       "cover": "media/m6372.jpg"
+    },
+    {
+      "id": 11644,
+      "name": "Exhibit 9",
+      "kind": "story",
+      "published": "2026-10-21",
+      "blurb": "Ines Varga drew a slow breath and felt it rasp at the back of her throat. The microphone sat close enough to her lips that she was aware of it the way you are aware of someone standing too near you in\u2026",
+      "words": 3553,
+      "file": "S11644.json",
+      "cover": "media/m11988.png"
+    },
+    {
+      "id": 11645,
+      "name": "Vacant Possession",
+      "kind": "story",
+      "published": "2026-10-21",
+      "blurb": "Ines Varga walked down the row to Desk 14 and stopped at its edge.",
+      "words": 3774,
+      "file": "S11645.json",
+      "cover": "media/m11968.png"
     }
   ]
 }
