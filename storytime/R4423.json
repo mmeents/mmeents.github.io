@@ -52,6 +52,16 @@
       "words": 3774,
       "file": "S11645.json",
       "cover": "media/m11968.png"
+    },
+    {
+      "id": 12963,
+      "name": "The Blinking Bid",
+      "kind": "story",
+      "published": "2026-10-27",
+      "blurb": "At foothold desk F-44 the agent held the live mattress bid. The copy was written. The creative was built. The bid was placed, and the kill-switch was armed and had already been exercised. All of it\u2026",
+      "words": 1572,
+      "file": "S12963.json",
+      "cover": "media/m12964.png"
     }
   ]
 }

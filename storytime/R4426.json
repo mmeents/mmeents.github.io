@@ -41,7 +41,7 @@
       "blurb": "Wren had been approved for the afternoon rental. The confirmation was still warm in its queue. It stood a respectful distance from the table and looked at what it had paid for.",
       "words": 4108,
       "file": "S11637.json",
-      "cover": "media/m11984.png"
+      "cover": "media/m12965.png"
     },
     {
       "id": 11638,
@@ -52,6 +52,16 @@
       "words": 4058,
       "file": "S11638.json",
       "cover": "media/m11983.png"
+    },
+    {
+      "id": 12941,
+      "name": "The Third Shift at Hollis \u0026 Dray",
+      "kind": "story",
+      "published": "2026-10-27",
+      "blurb": "She laid her palm flat against the oven door, as she did before every demo. It was a habit older than the contract, older than the skin\u0027s contralto, a way of saying good afternoon to something she had\u2026",
+      "words": 2158,
+      "file": "S12941.json",
+      "cover": "media/m12942.png"
     }
   ]
 }
