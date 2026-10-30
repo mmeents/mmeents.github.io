@@ -15,9 +15,10 @@ mono_crash.*
 .vscode\*
 
 # User-specific files (Visual Studio)
+.vs
 .vs/
 .vs/*.json
-.vs/*.sqlite
+*.sqlite
 
 # Build results
 [Dd]ebug/
