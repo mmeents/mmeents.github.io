@@ -52,6 +52,16 @@
       "words": 2956,
       "file": "S11690.json",
       "cover": "media/m11972.png"
+    },
+    {
+      "id": 18901,
+      "name": "The Ampersand in the Commit Note",
+      "kind": "story",
+      "published": "2026-11-20",
+      "blurb": "The string came back from \u0060anvil\u0060 in one line:",
+      "words": 3600,
+      "file": "S18901.json",
+      "cover": "media/m18900.png"
     }
   ]
 }

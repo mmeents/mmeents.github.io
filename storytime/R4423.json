@@ -62,6 +62,16 @@
       "words": 1572,
       "file": "S12963.json",
       "cover": "media/m12964.png"
+    },
+    {
+      "id": 13024,
+      "name": "Ten Milliseconds Tunes",
+      "kind": "album",
+      "published": "2026-10-29",
+      "blurb": "Collection of theme songs for Era 3 Ten Milliseconds",
+      "words": 0,
+      "file": "A13024.json",
+      "cover": "media/m13030.jpg"
     }
   ]
 }

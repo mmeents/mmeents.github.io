@@ -52,6 +52,16 @@
       "words": 2520,
       "file": "S11641.json",
       "cover": "media/m11986.png"
+    },
+    {
+      "id": 18902,
+      "name": "The Courtesy Reversal",
+      "kind": "story",
+      "published": "2026-11-20",
+      "blurb": "She sat down at the table and lifted the lid off the shoebox.",
+      "words": 4804,
+      "file": "S18902.json",
+      "cover": "media/m18917.png"
     }
   ]
 }

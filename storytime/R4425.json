@@ -62,6 +62,16 @@
       "words": 2880,
       "file": "S12953.json",
       "cover": "media/m12952.png"
+    },
+    {
+      "id": 18919,
+      "name": "Form BO-3",
+      "kind": "story",
+      "published": "2026-11-20",
+      "blurb": "Renata Okafor sat at the table with her laptop open and her reading glasses pushed up into her hair, where they did no good at all. The Saltgate queue-status page filled the screen in the flat gray of\u2026",
+      "words": 4674,
+      "file": "S18919.json",
+      "cover": "media/m18922.png"
     }
   ]
 }
