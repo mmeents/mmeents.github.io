@@ -9,6 +9,7 @@ function createNavbarHeader(sPageName, sTitle) {
       </button>
       <ul id="navbar" class="nav navbar-nav">
         <li><a href="https://mmeents.github.io/default.html">${sTitle}</a></li>
+        <li><a href="https://mmeents.github.io/Links.html">${sTitle} Links</a></li>
       </ul>
     </div>
   `;
